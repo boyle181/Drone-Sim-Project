@@ -48,6 +48,20 @@
     	  }
     },
     {
+        "command": "CreateEntity",
+      	"params": {
+            "type": "rechargeStation",
+            "name": "Recharge Station",
+            "mesh": "assets/model/battery.glb",
+            "position": [498.292, 550, -228.623],
+            "scale": [1, 1, 1],
+            "rotation": [0, 0, 0, 0],
+            "direction": [1,0,0],
+            "speed": 0,
+            "offset": [0, 1.5, 0]
+    	  }
+    },
+    {
         "command": "SetScene",
         "params": {
             "type": "scene",
