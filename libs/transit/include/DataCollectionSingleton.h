@@ -14,14 +14,24 @@
  */
 class DataCollectionSingleton {
  public:
-    DataCollectionSingleton();
-    ~DataCollectionSingleton();
-    void writeTimeInfo(Drone* drone, float time);
-    void writeDistanceInfo(Drone* drone, float time);
-    void writeAccountInfo(IEntity* entity, double time);
-    void writeBatteryUsage(Drone* drone, int time);
-    void writeNumberOfTrips(Drone* drone. int time);
-    void writeToCSV();
+
+  /**
+   * @brief If this has been called before, it just returns a reference to itself
+   * otherwise it creates a new DataCollectionSingleton 
+   */
+   DataCollectionSingleton();
+   
+  /**
+   * @brief A deleter which deletes the DataCollectionSingleton, if it is not NULL
+   */
+   ~DataCollectionSingleton();
+   
+   void writeTimeInfo(Drone* drone, float time);
+   void writeDistanceInfo(Drone* drone, float time);
+   void writeAccountInfo(IEntity* entity, double time);
+   void writeBatteryUsage(Drone* drone, int time);
+   void writeNumberOfTrips(Drone* drone. int time);
+   void writeToCSV();
 
  private:
     DataCollectionSingleton dataCollection = NULL;
