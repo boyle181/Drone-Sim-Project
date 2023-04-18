@@ -5,6 +5,7 @@
 
 #include "IEntity.h"
 #include "math/vector3.h"
+#include "util/json.h"
 
 // Represents a recharge station in a physical system.
 
@@ -37,18 +38,42 @@ class RechargeStation : public IEntity {
    */
   JsonObject GetDetails() const { return details; }
 
+    /**
+   * @brief Gets the robot's direction
+   * @return The robot's direction
+   */
+  Vector3 GetDirection() const { return direction; }
+
+  /**
+   * @brief Gets the recharge stations destination
+   * @return The recharge stations destination
+   */
+  Vector3 GetDestination() const { return position; }
+
+
+  /**
+   * @brief Gets the recharge station's speed
+   * @return The recharge station's speed
+   */
+  float GetSpeed() const { return 0; }
+
   /**
    * @brief Gets the availability of the recharge station
    * @return The availability of the recharge station
    */
   bool GetAvailability() const { return available; }
 
-
   /**
    * @brief Sets the position of the recharge station
    * @param pos_ The new position of the recharge station
    */
   void SetPosition(Vector3 pos_) { position = pos_; }
+
+  /**
+   * @brief Sets the Availability of the recharge station
+   * @param choice A bool of whether or not recharge station is available
+   */
+  void SetAvailability(bool choice) { available = choice; }
 
   /**
    * @brief Removing the copy constructor and assignment operator
@@ -60,6 +85,9 @@ class RechargeStation : public IEntity {
  private:
   JsonObject details;
   Vector3 position;
+  Vector3 direction;
+  Vector3 destination;
+  float speed;
   bool available;
 };
 

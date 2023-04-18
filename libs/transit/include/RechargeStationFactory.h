@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "IEntityFactory.h"
+#include "RechargeStation.h"
 
 /**
  *@brief Recharge Station Factory to produce recharge station class.
@@ -13,13 +14,13 @@ class RechargeStationFactory : public IEntityFactory {
   /**
    * @brief Destructor for IEntityFactory class.
    **/
-  virtual ~RechargeStationFactory() {}
+  ~RechargeStationFactory() {}
 
   /**
    * @brief Creates entity using the given JSON object, if possible.
    * @param entity - JsonObject to be used to create the new entity.
-   * @return Entity that was created if it was created successfully, or a
-   *nullpointer if creation failed.
+   * @return Entity that was created if it was created successfully, 
+   * or a nullpointer if creation failed.
    **/
   IEntity* CreateEntity(JsonObject& entity);
 };

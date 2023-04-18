@@ -38,6 +38,8 @@ class BatteryDecorator : public IEntity {
    * @return Returns the current battery percentage
    */
    int getPercentage();
+   
+   void Update(double dt, std::vector<IEntity*> scheduler);
 
  private:
    IEntity* component;

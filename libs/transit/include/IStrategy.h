@@ -20,7 +20,7 @@ class IStrategy {
   /**
    * @brief Check if the trip is completed
    * 
-   * @return True if complete, false if not complete 
+   * @return True if complete, false if not complete
    */
   virtual bool IsCompleted() = 0;
 };

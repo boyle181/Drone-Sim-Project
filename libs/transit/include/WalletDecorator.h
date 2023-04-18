@@ -1,7 +1,8 @@
 #ifndef WALLET_DECORATOR_H_
 #define WaLLET_DECORATOR_H_
-
 #include "IEntity.h"
+
+
 
 
 /**
@@ -38,7 +39,9 @@ class WalletDecorator : public IEntity {
    * @brief Gets the wallet value in the wallet
    * @return Returns the current wallet value
    */
-   int getAccount();
+   double getAccount();
+
+   void Update(double dt, std::vector<IEntity*> scheduler);
    
  private:
    IEntity* component;

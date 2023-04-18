@@ -96,6 +96,12 @@ class Drone : public IEntity {
   void SetDirection(Vector3 dir_) { direction = dir_; }
 
   /**
+   * @brief Sets the robot's availability
+   * @param choice The new availability of the robot
+   */
+  void SetAvailability(bool choice);
+
+  /**
    * @brief Sets the destination of the drone
    * @param des_ The new destination of the drone
    */

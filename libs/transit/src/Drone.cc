@@ -98,6 +98,8 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
   }
 }
 
+void Robot::SetAvailability(bool choice) { available = choice; }
+
 void Drone::Rotate(double angle) {
   Vector3 dirTmp = direction;
   direction.x = dirTmp.x * std::cos(angle) - dirTmp.z * std::sin(angle);
