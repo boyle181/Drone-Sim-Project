@@ -21,17 +21,16 @@ class BatteryDecorator : public IEntity {
    * @brief Recharges battery by adding more to the battery percentage over time
    * @param amount An int which is added to the total battery percentage
    */
-   void recharge(int amount);
+   void recharge(double amount);
 
   /**
    * @brief Takes in an amount, tests whether it can be removed from battery percentage
-   * total, then either returns false if it is too much, or returns true and removes
-   * the amount from the current percentage
+   * total, then either returns false if it is too much, or returns true
    * @param amount An int which is removed to the total battery percentage
    * @return Returns true if usage removed amount from battery percentage 
    * or false if it failed to do so
    */
-   bool usage(int amount);
+   bool usage(double amount);
 
   /**
    * @brief Gets the percentage left on the battery
@@ -43,7 +42,9 @@ class BatteryDecorator : public IEntity {
 
  private:
    IEntity* component;
-   int percentage;
+   int currentCapacity;
+   const double maxCapacity;
+   const double batteryThreshhold = 50;
 };
 
 #endif  

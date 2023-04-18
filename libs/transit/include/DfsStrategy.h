@@ -19,5 +19,6 @@ class DfsStrategy : public PathStrategy {
    */
   DfsStrategy(Vector3 position, Vector3 destination,
               const routing::IGraph* graph);
+
 };
 #endif  // DFS_STRATEGY_H_

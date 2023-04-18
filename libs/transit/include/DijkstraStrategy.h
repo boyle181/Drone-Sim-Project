@@ -19,5 +19,6 @@ class DijkstraStrategy : public PathStrategy {
    */
   DijkstraStrategy(Vector3 position, Vector3 destination,
                    const routing::IGraph* graph);
+
 };
 #endif  // DIJKSTRA_STRATEGY_H_

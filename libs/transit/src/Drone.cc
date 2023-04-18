@@ -10,6 +10,7 @@
 #include "DijkstraStrategy.h"
 #include "JumpDecorator.h"
 #include "SpinDecorator.h"
+#include "WalletDecorator.h"
 
 Drone::Drone(JsonObject& obj) : details(obj) {
   JsonArray pos(obj["position"]);
@@ -30,6 +31,8 @@ Drone::~Drone() {
   delete toFinalDestination;
 }
 
+
+
 void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
   float minDis = std::numeric_limits<float>::max();
   for (auto entity : scheduler) {
@@ -41,64 +44,85 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
       }
     }
   }
+      
 
   if (nearestEntity) {
-      // set availability to the nearest entity
+    // Set required variables
+    std::string strategyName = nearestEntity->GetStrategyName();
+    IStrategy* strategy;
+    std::vector<float> path;
+    
+    // set availability to the nearest entity
     nearestEntity->SetAvailability(false);
     available = false;
     pickedUp = false;
 
+    // Set destinations
     destination = nearestEntity->GetPosition();
     Vector3 finalDestination = nearestEntity->GetDestination();
 
+    // Wrap Beeline strat and calculate its distance.
     toRobot = new BeelineStrategy(position, destination);
+    beelineTripDistance = toRobot->getTotalDistance();
 
-    std::string strat = nearestEntity->GetStrategyName();
-    if (strat == "astar")
+
+    // Wrap Celebration decorators and path strategies
+    if (strategyName == "astar") {
+      strategy = new AstarStrategy(destination, finalDestination, graph);
       toFinalDestination =
-        new JumpDecorator(new AstarStrategy(destination, finalDestination, graph));
-    else if (strat == "dfs")
+        new JumpDecorator(strategy);
+    } else if (strategyName == "dfs") {
+      strategy = new DfsStrategy(destination, finalDestination, graph);
       toFinalDestination =
-        new SpinDecorator(new JumpDecorator(new DfsStrategy(destination, finalDestination, graph)));
-    else if (strat == "dijkstra")
+        new SpinDecorator(new JumpDecorator(strategy));
+    } else if (strategyName == "dijkstra") {
       toFinalDestination =
         new JumpDecorator(new SpinDecorator(new DijkstraStrategy(destination, finalDestination, graph)));
-    else
+    } else
       toFinalDestination = new BeelineStrategy(destination, finalDestination);
+
+    //calculate trip cost
+    pathTripDistance = strategy->getTotalDistance();
+    tripMoneyCost = pathTripDistance * .56;
   }
 }
 
 void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
-  if (available)
+  if (available) {
     GetNearestEntity(scheduler);
-
-  if (toRobot) {
+    if (toRobot) {
     toRobot->Move(this, dt);
+      if (toRobot->IsCompleted()) {
+        tripMoneyCost = toFinalDestination->getTotalDistance()*.5; // Cost of trip
+        delete toRobot;
+        toRobot = nullptr;
+        pickedUp = true;
+        } 
+        else if (toFinalDestination) {
+        toFinalDestination->Move(this, dt);
 
-    if (toRobot->IsCompleted()) {
-      delete toRobot;
-      toRobot = nullptr;
-      pickedUp = true;
-    }
-  } else if (toFinalDestination) {
-    toFinalDestination->Move(this, dt);
+        if (nearestEntity && pickedUp) {
+          nearestEntity->SetPosition(position);
+          nearestEntity->SetDirection(direction);
+        }
 
-    if (nearestEntity && pickedUp) {
-      nearestEntity->SetPosition(position);
-      nearestEntity->SetDirection(direction);
-    }
-
-    if (toFinalDestination->IsCompleted()) {
-      delete toFinalDestination;
-      toFinalDestination = nullptr;
-      nearestEntity = nullptr;
-      available = true;
-      pickedUp = false;
+        if (toFinalDestination->IsCompleted()) {
+          delete toFinalDestination;
+          toFinalDestination = nullptr;
+          nearestEntity = nullptr;
+          available = true;
+          pickedUp = false;
+          tripMoneyCost = 0;
+          pathTripDistance = 0;
+          beelineTripDistance = 0;
+        }
+      }
     }
   }
 }
 
-void Robot::SetAvailability(bool choice) { available = choice; }
+
+void Drone::SetAvailability(bool choice) { available = choice; }
 
 void Drone::Rotate(double angle) {
   Vector3 dirTmp = direction;

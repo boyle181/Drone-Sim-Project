@@ -46,64 +46,12 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     }
 
     // drone is moving
-    if(!component->getAvailability() && canUpdateBattery){ // go to recharge station
+    if(!component->GetAvailability() && canUpdateBattery) { // go to recharge station
         currentCapacity -= dt; // Battery should always dec as drone moves
     } 
-    else if (currentCapacity < 50) // drone is not moving at all
+    else if (currentCapacity < 50) { // drone is not moving at all
         // go to recharge station
     }
     
-
-    // bool updateBattery;
-    // Drone *drone = (Drone*)component;
-    // if(drone->pickedUp) {
-    //     updateBattery = this->usage(10);
-    //     if(!updateBattery) {
-
-    //     }
-    // }
-    // // update battery percentage
-    // if(drone->toFinalDestination->isCompleted()) {
-
-    // }
-
-    
-    // calculate the distance of entire trip to determine if drone can fulfil the trip with current batter level
-    // we want to get time of trip = distance / speed
-    // 2 distances: drone -> robot, drone+robot -> final destination
-    
-    // check for nearest entity path strategy being used
-    // IStrategy* strategy;
-    // std::vector<float> path;
-    // if(nearestEntity(component).GetStrategy() == "astar") {
-    //     strategy = new AstarStrategy(destination, finalDestination, component->graph); // creating this object will set the path variable
-    //     path = (PathStrategy*)strategy->path;
-    // }
-    // if(nearestEntity(component).GetStrategy() == "dfs") {
-    //     strategy = new DfsStrategy(destination, finalDestination, component->graph);
-    //     path = (PathStrategy*)strategy->path;
-    // if(nearestEntity(component).GetStrategy() == "dijkstra") {
-    //     strategy = new DijkstraStrategy(destination, finalDestination, component->graph);
-    //     path = (PathStrategy*)strategy->path;
-    // }
-    // use GetPath(std::vector<float> src, std::vector<float> dest, const RoutingStrategy& pathing) which returns a vector of floats
-    // loop over the floats to calculate the distance of each path strategy
-    
-    // Distance from robots destination -> final destination
-
-    //  g->GetPath(start, end, Dijkstra::Instance());
-
-    // std::vector< std::vector<float> > path = component->graph->GetPath(start, end, Dijkstra::Instance());
-    // std::vector< std::vector<float> > path = component->getNearestEntity(component)->graph->GetPath();
-    // for (int i = 0; i<path.size()-1; i++){
-    //     // Vector3 point1 = Vector(path[0][0], , ) 
-    // }
-
-    // Drone to robot and robot to drone, calc distance for entire trip
-    // Then determine battery usage by total time that the trip will take
-    // if not find nearest recharge station. Set not avaible when going to
-    // a recharge station.
-
-    // figure out how many pixels 
     
 } 

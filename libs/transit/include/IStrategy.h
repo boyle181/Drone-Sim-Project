@@ -23,6 +23,13 @@ class IStrategy {
    * @return True if complete, false if not complete
    */
   virtual bool IsCompleted() = 0;
+ /**
+   * @brief Calculate the total distance of the path
+   *        
+   *
+   * @return float - the total distance
+   */
+  virtual float getTotalDistance();
 };
 
 #endif

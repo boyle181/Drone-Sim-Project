@@ -125,6 +125,10 @@ class Drone : public IEntity {
    */
   void Jump(double height);
 
+  IEntity* getEntity() { return nearestEntity; }
+  IStrategy* getStrategtToRobot() { return toRobot; } 
+  IStrategy* getStrategtFinalDestination() { return toFinalDestination; }
+
   /**
    * @brief Removing the copy constructor and assignment operator
    * so that drones cannot be copied.
@@ -146,6 +150,10 @@ class Drone : public IEntity {
   IEntity* nearestEntity = nullptr;
   IStrategy* toRobot = nullptr;
   IStrategy* toFinalDestination = nullptr;
+  float pathTripDistance = 0;
+  float beelineTripDistance = 0;
+  float tripMoneyCost = 0; // only going to charge robot for when it gets picked up and dropped to final dest
+
 };
 
 #endif

@@ -32,6 +32,14 @@ class BeelineStrategy : public IStrategy {
    * @return True if complete, false if not complete
    */
   bool IsCompleted();
+  
+ /**
+   * @brief Calculate the total distance of the path for dfsStrategy
+   *        
+   *
+   * @return float - the total distance
+   */
+    float getTotalDistance();
 
  private:
   Vector3 position;

@@ -20,20 +20,9 @@ class WalletDecorator : public IEntity {
    WalletDecorator(IEntity* entity);
    
   /**
-   * @brief Adds more money to the wallet value
-   * @param money An int which is added to the total wallet value
+   * @brief pays off the debt the wallet has accumlated
    */
-   void addMoney(double money);
-   
-  /**
-   * @brief Takes in an amount, tests whether it can be removed from wallet value
-   * total, then either returns false if it is too much, or returns true and removes
-   * the amount from the current wallet value
-   * @param amount An int which is removed to the total wallet value
-   * @return Returns true if usage removed amount from wallet value 
-   * or false if it failed to do so
-   */
-   bool subtractMoney(double money);
+   void payDebt();
    
   /**
    * @brief Gets the wallet value in the wallet
@@ -45,7 +34,8 @@ class WalletDecorator : public IEntity {
    
  private:
    IEntity* component;
-   double account;
+   double account = 0;
+   double debt = 0;
 };
 
 #endif  
