@@ -97,6 +97,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
         delete toRobot;
         toRobot = nullptr;
         pickedUp = true;
+        nearestEntity->Get
         } 
         else if (toFinalDestination) {
         toFinalDestination->Move(this, dt);

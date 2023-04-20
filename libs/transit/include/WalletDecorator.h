@@ -20,11 +20,6 @@ class WalletDecorator : public IEntity {
    WalletDecorator(IEntity* entity);
    
   /**
-   * @brief pays off the debt the wallet has accumlated
-   */
-   void payDebt();
-   
-  /**
    * @brief Gets the wallet value in the wallet
    * @return Returns the current wallet value
    */
@@ -35,7 +30,12 @@ class WalletDecorator : public IEntity {
  private:
    IEntity* component;
    double account = 0;
-   double debt = 0;
+   std::string type;
+   bool clientValid;                      // Keeps track if a client has been cleared for ride
+   const double START_MONEY = 1000.00;
+   const int RANGE = 1000;
+   const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)
+   const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
 };
 
 #endif  

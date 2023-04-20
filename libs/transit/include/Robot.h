@@ -109,6 +109,21 @@ class Robot : public IEntity {
    */
   void Rotate(double angle);
 
+  /**
+   * @brief Get the Picked Up status of a robot
+   * 
+   * @return true, the robot is picked up
+   * @return false, the robot is not picked up
+   */
+  bool GetPickedUp() {return pickedUp; }
+
+  /**
+   * @brief Set the Picked Up status of a robot
+   * 
+   * @param status the status that picked up is set to
+   */
+  void SetPickedUp(bool status) {pickedUp = status; }
+
  private:
   JsonObject details;
   Vector3 position;
@@ -117,6 +132,7 @@ class Robot : public IEntity {
   float speed;
   bool available;
   std::string strategyName;
+  bool pickedUp = false;
 };
 
 #endif  // ROBOT_H

@@ -125,16 +125,43 @@ class Drone : public IEntity {
    */
   void Jump(double height);
 
-  IEntity* getEntity() { return nearestEntity; }
-  IStrategy* getStrategtToRobot() { return toRobot; } 
-  IStrategy* getStrategtFinalDestination() { return toFinalDestination; }
-
   /**
    * @brief Removing the copy constructor and assignment operator
    * so that drones cannot be copied.
    */
   Drone(const Drone& drone) = delete;
   Drone& operator=(const Drone& drone) = delete;
+
+  /**
+   * @brief Get the To Final Destination strategy
+   * 
+   * @return IStrategy* the final destination strategy.
+   *         this is the strategy used after pick up
+   */
+  IStrategy* GetToFinalDestination() { return toFinalDestination; }
+  
+  /**
+   * @brief Get the Charging Status object
+   * 
+   * @return true, Drone is at a recharge station charging
+   * @return false, Drone is not at a recharge station charging
+   */
+  bool GetChargingStatus() { return rechargeStatus; }
+  
+  /**
+   * @brief Set the Recharging Status of the drone
+   * 
+   * @param status a bool that indicates if the drone is
+   *               recharging at a recharge station
+   */
+  void SetChargingStatus(bool status) { rechargeStatus = status; }
+  
+  /**
+   * @brief Get the nearest entity that the drone is pursuing
+   * 
+   * @return IEntity* the entity the drone is pursuing
+   */
+  IEntity* GetEntity() {return nearestEntity; }
 
  private:
   JsonObject details;
@@ -153,7 +180,7 @@ class Drone : public IEntity {
   float pathTripDistance = 0;
   float beelineTripDistance = 0;
   float tripMoneyCost = 0; // only going to charge robot for when it gets picked up and dropped to final dest
-
+  bool rechargeStatus = false;
 };
 
 #endif

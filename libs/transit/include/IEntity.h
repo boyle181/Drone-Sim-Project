@@ -6,6 +6,7 @@
 #include "graph.h"
 #include "math/vector3.h"
 #include "util/json.h"
+#include "IStrategy.h"
 
 using namespace routing;
 
@@ -154,6 +155,54 @@ class IEntity {
   virtual float Random(float Min, float Max) {
     return ((float(rand()) / float(RAND_MAX)) * (Max - Min)) + Min;
   }
+
+  // ************* I added everything from here below **********
+
+    /**
+   * @brief Get the Picked Up status of a entity
+   * 
+   * @return true, the entity is picked up
+   * @return false, the entity is not picked up
+   */
+  virtual bool GetPickedUp() {}
+
+  /**
+   * @brief Set the Picked Up status of a entity
+   * 
+   * @param status the status that picked up is set to
+   */
+  virtual void SetPickedUp(bool status) {}
+
+ /**
+   * @brief Get the To Final Destination strategy
+   * 
+   * @return IStrategy* the final destination strategy.
+   *         this is the strategy used after pick up
+   */
+  virtual IStrategy* GetToFinalDestination() {}
+  
+  /**
+   * @brief Get the Charging Status entity
+   * 
+   * @return true, entity is at a recharge station charging
+   * @return false, entity is not at a recharge station charging
+   */
+  virtual bool GetChargingStatus() {}
+  
+  /**
+   * @brief Set the Recharging Status of the entity
+   * 
+   * @param status a bool that indicates if the entity is
+   *               recharging at a recharge station
+   */
+  virtual void SetChargingStatus(bool status) {}
+  
+  /**
+   * @brief Get the nearest entity that the entity is pursuing
+   * 
+   * @return IEntity* the entity the entity (this entity) is pursuing
+   */
+  virtual IEntity* GetEntity() {}
 
  protected:
   int id;
