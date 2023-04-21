@@ -6,8 +6,6 @@
 #include "graph.h"
 #include "math/vector3.h"
 #include "util/json.h"
-#include "IStrategy.h"
-
 using namespace routing;
 
 /**
@@ -172,14 +170,6 @@ class IEntity {
    * @param status the status that picked up is set to
    */
   virtual void SetPickedUp(bool status) {}
-
- /**
-   * @brief Get the To Final Destination strategy
-   * 
-   * @return IStrategy* the final destination strategy.
-   *         this is the strategy used after pick up
-   */
-  virtual IStrategy* GetToFinalDestination() {}
   
   /**
    * @brief Get the Charging Status entity

@@ -13,12 +13,13 @@
 
 BatteryDecorator::BatteryDecorator(IEntity* entity){
     this->component = entity;
-    this->maxCapacity = 100;
+    int currentCapacity = maxCapacity;
+
 }
-void BatteryDecorator::recharge(int amount){
+void BatteryDecorator::recharge(double amount){
     this->currentCapacity += amount;
 }
-bool BatteryDecorator::usage(int amount){
+bool BatteryDecorator::usage(double amount){
     return !(amount > this->maxCapacity);
 }
 int BatteryDecorator::getcurrentCapacity(){

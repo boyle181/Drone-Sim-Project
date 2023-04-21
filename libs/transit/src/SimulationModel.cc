@@ -4,7 +4,7 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
-#include "RechargeStation.h"
+#include "RechargeStationFactory.h"
 
 
 SimulationModel::SimulationModel(IController& controller)

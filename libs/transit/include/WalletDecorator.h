@@ -1,6 +1,8 @@
 #ifndef WALLET_DECORATOR_H_
 #define WaLLET_DECORATOR_H_
 #include "IEntity.h"
+#include "Robot.h"
+#include "Drone.h"
 
 
 
@@ -36,6 +38,8 @@ class WalletDecorator : public IEntity {
    const int RANGE = 1000;
    const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)
    const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
+   Robot* client = NULL;
+   Drone* worker = NULL;
 };
 
 #endif  

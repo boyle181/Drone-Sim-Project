@@ -32,6 +32,8 @@ class BatteryDecorator : public IEntity {
    */
    bool usage(double amount);
 
+   int getcurrentCapacity();
+
   /**
    * @brief Gets the percentage left on the battery
    * @return Returns the current battery percentage
@@ -41,9 +43,9 @@ class BatteryDecorator : public IEntity {
    void Update(double dt, std::vector<IEntity*> scheduler);
 
  private:
-   IEntity* component;
+   IEntity* component = NULL;
    int currentCapacity;
-   const double maxCapacity;
+   const double maxCapacity = 100;
    const double batteryThreshhold = 50;
 };
 

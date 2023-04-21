@@ -3,6 +3,7 @@
 #include "IStrategy.h"
 #include "graph.h"
 #include "Drone.h"
+#include "Robot.h"
 #include "AstarStrategy.h"
 #include "BeelineStrategy.h"
 #include "DfsStrategy.h"
@@ -15,6 +16,7 @@ WalletDecorator::WalletDecorator(IEntity* entity){
     type = (entity->GetDetails())["type"].ToString();
     if (type.compare("drone") == 0){
         this->account = 0;
+        worker = dynamic_cast<Drone*>(component);
     }
     else{
         this->account = rand()%RANGE + START_MONEY;
@@ -26,11 +28,16 @@ double WalletDecorator::getAccount(){
 }
 void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     /**
-     * Robots should only be charged when its picked up. They pay incrementally
+     * Robots should only be charged moeny when its picked up. They pay incrementally
      * but the drone makes sure they have enough money for the whole trip
      */
-    if (type.compare("robot") == 0 && component->GetPickedUp()){
-        account -= COST_FOR_TRIP;
+     Robot* client;
+     
+    if (type.compare("robot") == 0){
+        client = dynamic_cast<Robot*>(component);
+        if(client->GetPickedUp()) {
+            account -= COST_FOR_TRIP;
+        }
     }
     /**
      * Drone:
@@ -49,20 +56,20 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      *  GetEntity()             -> returns the entity being considered 
      *                             for a trip
      */
-    if (type.compare("drone") == 0){
-        IStrategy* strategy = component->GetToFinalDestination();
-        if (component->GetChargingStatus()){ // Drone pays for recharge per dt
+    if (type.compare("drone") == 0 && !worker){
+        IStrategy* strategy = worker->GetToFinalDestination();
+        if (worker->GetChargingStatus()){ // Drone pays for recharge per dt
             account -= COST_FOR_RECHARGE;
         }
         // Determine if the entity present is able to afford the trip
         if (!clientValid && strategy != nullptr){ // Note: Strategy will be nullptr if theres no nearest entity
             float dist = strategy->getTotalDistance();
-            float speed = component->GetSpeed();
+            float speed = worker->GetSpeed();
 
             // Total time taken for the trip adjusted by Cost_for_trip
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP;
-            if (!((WalletDecorator*)(component->GetEntity())->getAccount() - paymentForTrip >= 0)){
-                component->SetAvailability(true);
+            if (!this->getAccount() - paymentForTrip >= 0){
+                worker->SetAvailability(true);
                 clientValid = false;
             }
             else {

@@ -4,8 +4,9 @@
 #include <vector>
 
 #include "IEntity.h"
-#include "IStrategy.h"
 #include "math/vector3.h"
+#include "IStrategy.h"
+
 
 // Represents a drone in a physical system.
 // Drones move using euler integration based on a specified
