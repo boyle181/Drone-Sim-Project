@@ -39,7 +39,7 @@ class BeelineStrategy : public IStrategy {
    *
    * @return float - the total distance
    */
-    float getTotalDistance();
+  float getTotalDistance();
 
  private:
   Vector3 position;

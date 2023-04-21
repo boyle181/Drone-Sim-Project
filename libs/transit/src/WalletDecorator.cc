@@ -1,44 +1,62 @@
 #include "WalletDecorator.h"
-#include "IEntity.h"
-#include "IStrategy.h"
-#include "graph.h"
-#include "Drone.h"
-#include "Robot.h"
-#include "AstarStrategy.h"
-#include "BeelineStrategy.h"
-#include "DfsStrategy.h"
-#include "DijkstraStrategy.h"
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
 
 WalletDecorator::WalletDecorator(IEntity* entity){
     type = (entity->GetDetails())["type"].ToString();
     if (type.compare("drone") == 0){
         this->account = 0;
-        worker = dynamic_cast<Drone*>(component);
     }
     else{
         this->account = rand()%RANGE + START_MONEY;
     }
 }
 
-double WalletDecorator::getAccount(){
-    return this->account;
+IStrategy* WalletDecorator::getStrategy(){
+    std::string strategyName = component->GetStrategyName();
+    IStrategy* strategy;
+    Vector3 position = component->GetPosition();
+    Vector3 destination = component->GetDestination();
+    if (strategyName == "astar") {
+        strategy = new AstarStrategy(position, destination, graph);
+    } else if (strategyName == "dfs") {
+        strategy = new DfsStrategy(position, destination, graph);
+    } else if (strategyName == "dijkstra") {
+        strategy = new DijkstraStrategy(position, destination, graph);
+    } else {
+        strategy = new BeelineStrategy(position, destination);
+    }
+    return strategy;
 }
+
 void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     /**
      * Robots should only be charged moeny when its picked up. They pay incrementally
      * but the drone makes sure they have enough money for the whole trip
      */
-     Robot* client;
      
     if (type.compare("robot") == 0){
-        client = dynamic_cast<Robot*>(component);
-        if(client->GetPickedUp()) {
+        // If the client is not valid then they will be set to available and the drone will see this
+        if (!this->clientValid){
+            IStrategy* strategy = getStrategy();
+            float dist = strategy->getTotalDistance();
+            float speed = this->GetSpeed();
+
+            // Total time taken for the trip adjusted by Cost_for_trip
+            float paymentForTrip = (dist/speed)*COST_FOR_TRIP;
+            if (!(this->account - paymentForTrip >= 0)){
+                this->SetAvailability(true);
+                clientValid = false;
+            }
+            else {
+                clientValid = true;
+            }
+            delete strategy;
+        }
+        // If the client is validated then they will be charged
+        if(this->GetPickedUp() && this->clientValid) {
             account -= COST_FOR_TRIP;
         }
     }
+
     /**
      * Drone:
      * (*) Drone needs to be aware of when its recharging so then 
@@ -56,29 +74,30 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      *  GetEntity()             -> returns the entity being considered 
      *                             for a trip
      */
-    if (type.compare("drone") == 0 && !worker){
-        IStrategy* strategy = worker->GetToFinalDestination();
-        if (worker->GetChargingStatus()){ // Drone pays for recharge per dt
-            account -= COST_FOR_RECHARGE;
+    if (type.compare("drone") == 0){
+        if (component->GetChargingStatus()){ // Drone pays for recharge per dt
+            this->account -= COST_FOR_RECHARGE;
         }
         // Determine if the entity present is able to afford the trip
-        if (!clientValid && strategy != nullptr){ // Note: Strategy will be nullptr if theres no nearest entity
-            float dist = strategy->getTotalDistance();
-            float speed = worker->GetSpeed();
-
-            // Total time taken for the trip adjusted by Cost_for_trip
-            float paymentForTrip = (dist/speed)*COST_FOR_TRIP;
-            if (!this->getAccount() - paymentForTrip >= 0){
-                worker->SetAvailability(true);
+        if (this->GetEntity()){
+            if (!clientValid){
+                // cleints availabiity will be changed (above) to indicate the robot doesn't have enough money
+                if (this->GetEntity()->GetAvailability()){
+                    this->SetAvailability(true);
+                    clientValid = false;
+                }
+                else {
+                    clientValid = true;
+                }
+            }
+            // If client is valid the drone will earn money
+            else {
+                account += COST_FOR_TRIP;
+            }
+            // When the trip is complete a new client will be selected
+            if (this->GetPosition().Distance(this->GetDestination()) < 4.0){
                 clientValid = false;
             }
-            else {
-                clientValid = true;
-            }
-        }
-        // When the trip is complete a new client will be selected
-        if (strategy->IsCompleted()){
-            clientValid = false;
         }
     }
     component->Update(dt, scheduler);

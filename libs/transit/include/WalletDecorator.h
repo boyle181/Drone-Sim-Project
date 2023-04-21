@@ -3,7 +3,15 @@
 #include "IEntity.h"
 #include "Robot.h"
 #include "Drone.h"
-
+#include "IStrategy.h"
+#include "graph.h"
+#include "AstarStrategy.h"
+#include "BeelineStrategy.h"
+#include "DfsStrategy.h"
+#include "DijkstraStrategy.h"
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 
 
@@ -20,16 +28,12 @@ class WalletDecorator : public IEntity {
    * @param entity a pointer IEntity object in which the wallet is created
    */
    WalletDecorator(IEntity* entity);
-   
-  /**
-   * @brief Gets the wallet value in the wallet
-   * @return Returns the current wallet value
-   */
-   double getAccount();
 
    void Update(double dt, std::vector<IEntity*> scheduler);
    
  private:
+   IStrategy* getStrategy();
+
    IEntity* component;
    double account = 0;
    std::string type;
@@ -38,8 +42,6 @@ class WalletDecorator : public IEntity {
    const int RANGE = 1000;
    const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)
    const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
-   Robot* client = NULL;
-   Drone* worker = NULL;
 };
 
 #endif  

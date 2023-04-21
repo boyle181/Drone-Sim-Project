@@ -29,7 +29,7 @@ class IStrategy {
    *
    * @return float - the total distance
    */
-  virtual float getTotalDistance();
+  virtual float getTotalDistance() {};
 };
 
 #endif
