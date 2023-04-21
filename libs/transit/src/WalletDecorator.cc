@@ -76,7 +76,12 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      */
     if (type.compare("drone") == 0){
         if (component->GetChargingStatus()){ // Drone pays for recharge per dt
-            this->account -= COST_FOR_RECHARGE;
+            if (this->account - COST_FOR_RECHARGE >= 0){
+                this->account -= COST_FOR_RECHARGE;
+            }
+            else { // Drone can't charge if it doesnt have enough money, so charging status changed
+                component->SetChargingStatus(false);
+            }
         }
         // Determine if the entity present is able to afford the trip
         if (this->GetEntity()){
