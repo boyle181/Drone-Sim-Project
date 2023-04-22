@@ -52,13 +52,13 @@
       	"params": {
             "type": "rechargeStation",
             "name": "Recharge Station",
-            "mesh": "assets/model/battery.glb",
-            "position": [498.292, 550, -228.623],
-            "scale": [1, 1, 1],
+            "mesh": "assets/model/recharge_station.glb",
+            "position": [400.292, 550, 228.623],
+            "scale": [0.008, 0.008, 0.008],
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [0, 1.5, 0]
+            "offset": [0, -14.6, 0]
     	  }
     },
     {

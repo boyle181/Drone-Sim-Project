@@ -8,6 +8,7 @@
 #include "IStrategy.h"
 
 
+
 // Represents a drone in a physical system.
 // Drones move using euler integration based on a specified
 // velocity and direction.
@@ -75,7 +76,7 @@ class Drone : public IEntity {
    * @brief Gets the nearest entity in the scheduler
    * @param scheduler Vector containing all the entities in the system
    */
-  void GetNearestEntity(std::vector<IEntity*> scheduler);
+
 
   /**
    * @brief Updates the drone's position
@@ -158,11 +159,11 @@ class Drone : public IEntity {
   void SetChargingStatus(bool status) { rechargeStatus = status; }
   
   /**
-   * @brief Get the nearest entity that the drone is pursuing
-   * 
-   * @return IEntity* the entity the drone is pursuing
+   * @brief Gets the nearest entity in the scheduler
+   * @param scheduler Vector containing all the entities in the system
    */
-  IEntity* GetEntity() {return nearestEntity; }
+  void GetNearestEntity(std::vector<IEntity*> scheduler);
+
 
  private:
   JsonObject details;

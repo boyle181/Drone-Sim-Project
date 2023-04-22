@@ -2,6 +2,8 @@
 #define BATTERY_DECORATOR_H_
 
 #include "IEntity.h"
+#include "RechargeStation.h"
+
 
 /**
  * @brief this class inherits from the IStrategy class. 
@@ -39,11 +41,19 @@ class BatteryDecorator : public IEntity {
    * @return Returns the current battery percentage
    */
    int getPercentage();
-   
+
+  /**
+   * @brief Gets the nearest recharge station in the scheduler
+   * @param scheduler Vector containing all the entities in the system
+   */
+   void getNearestRechargeStation(std::vector<IEntity*> scheduler);
+
    void Update(double dt, std::vector<IEntity*> scheduler);
+
 
  private:
    IEntity* component = NULL;
+   RechargeStation *nearestRechargeStation = NULL;
    int currentCapacity;
    const double maxCapacity = 100;
    const double batteryThreshhold = 50;

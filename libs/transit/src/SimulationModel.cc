@@ -5,6 +5,8 @@
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
 #include "RechargeStationFactory.h"
+#include "WalletDecorator.h"
+
 
 
 SimulationModel::SimulationModel(IController& controller)
@@ -37,9 +39,15 @@ void SimulationModel::CreateEntity(JsonObject& entity) {
   std::cout << name << ": " << position << std::endl;
 
   IEntity* myNewEntity = compFactory->CreateEntity(entity);
+
   myNewEntity->SetGraph(graph);
 
   // Call AddEntity to add it to the view
+
+  if (type.compare("Drone") == 0 || type.compare("Robot") == 0) {
+    myNewEntity = new WalletDecorator(myNewEntity);
+  }
+
   controller.AddEntity(*myNewEntity);
   entities.push_back(myNewEntity);
 }

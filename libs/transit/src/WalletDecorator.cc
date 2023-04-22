@@ -1,7 +1,10 @@
 #include "WalletDecorator.h"
+#include "DataCollectionSingleton.h"
+
 
 WalletDecorator::WalletDecorator(IEntity* entity){
-    type = (entity->GetDetails())["type"].ToString();
+    type = entity->GetDetails()["type"].ToString();
+    this->component = entity;
     if (type.compare("drone") == 0){
         this->account = 0;
     }
@@ -32,7 +35,8 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      * Robots should only be charged moeny when its picked up. They pay incrementally
      * but the drone makes sure they have enough money for the whole trip
      */
-     
+    DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
+
     if (type.compare("robot") == 0){
         // If the client is not valid then they will be set to available and the drone will see this
         if (!this->clientValid){
@@ -75,7 +79,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      *                             for a trip
      */
     if (type.compare("drone") == 0){
-        if (component->GetChargingStatus()){ // Drone pays for recharge per dt
+        if (component->GetChargingStatus()){ // Drone pays for recharge per dt if they are at a recharge station
             if (this->account - COST_FOR_RECHARGE >= 0){
                 this->account -= COST_FOR_RECHARGE;
             }
@@ -105,5 +109,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
         }
     }
+    dataCollection->writeAccountInfo(component, this->account);
     component->Update(dt, scheduler);
 }

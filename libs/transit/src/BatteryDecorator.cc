@@ -26,12 +26,26 @@ int BatteryDecorator::getcurrentCapacity(){
     return this->currentCapacity;
 }
 
+void BatteryDecorator::getNearestRechargeStation(std::vector<IEntity*> scheduler) {
+  float minDis = std::numeric_limits<float>::max();
+    for (auto entity : scheduler) {
+        std::string type = entity->GetDetails()["type"];
+        if (entity->GetAvailability() && type.compare("rechargeStation") == 0) {
+            float disToEntity = entity->GetPosition().Distance(entity->GetPosition());
+            if (disToEntity <= minDis) {
+                minDis = disToEntity;
+                nearestRechargeStation = (RechargeStation*)entity;
+            }
+        }
+    }
+};
+
 void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     // TODO: Correct this later on to account for the whole trip
     // we need to figure how to get tripCost value
     int tripCost = 1000; // either total time it takes or total trip distance
     
-    // convert time it takes to how much total battery it will utilize
+    // convert time it takes to how much totals battery it will utilize
     int totalBatteryUsage;
 
     bool canUpdateBattery = usage(totalBatteryUsage);

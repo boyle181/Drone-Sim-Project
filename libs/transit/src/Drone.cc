@@ -11,6 +11,7 @@
 #include "JumpDecorator.h"
 #include "SpinDecorator.h"
 #include "WalletDecorator.h"
+#include "DataCollectionSingleton.h"
 
 Drone::Drone(JsonObject& obj) : details(obj) {
   JsonArray pos(obj["position"]);
@@ -34,6 +35,8 @@ Drone::~Drone() {
 
 
 void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
+
+  // maybe have to fix if drones try to pik up recharge stations
   float minDis = std::numeric_limits<float>::max();
   for (auto entity : scheduler) {
     if (entity->GetAvailability()) {
@@ -47,6 +50,8 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
       
 
   if (nearestEntity) {
+      std::cout << "nearest entity";
+
     // Set required variables
     std::string strategyName = nearestEntity->GetStrategyName();
     IStrategy* strategy;
@@ -88,36 +93,43 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
 }
 
 void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
+  // gdb -tui  ./build/bin/transit_service
+  // set args 8081 apps/transit_service/web
+  // run
+  // http://127.0.0.1:8081/
+
+  DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
+
   if (available) {
     GetNearestEntity(scheduler);
-    if (toRobot) {
+    std::cout << "available\n";
+  }
+
+  if (toRobot) {
     toRobot->Move(this, dt);
-      if (toRobot->IsCompleted()) {
-        tripMoneyCost = toFinalDestination->getTotalDistance()*.5; // Cost of trip
-        delete toRobot;
-        toRobot = nullptr;
-        pickedUp = true;
-        // nearestEntity->set
-        } 
-        else if (toFinalDestination) {
-        toFinalDestination->Move(this, dt);
 
-        if (nearestEntity && pickedUp) {
-          nearestEntity->SetPosition(position);
-          nearestEntity->SetDirection(direction);
-        }
+    if (toRobot->IsCompleted()) {
+      delete toRobot;
+      toRobot = nullptr;
+      pickedUp = true;
+    }
+  } 
+  else if (toFinalDestination) {
+    toFinalDestination->Move(this, dt);
 
-        if (toFinalDestination->IsCompleted()) {
-          delete toFinalDestination;
-          toFinalDestination = nullptr;
-          nearestEntity = nullptr;
-          available = true;
-          pickedUp = false;
-          tripMoneyCost = 0;
-          pathTripDistance = 0;
-          beelineTripDistance = 0;
-        }
-      }
+    if (nearestEntity && pickedUp) {
+      nearestEntity->SetPosition(position);
+      nearestEntity->SetDirection(direction);
+    }
+
+    if (toFinalDestination->IsCompleted()) {
+      delete toFinalDestination;
+      toFinalDestination = nullptr;
+      nearestEntity = nullptr;
+      available = true;
+      pickedUp = false;
+      std::cout << "dataCollected" << std::endl;
+      dataCollection->writeToCSV();
     }
   }
 }

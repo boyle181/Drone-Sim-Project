@@ -55,7 +55,7 @@ void DataCollectionSingleton::writeToCSV(){
 
     // *** Gets data for all Drones and enters it into a .csv file ***
     int count = 1;
-    for (std::map<Drone*, float>::iterator entry = droneTimeInfo.begin(); entry != droneTimeInfo.end(); ++entry){
+    for (std::map<Drone*, double>::iterator entry = droneAccountInfo.begin(); entry != droneAccountInfo.end(); ++entry){
         Drone* drone = entry->first;
         row += "Drone #" + std::to_string(count);
         row += ",";
