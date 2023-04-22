@@ -57,18 +57,18 @@ void DataCollectionSingleton::writeToCSV(){
     int count = 1;
     for (std::map<Drone*, double>::iterator entry = droneAccountInfo.begin(); entry != droneAccountInfo.end(); ++entry){
         Drone* drone = entry->first;
-        row += "Drone #" + std::to_string(count);
-        row += ",";
-        row += std::to_string(droneTimeInfo[drone]);
-        row += ",";
-        row += std::to_string(droneDistanceInfo[drone]);
-        row += ",";
-        row += std::to_string(droneAccountInfo[drone]);
-        row += ",";
-        row += std::to_string(batteryUsage[drone]);
-        row += ",";
-        row += std::to_string(numberOfTrips[drone]);
-        row += "\n";
+        row.append("Drone #" + std::to_string(count));
+        row.append(",");
+        row.append(std::to_string(droneTimeInfo[drone]));
+        row.append(",");
+        row.append(std::to_string(droneDistanceInfo[drone]));
+        row.append(",");
+        row.append(std::to_string(droneAccountInfo[drone]));
+        row.append(",");
+        row.append(std::to_string(batteryUsage[drone]));
+        row.append(",");
+        row.append(std::to_string(numberOfTrips[drone]));
+        row.append("\n");
         data << row;
         count++;
     }
@@ -76,17 +76,17 @@ void DataCollectionSingleton::writeToCSV(){
     // *** Gets data for all Robots and enters it into a .csv file ***
     // ***       And it fills in the last 2 columns with N/A       ***
     count = 1;
-    for (std::map<Robot*, double>::iterator entry = robotTimeInfo.begin(); entry != robotTimeInfo.end(); ++entry){
+    for (std::map<Robot*, double>::iterator entry = robotAccountInfo.begin(); entry != robotAccountInfo.end(); ++entry){
         Robot* robot = entry->first;
-        row += "Robot #" + std::to_string(count);
-        row += ",";
-        row += std::to_string(robotTimeInfo[robot]);
-        row += ",";
-        row += std::to_string(robotDistanceInfo[robot]);
-        row += ",";
-        row += std::to_string(robotAccountInfo[robot]);
-        row += "N/A,N/A";
-        row += "\n";
+        row.append("Robot #" + std::to_string(count));
+        row.append(",");
+        row.append(std::to_string(robotTimeInfo[robot]));
+        row.append(",");
+        row.append(std::to_string(robotDistanceInfo[robot]));
+        row.append(",");
+        row.append(std::to_string(robotAccountInfo[robot]));
+        row.append("N/A,N/A");
+        row.append("\n");
         data << row;
         count++;
     }
