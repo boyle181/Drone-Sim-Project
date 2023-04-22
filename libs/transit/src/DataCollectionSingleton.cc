@@ -47,11 +47,12 @@ void DataCollectionSingleton::writeToCSV(){
     
     // *** Open csv file ***
     std::ofstream data;
-    data.open ("simData.csv");
+    
+    data.open ("CSV/simData.csv");
     std::string row = ""; // Acc for writing a row to .csv
 
     // *** Top Axis ***
-    data << "Name, Time, Distance, Account($), Battery Usage, Number of Trips";
+    data << "Name, Time, Distance, Account($), Battery Usage, Number of Trips\n";
 
     // *** Gets data for all Drones and enters it into a .csv file ***
     int count = 1;
@@ -59,15 +60,15 @@ void DataCollectionSingleton::writeToCSV(){
         Drone* drone = entry->first;
         row.append("Drone #" + std::to_string(count));
         row.append(",");
-        row.append(std::to_string(droneTimeInfo[drone]));
-        row.append(",");
-        row.append(std::to_string(droneDistanceInfo[drone]));
-        row.append(",");
+        // row.append(std::to_string(droneTimeInfo[drone]));
+        // row.append(",");
+        // row.append(std::to_string(droneDistanceInfo[drone]));
+        // row.append(",");
         row.append(std::to_string(droneAccountInfo[drone]));
-        row.append(",");
-        row.append(std::to_string(batteryUsage[drone]));
-        row.append(",");
-        row.append(std::to_string(numberOfTrips[drone]));
+        // row.append(",");
+        // row.append(std::to_string(batteryUsage[drone]));
+        // row.append(",");
+        // row.append(std::to_string(numberOfTrips[drone]));
         row.append("\n");
         data << row;
         count++;
@@ -80,11 +81,12 @@ void DataCollectionSingleton::writeToCSV(){
         Robot* robot = entry->first;
         row.append("Robot #" + std::to_string(count));
         row.append(",");
-        row.append(std::to_string(robotTimeInfo[robot]));
-        row.append(",");
-        row.append(std::to_string(robotDistanceInfo[robot]));
-        row.append(",");
+        // row.append(std::to_string(robotTimeInfo[robot]));
+        // row.append(",");
+        // row.append(std::to_string(robotDistanceInfo[robot]));
+        // row.append(",");
         row.append(std::to_string(robotAccountInfo[robot]));
+        row.append(",");
         row.append("N/A,N/A");
         row.append("\n");
         data << row;
