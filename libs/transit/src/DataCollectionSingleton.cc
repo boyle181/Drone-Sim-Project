@@ -9,38 +9,23 @@ DataCollectionSingleton* DataCollectionSingleton::getInstance(){
 }
 
 void DataCollectionSingleton::writeTimeInfo(IEntity* entity, float time){
-    std::string type = (entity->GetDetails())["type"].ToString();
-    if (type.compare("drone") == 0) {
-        droneTimeInfo[(Drone*)entity] = time;
-        return;
-    }
-    robotTimeInfo[(Robot*)entity] = time;
+    timeInfo[entity] = time;
 }
 
 void DataCollectionSingleton::writeDistanceInfo(IEntity* entity, float distance){
-    std::string type = (entity->GetDetails())["type"].ToString();
-    if (type.compare("drone") == 0) {
-        droneDistanceInfo[(Drone*)entity] = distance;
-        return;
-    }
-    robotDistanceInfo[(Robot*)entity] = distance;
+    distanceInfo[entity] = distance;
 }
 
 void DataCollectionSingleton::writeAccountInfo(IEntity* entity, double accountBalance){
-    std::string type = (entity->GetDetails())["type"].ToString();
-    if (type.compare("drone") == 0) {
-        droneAccountInfo[(Drone*)entity] = accountBalance;
-        return;
-    }
-    robotAccountInfo[(Robot*)entity] = accountBalance;
+    accountInfo[entity] = accountBalance;
 }
 
-void DataCollectionSingleton::writeBatteryUsage(Drone* drone, int usage){
-    batteryUsage[drone] = usage;
+void DataCollectionSingleton::writeBatteryUsage(IEntity* entity, int usage){
+    batteryUsage[entity] = usage;
 }
 
-void DataCollectionSingleton::writeNumberOfTrips(Drone* drone, int trips){
-    numberOfTrips[drone] = trips;
+void DataCollectionSingleton::writeNumberOfTrips(IEntity* entity, int trips){
+    numberOfTrips[entity] = trips;
 }
 
 void DataCollectionSingleton::writeToCSV(){
@@ -55,38 +40,25 @@ void DataCollectionSingleton::writeToCSV(){
 
     // *** Gets data for all Drones and enters it into a .csv file ***
     int count = 1;
-    for (std::map<Drone*, double>::iterator entry = droneAccountInfo.begin(); entry != droneAccountInfo.end(); ++entry){
-        Drone* drone = entry->first;
-        row.append("Drone #" + std::to_string(drone->GetId()));
-        row.append(",");
-        row.append(std::to_string(droneTimeInfo[drone]));
-        row.append(",");
-        row.append(std::to_string(droneDistanceInfo[drone]));
-        row.append(",");
-        row.append(std::to_string(droneAccountInfo[drone]));
-        row.append(",");
-        row.append(std::to_string(batteryUsage[drone]));
-        row.append(",");
-        row.append(std::to_string(numberOfTrips[drone]));
-        row.append("\n");
-        data << row;
-        count++;
-    }
-
-    // *** Gets data for all Robots and enters it into a .csv file ***
-    // ***       And it fills in the last 2 columns with N/A       ***
-    count = 1;
-    for (std::map<Robot*, double>::iterator entry = robotAccountInfo.begin(); entry != robotAccountInfo.end(); ++entry){
-        Robot* robot = entry->first;
-        row.append("Robot #" + std::to_string(robot->GetId()));
-        row.append(",");
-        row.append(std::to_string(robotTimeInfo[robot]));
-        row.append(",");
-        row.append(std::to_string(robotDistanceInfo[robot]));
-        row.append(",");
-        row.append(std::to_string(robotAccountInfo[robot]));
-        row.append(",");
-        row.append("N/A,N/A");
+    for (std::map<IEntity*, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
+        IEntity* entity = entry->first;
+        std::string type = entity->GetDetails()["type"].ToString(); 
+        row.append(std::to_string(entity->GetId()));
+        row.append(", ");
+        row.append(std::to_string(timeInfo[entity]));
+        row.append(", ");
+        row.append(std::to_string(distanceInfo[entity]));
+        row.append(", ");
+        row.append(std::to_string(accountInfo[entity]));
+        row.append(", ");
+        if (type.compare("drone") == 0){
+            row.append(std::to_string(batteryUsage[entity]));
+            row.append(", ");
+            row.append(std::to_string(numberOfTrips[entity]));
+        }
+        else{
+            row.append(", N/A , N/A");
+        }
         row.append("\n");
         data << row;
         count++;

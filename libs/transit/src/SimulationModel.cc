@@ -44,8 +44,8 @@ void SimulationModel::CreateEntity(JsonObject& entity) {
 
   // Call AddEntity to add it to the view
 
-  if (type.compare("Drone") == 0 || type.compare("Robot") == 0) {
-    myNewEntity = new WalletDecorator(myNewEntity);
+  if (type.compare("drone") == 0 || type.compare("robot") == 0) {
+    // myNewEntity = new WalletDecorator(myNewEntity);
   }
 
   controller.AddEntity(*myNewEntity);

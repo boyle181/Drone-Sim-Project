@@ -71,7 +71,7 @@ class DataCollectionSingleton {
      * @param batteryUsage An int representing the battery usage
      * that is assoicated with drone pointer
      */
-    void writeBatteryUsage(Drone* drone, int usage);
+    void writeBatteryUsage(IEntity* entity, int usage);
 
     /**
      * @brief Takes an drone pointer that will be associated
@@ -84,7 +84,7 @@ class DataCollectionSingleton {
      * @param trips An int representing the number of trips
      * that is assoicated with drone pointer
      */
-    void writeNumberOfTrips(Drone* drone, int trips);
+    void writeNumberOfTrips(IEntity* entity, int trips);
 
     /**
      * @brief Outputs all data that has been collected to a csv file.
@@ -100,14 +100,11 @@ class DataCollectionSingleton {
 
  private:
     DataCollectionSingleton() { }
-    std::map<Drone*, float> droneTimeInfo;
-    std::map<Robot*, double> robotTimeInfo;
-    std::map<Drone*, float> droneDistanceInfo;
-    std::map<Robot*, float> robotDistanceInfo;
-    std::map<Drone*, double> droneAccountInfo;
-    std::map<Robot*, double> robotAccountInfo;
-    std::map<Drone*, int> batteryUsage;
-    std::map<Drone*, int> numberOfTrips;
+    std::map<IEntity*, float> timeInfo;
+    std::map<IEntity*, float> distanceInfo;
+    std::map<IEntity*, double> accountInfo;
+    std::map<IEntity*, int> batteryUsage;
+    std::map<IEntity*, int> numberOfTrips;
 };
 
 // Our Static instance of a the DataCollectionSingleton

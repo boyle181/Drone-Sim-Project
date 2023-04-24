@@ -2,7 +2,7 @@
 #define ROBOT_H
 
 #include <vector>
-
+#include <chrono>
 #include "IEntity.h"
 #include "math/vector3.h"
 #include "util/json.h"
@@ -104,6 +104,12 @@ class Robot : public IEntity {
   void SetDestination(Vector3 des_) { destination = des_; }
 
   /**
+   * @brief Sets the robot's totalDistance
+   * @param dist_ The new totalDistance of the robot
+   */
+  void SetDistance(float dist_) { totalDistance = dist_; }
+
+  /**
    * @brief Rotates the robot
    * @param angle The angle by which the robot should be rotated
    */
@@ -123,6 +129,15 @@ class Robot : public IEntity {
    * @param status the status that picked up is set to
    */
   void SetPickedUp(bool status) {pickedUp = status; }
+  
+  float GetTime(){
+    t_end = std::chrono::high_resolution_clock::now();
+    return (std::chrono::duration<float, std::milli>(t_end-t_start).count()/1000);
+  }
+
+  float GetDistance(){
+    return totalDistance;
+  }
 
  private:
   JsonObject details;
@@ -133,6 +148,9 @@ class Robot : public IEntity {
   bool available;
   std::string strategyName;
   bool pickedUp = false;
+  std::chrono::time_point<std::chrono::high_resolution_clock> t_start;
+  std::chrono::time_point<std::chrono::high_resolution_clock> t_end;
+  float totalDistance = 0;  // For data collection
 };
 
 #endif  // ROBOT_H

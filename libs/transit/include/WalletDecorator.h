@@ -93,7 +93,7 @@ class WalletDecorator : public IEntity {
    IEntity* component;
    double account = 0;
    std::string type;
-   bool clientValid;                      // Keeps track if a client has been cleared for ride
+   bool clientValid = false;                      // Keeps track if a client has been cleared for ride
    const double START_MONEY = 1000.00;
    const int RANGE = 1000;
    const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)

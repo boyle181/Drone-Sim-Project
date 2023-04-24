@@ -22,6 +22,7 @@ Drone::Drone(JsonObject& obj) : details(obj) {
   speed = obj["speed"];
 
   available = true;
+  t_start = std::chrono::high_resolution_clock::now();
 }
 
 Drone::~Drone() {
@@ -85,10 +86,6 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
         new JumpDecorator(new SpinDecorator(new DijkstraStrategy(destination, finalDestination, graph)));
     } else
       toFinalDestination = new BeelineStrategy(destination, finalDestination);
-
-    //calculate trip cost
-    pathTripDistance = strategy->getTotalDistance();
-    tripMoneyCost = pathTripDistance * .56;
   }
 }
 
@@ -102,7 +99,6 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
 
   if (available) {
     GetNearestEntity(scheduler);
-    std::cout << "available\n";
   }
 
   if (toRobot) {
@@ -123,12 +119,23 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
     }
 
     if (toFinalDestination->IsCompleted()) {
+      pathTripDistance = toFinalDestination->getTotalDistance();
+      totalDistance = totalDistance + pathTripDistance + beelineTripDistance;
+      totalTrips++;
+      nearestEntity->SetDistance(nearestEntity->GetDistance() + pathTripDistance);
+
+      dataCollection->writeBatteryUsage(this, 0);
+      dataCollection->writeTimeInfo(this, this->GetTime());
+      dataCollection->writeDistanceInfo(this, totalDistance);
+      dataCollection->writeTimeInfo(nearestEntity, nearestEntity->GetTime());
+      dataCollection->writeDistanceInfo(nearestEntity, nearestEntity->GetDistance());
+      dataCollection->writeNumberOfTrips(this, totalTrips);
       delete toFinalDestination;
       toFinalDestination = nullptr;
       nearestEntity = nullptr;
       available = true;
       pickedUp = false;
-      std::cout << "dataCollected" << std::endl;
+      std::cout << "\ndataCollected" << std::endl;
       dataCollection->writeToCSV();
     }
   }

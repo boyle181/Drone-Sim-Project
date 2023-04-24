@@ -7,6 +7,7 @@ Robot::Robot(JsonObject &obj) : details(obj) {
   direction = {dir[0], dir[1], dir[2]};
   speed = obj["speed"];
   available = true;
+  t_start = std::chrono::high_resolution_clock::now();
 }
 
 JsonObject Robot::GetDetails() const { return details; }

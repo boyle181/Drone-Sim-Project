@@ -49,9 +49,11 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             if (!(this->account - paymentForTrip >= 0)){
                 this->SetAvailability(true);
                 clientValid = false;
+                std::cout << "Wallet: (robot), doesn't have enough money\n";
             }
             else {
                 clientValid = true;
+                std::cout << "Wallet: (robot), Client has enough money\n";
             }
             delete strategy;
         }
@@ -89,14 +91,16 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         }
         // Determine if the entity present is able to afford the trip
         if (this->GetEntity()){
-            if (!clientValid){
+            if (!this->clientValid){
                 // cleints availabiity will be changed (above) to indicate the robot doesn't have enough money
                 if (this->GetEntity()->GetAvailability()){
                     this->SetAvailability(true);
-                    clientValid = false;
+                    this->clientValid = false;
+                    std::cout << "Wallet: (drone), Client doesn't have enough money\n";
                 }
                 else {
-                    clientValid = true;
+                    this->clientValid = true;
+                    std::cout << "Wallet: (drone), Client has enough money\n";
                 }
             }
             // If client is valid the drone will earn money
@@ -106,9 +110,11 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             // When the trip is complete a new client will be selected
             if (this->GetPosition().Distance(this->GetDestination()) < 4.0){
                 clientValid = false;
+                std::cout << "Trip is complete\n";
             }
         }
     }
-    dataCollection->writeAccountInfo(component, this->account);
+    dataCollection->writeAccountInfo(this, this->account);
+    std::cout << "account updated of " + type << std::endl;
     component->Update(dt, scheduler);
 }

@@ -193,6 +193,9 @@ class IEntity {
    * @return IEntity* the entity the entity (this entity) is pursuing
    */
   virtual IEntity* GetEntity() {}
+  virtual float GetTime(){}
+  virtual float GetDistance(){}
+  virtual void SetDistance(float dist_){}
 
  protected:
   int id;

@@ -2,7 +2,7 @@
 #define DRONE_H_
 
 #include <vector>
-
+#include <chrono>
 #include "IEntity.h"
 #include "math/vector3.h"
 #include "IStrategy.h"
@@ -164,6 +164,16 @@ class Drone : public IEntity {
    */
   void GetNearestEntity(std::vector<IEntity*> scheduler);
 
+  float GetDistance(){return totalDistance;}
+
+  float GetTime(){
+    t_end = std::chrono::high_resolution_clock::now();
+    return (std::chrono::duration<float, std::milli>(t_end-t_start).count()/1000);
+  }
+
+  void SetDistance(float distance){
+    totalDistance = distance;
+  }
 
  private:
   JsonObject details;
@@ -179,6 +189,11 @@ class Drone : public IEntity {
   IEntity* nearestEntity = nullptr;
   IStrategy* toRobot = nullptr;
   IStrategy* toFinalDestination = nullptr;
+  
+  std::chrono::time_point<std::chrono::high_resolution_clock> t_start;
+  std::chrono::time_point<std::chrono::high_resolution_clock> t_end;
+  float totalTrips = 0;    // for data collection
+  float totalDistance = 0;    // for data collection
   float pathTripDistance = 0;
   float beelineTripDistance = 0;
   float tripMoneyCost = 0; // only going to charge robot for when it gets picked up and dropped to final dest
