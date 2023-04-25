@@ -73,17 +73,50 @@ class WalletDecorator : public IEntity {
    * @return true, entity is at a recharge station charging
    * @return false, entity is not at a recharge station charging
    */
-  bool GetChargingStatus() { component->GetChargingStatus(); }
+  bool GetChargingStatus() { return component->GetChargingStatus(); }
 
   void SetChargingStatus(bool status) { component->SetChargingStatus(status); }
 
-  bool GetAvailability() const { component->GetAvailability(); }
+  /**
+   * @brief Get the Strategy Name
+   *
+   * @return Streategy name
+   */
+  std::string GetStrategyName() const { return component->GetStrategyName(); }
+
+  void SetStrategyName(std::string strategyName_) { component->SetStrategyName(strategyName_); }
+
+
+  /**
+   * @brief Sets the robot's position
+   * @param pos_ The new position of the robot
+   */
+  void SetPosition(Vector3 pos_) { component->SetPosition(pos_); }
+
+  /**
+   * @brief Sets the robot's direction
+   * @param dir_ The new direction of the robot
+   */
+  void SetDirection(Vector3 dir_) { component->SetDirection(dir_); }
+    /**
+   * @brief Sets the robot's destination
+   * @param des_ The new destination of the robot
+   */
+  void SetDestination(Vector3 des_) { component->SetDestination(des_); }
+
+  bool GetAvailability() const { return component->GetAvailability(); }
 
   void SetAvailability(bool choice) { component->SetAvailability(choice); }
 
-  JsonObject GetDetails() const { component->GetDetails(); }
+  JsonObject GetDetails() const { return component->GetDetails(); }
 
-  IEntity* GetEntity() { component->GetEntity(); }
+  IEntity* GetEntity() { return component->GetEntity(); }
+
+  void Rotate(double angle){ component->Rotate(angle); }
+
+  float GetTime(){ return component->GetTime(); }
+
+  float GetDistance(){ return component->GetDistance(); }
 
   void Update(double dt, std::vector<IEntity*> scheduler);
    
@@ -98,6 +131,8 @@ class WalletDecorator : public IEntity {
    const int RANGE = 1000;
    const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)
    const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
+   double pickUpDestination = NULL;
+   double finalDestination = NULL;
 };
 
 #endif  

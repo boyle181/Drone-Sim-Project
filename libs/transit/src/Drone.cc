@@ -94,6 +94,8 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
   // set args 8081 apps/transit_service/web
   // run
   // http://127.0.0.1:8081/
+  // ./build/bin/transit_service 8081 apps/transit_service/web/
+
 
   DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
 
