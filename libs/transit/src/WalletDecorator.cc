@@ -46,7 +46,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
 
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
 
-    if (this->type.compare("robot") == 0){
+    if (type.compare("robot") == 0){
         // Client must be validated
         if (!clientValid && !GetAvailability()){
             // IStrategy* strategy = getStrategy();
@@ -94,17 +94,17 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      *  GetEntity()             -> returns the entity being considered 
      *                             for a trip
      */
-    if (this->type.compare("drone") != 0){
+    if (type.compare("drone") == 0){
         // Drone is at a recharge station charging
-        if (component->GetChargingStatus()){
+        if (GetChargingStatus()){
             // Drone pays for recharge per dt if they are at a recharge station
-            if (this->account - COST_FOR_RECHARGE >= 0){
-                this->account -= COST_FOR_RECHARGE;
+            if (account - COST_FOR_RECHARGE >= 0){
+                account -= COST_FOR_RECHARGE;
                 std::cout << "Wallet (Drone), Drone Recharging (Payed)\n";
             }
              // Drone can't charge if it doesnt have enough money, so charging status changed
             else {
-                component->SetChargingStatus(false);
+                SetChargingStatus(false);
                 std::cout << "Wallet (Drone), Drone can't afford Recharge\n";
             }
         }
