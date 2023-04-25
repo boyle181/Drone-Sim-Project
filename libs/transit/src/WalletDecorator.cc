@@ -102,8 +102,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
         }
         // If either are avaible then the trip should be canceled
-        if (GetEntity() != nullptr && (GetAvailability() || GetEntity()->GetAvailability())){
-            SetAvailability(true);
+        if (GetEntity() != nullptr && GetEntity()->GetAvailability()){
             GetEntity()->SetAvailability(true);
             clientValid = false;
             std::cout << "Wallet: (drone), Trip not scheduled\n";
@@ -124,6 +123,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 // Determines when whole trip is complete
                 if (GetEntity()->GetPickedUp()){
                     clientValid = false;
+
                     std::cout << "Trip Completed\n";
                 }
             }
