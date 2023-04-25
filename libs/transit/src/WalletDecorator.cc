@@ -3,14 +3,14 @@
 
 
 WalletDecorator::WalletDecorator(IEntity* entity){
-    this->type = entity->GetDetails()["type"].ToString();
-    this->component = entity;
-    this->pickUpDestination = component->GetDestination();
+    std::string temp = entity->GetDetails()["type"].ToString();
+    type = temp.substr(1, 5);
+    component = entity;
     if (type.compare("drone") == 0){
-        this->account = 0;
+        account = 0;
     }
     else{
-        this->account = rand()%RANGE + START_MONEY;
+        account = rand()%RANGE + START_MONEY;
     }
 }
 
@@ -37,35 +37,37 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      * but the drone makes sure they have enough money for the whole trip
      */
 
-    if(pickUpDestination != component->GetDestination()) {
-        finalDestination = component->GetDestination();
-    }
+    // if(pickUpDestination.Distance(component->GetDestination()) != 0) {
+    //     float x = (component->GetDestination())[0];
+    //     float y = (component->GetDestination())[1];
+    //     float z = (component->GetDestination())[2];
+    //     finalDestination = Vector3(x, y, z);
+    // }
 
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
-    // std::cout << "updating wallet:" << type << std::endl;
-    if (this->type.compare("robot") == 0){
-        std::cout << "type:" << type << std::endl;
-        // If the client is not valid then they will be set to available and the drone will see this
-        if (!this->clientValid){
-            IStrategy* strategy = getStrategy();
-            float dist = strategy->getTotalDistance();
-            float speed = this->GetSpeed();
 
-            // Total time taken for the trip adjusted by Cost_for_trip
-            float paymentForTrip = (dist/speed)*COST_FOR_TRIP;
-            if (!(this->account - paymentForTrip >= 0)){
-                this->SetAvailability(true);        // Make drone avail if client is broke
-                clientValid = false;
+    if (this->type.compare("robot") == 0){
+        // Client must be validated
+        if (!clientValid && !GetAvailability()){
+            // IStrategy* strategy = getStrategy();
+            // float dist = strategy->getTotalDistance();
+            float dist = 0;
+            float speed = GetSpeed();
+
+            float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
+            if (account - paymentForTrip < 0){
+                SetAvailability(true);        // Make robot avail if not enough money
+                clientValid = false;          // Client is not valid
                 std::cout << "Wallet: (robot), doesn't have enough money\n";
             }
             else {
                 clientValid = true;
                 std::cout << "Wallet: (robot), Client has enough money\n";
             }
-            delete strategy;
+            // delete strategy;
         }
-        // If the client is validated then they will be charged
-        if(this->GetPickedUp() && this->clientValid) {
+        // If the client is validated and already picked up then they will be charged
+        if(clientValid && GetPickedUp() && !GetAvailability()) {
             account -= COST_FOR_TRIP;
         }
     }
@@ -88,45 +90,45 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      *                             for a trip
      */
     if (this->type.compare("drone") != 0){
-        // std::cout << "type:" << type << std::endl;
-        if (component->GetChargingStatus()){ // Drone pays for recharge per dt if they are at a recharge station
+        // Drone is at a recharge station charging
+        if (component->GetChargingStatus()){
+            // Drone pays for recharge per dt if they are at a recharge station
             if (this->account - COST_FOR_RECHARGE >= 0){
                 this->account -= COST_FOR_RECHARGE;
             }
-            else { // Drone can't charge if it doesnt have enough money, so charging status changed
+             // Drone can't charge if it doesnt have enough money, so charging status changed
+            else {
                 component->SetChargingStatus(false);
             }
         }
+        // If either are avaible then the trip should be canceled
+        if (GetEntity() != nullptr && (GetAvailability() || GetEntity()->GetAvailability())){
+            SetAvailability(true);
+            GetEntity()->SetAvailability(true);
+            clientValid = false;
+            std::cout << "Wallet: (drone), Trip not scheduled\n";
+        }
         // Determine if the entity present is able to afford the trip
-        if (this->GetEntity() != nullptr){
-            if (!this->clientValid && pickUpDestination.Distance(this->GetDestination()) != 0){
-                // cleints availabiity will be changed (above) to indicate the robot doesn't have enough money
-                if (this->GetEntity()->GetAvailability()){
-                    this->SetAvailability(true);
-                    this->clientValid = false;
-                    std::cout << "Wallet: (drone), Client doesn't have enough money\n";
-                }
-                else {
-                    this->clientValid = true;
-                    std::cout << "Wallet: (drone), Client has enough money\n";
-                }
-            }
-            // If client is valid the drone will earn money
-            else if (this->clientValid && pickUpDestination.Distance(this->GetDestination()) != 0){
+        if (GetEntity() != nullptr){
+            if (GetEntity()->GetPickedUp() && clientValid && !GetAvailability()){
                 account += COST_FOR_TRIP;
+                std::cout << "Wallet: (drone), Drones been payed\n";
             }
-            // When the trip is complete a new client will be selected
-            if (this->GetPosition().Distance(pickUpDestination) < 4.0){
-                clientValid = false;
-                std::cout << "Picked up client!\n";
-            }
-            if (this->GetPosition().Distance(finalDestination) < 4.0){
-                clientValid = false;
-                std::cout << "Trip Completed\n";
+            // Trip is either complete or pick up is complete
+            if (GetPosition().Distance(GetDestination()) < 4.0){
+                // Determines when client is picked up
+                if (!GetEntity()->GetPickedUp()){
+                    GetEntity()->SetPickedUp(true);
+                    std::cout << "Picked up client!\n";
+                }
+                // Determines when whole trip is complete
+                if (GetEntity()->GetPickedUp()){
+                    clientValid = false;
+                    std::cout << "Trip Completed\n";
+                }
             }
         }
     }
-    dataCollection->writeAccountInfo(this, this->account);
-    // std::cout << "account updated of " + type << std::endl;
+    dataCollection->writeAccountInfo(component, this->account);
     component->Update(dt, scheduler);
 }
