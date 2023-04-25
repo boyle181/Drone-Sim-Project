@@ -64,7 +64,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 clientValid = true;
                 std::cout << "Wallet: (Robot), Robot has enough money\n";
             }
-            delete strategy;
+            // delete strategy;
         }
         // If the client is validated and already picked up then they will be charged
         if(clientValid && GetPickedUp() && !GetAvailability()) {
