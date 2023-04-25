@@ -42,7 +42,8 @@ void DataCollectionSingleton::writeToCSV(){
     int count = 1;
     for (std::map<IEntity*, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
         IEntity* entity = entry->first;
-        std::string type = entity->GetDetails()["type"].ToString(); 
+        std::string type = entity->GetDetails()["type"].ToString();
+        type = type.substr(1, 5);
         row.append(std::to_string(entity->GetId()));
         row.append(", ");
         row.append(std::to_string(timeInfo[entity]));
