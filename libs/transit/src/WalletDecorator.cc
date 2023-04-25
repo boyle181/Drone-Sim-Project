@@ -49,8 +49,9 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     if (this->type.compare("robot") == 0){
         // Client must be validated
         if (!clientValid && !GetAvailability()){
-            IStrategy* strategy = getStrategy();
-            float dist = strategy->getTotalDistance();
+            // IStrategy* strategy = getStrategy();
+            // float dist = strategy->getTotalDistance();
+            float dist = 0;
             float speed = GetSpeed();
 
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
