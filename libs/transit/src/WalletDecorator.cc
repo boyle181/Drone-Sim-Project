@@ -37,13 +37,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
      * but the drone makes sure they have enough money for the whole trip
      */
 
-    // if(pickUpDestination.Distance(component->GetDestination()) != 0) {
-    //     float x = (component->GetDestination())[0];
-    //     float y = (component->GetDestination())[1];
-    //     float z = (component->GetDestination())[2];
-    //     finalDestination = Vector3(x, y, z);
-    // }
-
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
 
     if (type.compare("robot") == 0){
