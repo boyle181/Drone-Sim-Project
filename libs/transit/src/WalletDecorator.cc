@@ -60,7 +60,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             // delete strategy;
         }
         // If the client is validated and already picked up then they will be charged
-        if(clientValid && GetPickedUp() && !GetAvailability()) {
+        if(clientValid && GetPickedUp()) {
             account -= COST_FOR_TRIP;
             std::cout << "Wallet (Robot), Paid for trip\n";
         }
