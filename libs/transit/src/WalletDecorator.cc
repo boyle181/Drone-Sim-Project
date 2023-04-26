@@ -105,7 +105,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
             GetEntity()->SetAvailability(true);
             clientValid = false;
-            return;
             std::cout << "Wallet (Drone), Trip not scheduled\n";
         }
         // Determine if the client is present
