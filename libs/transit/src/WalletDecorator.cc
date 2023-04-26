@@ -17,19 +17,16 @@ WalletDecorator::WalletDecorator(IEntity* entity){
 
 IStrategy* WalletDecorator::getStrategy(){
     std::string strategyName = component->GetStrategyName();
-    IStrategy* strategy;
     Vector3 position = component->GetPosition();
     Vector3 destination = component->GetDestination();
-    if (strategyName.compare("astar")) {
-        strategy = new AstarStrategy(position, destination, graph);
-    } else if (strategyName.compare("dfs")) {
-        strategy = new DfsStrategy(position, destination, graph);
-    } else if (strategyName.compare("dijkstra")) {
-        strategy = new DijkstraStrategy(position, destination, graph);
-    } else {
-        strategy = new BeelineStrategy(position, destination);
+    if (strategyName.compare("astar") == 0) {
+        return new AstarStrategy(position, destination, graph);
+    } else if (strategyName.compare("dfs") == 0) {
+        return new DfsStrategy(position, destination, graph);
+    } else if (strategyName.compare("dijkstra") == 0) {
+        return new DijkstraStrategy(position, destination, graph);
     }
-    return strategy;
+    return new BeelineStrategy(position, destination);
 }
 
 void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
@@ -45,6 +42,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         if (!clientValid && !GetAvailability()){
             IStrategy* strategy = getStrategy();
             float dist = strategy->getTotalDistance();
+            delete strategy;
             float speed = GetSpeed();
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
             std::cout << "Wallet: (Robot), cost of trip\n" << paymentForTrip;
@@ -55,15 +53,16 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
             else {
                 clientValid = true;
+                account -= paymentForTrip;
                 std::cout << "Wallet: (Robot), Robot has enough money\n";
             }
             // delete strategy;
         }
         // If the client is validated and already picked up then they will be charged
-        if(clientValid && GetPickedUp()) {
-            account -= COST_FOR_TRIP;
-            std::cout << "Wallet (Robot), Paid for trip\n";
-        }
+        // if(clientValid && GetPickedUp()) {
+        //     account -= COST_FOR_TRIP;
+        //     std::cout << "Wallet (Robot), Paid for trip\n";
+        // }
         else if (clientValid && GetPickedUp() && GetPosition().Distance(GetDestination()) < 4.0){
             clientValid = false;
             std::cout << "Wallet (Robot), Trip Complete\n";
@@ -106,12 +105,13 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
             GetEntity()->SetAvailability(true);
             clientValid = false;
+            return;
             std::cout << "Wallet (Drone), Trip not scheduled\n";
         }
         // Determine if the client is present
         else if (GetEntity() != nullptr){
             // Determines if drone should be payed
-            if (GetEntity()->GetPickedUp() && clientValid && !GetAvailability()){ // FIX THIS, never works
+            if (GetEntity()->GetPickedUp() && clientValid && !GetEntity()->GetAvailability()){ // FIX THIS, never works
                 account += COST_FOR_TRIP;
                 std::cout << "Wallet (Drone), Drones been payed\n";
             }
@@ -119,7 +119,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             if (GetPosition().Distance(GetDestination()) < 4.0){
                 // Determines when client is picked up
                 if (!GetEntity()->GetPickedUp()){
-                    GetEntity()->SetPickedUp(true);
+                    clientValid = true;
                     std::cout << "Wallet (Drone), Picked up client!\n";
                 }
                 // Determines when client is dropped off
