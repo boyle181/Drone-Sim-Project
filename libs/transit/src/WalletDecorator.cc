@@ -99,7 +99,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
             GetEntity()->SetAvailability(true);
             clientValid = false;
-            std::cout << "Wallet (Drone), Trip not scheduled\n";
+            // std::cout << "Wallet (Drone), Trip not scheduled\n";
         }
         // Determine if the client is present
         else if (GetEntity() != nullptr){
@@ -123,7 +123,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
         }
     }
-    std::cout << "Entity #" << GetId() << ": has a balance of -> " << account;
+    std::cout << "Entity #" << GetId() << ": has a balance of -> " << account << std::endl;
     dataCollection->writeAccountInfo(component, account); // this will only work for now but when battery is wrapped it may produce issues
     component->Update(dt, scheduler);
 }
