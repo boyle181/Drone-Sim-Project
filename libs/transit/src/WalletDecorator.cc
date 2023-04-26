@@ -1,11 +1,6 @@
 #include "WalletDecorator.h"
 #include "DataCollectionSingleton.h"
 
-/**
- * Robot gets pays correctly but drone doesn't get paid correctly
- * Account for robot isn't be outputted properly to csv
- * 
- */
 
 WalletDecorator::WalletDecorator(IEntity* entity){
     std::string temp = entity->GetDetails()["type"].ToString();
@@ -50,7 +45,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             delete strategy;
             float speed = GetSpeed();
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
-            std::cout << "Wallet: (Robot), cost of trip\n" << paymentForTrip;
+            std::cout << "Wallet: (Robot), cost of trip" << paymentForTrip << std::endl;
             if (account - paymentForTrip < 0){
                 SetAvailability(true);        // Make robot avail if not enough money
                 clientValid = false;          // Client is not valid
@@ -59,14 +54,9 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             else {
                 clientValid = true;
                 account -= paymentForTrip;
-                std::cout << "Wallet: (Robot), Robot has enough money\n";
+                std::cout << "Wallet (Robot), Paid for trip\n";
             }
         }
-        // If the client is validated and already picked up then they will be charged
-        // if(clientValid && GetPickedUp()) {
-        //     account -= COST_FOR_TRIP;
-        //     std::cout << "Wallet (Robot), Paid for trip\n";
-        // }
         else if (clientValid && GetPickedUp() && GetPosition().Distance(GetDestination()) < 4.0){
             clientValid = false;
             std::cout << "Wallet (Robot), Trip Complete\n";
@@ -133,7 +123,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
         }
     }
-    std::cout << "Account of Entity " << GetId() << ": " << account << std::endl;
+    std::cout << "Entity #" << GetId() << ": has a balance of -> " << account;
     dataCollection->writeAccountInfo(component, account); // this will only work for now but when battery is wrapped it may produce issues
     component->Update(dt, scheduler);
 }
