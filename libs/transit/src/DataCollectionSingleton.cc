@@ -58,7 +58,7 @@ void DataCollectionSingleton::writeToCSV(){
             row.append(std::to_string(numberOfTrips[entity]));
         }
         else{
-            row.append(" N/A, N/A");
+            row.append("N/A, N/A");
         }
         row.append("\n");
         data << row;

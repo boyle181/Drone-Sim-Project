@@ -35,7 +35,7 @@ IStrategy* WalletDecorator::getStrategy(){
 void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     /**
      * Robots should only be charged moeny when its picked up. They pay incrementally
-     * but the drone makes sure they have enough money for the whole trip
+     * but the robot makes sure it has enough money for the whole trip
      */
 
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
@@ -46,8 +46,8 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             IStrategy* strategy = getStrategy();
             float dist = strategy->getTotalDistance();
             float speed = GetSpeed();
-
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
+            std::cout << "Wallet: (Robot), cost of trip\n" << paymentForTrip;
             if (account - paymentForTrip < 0){
                 SetAvailability(true);        // Make robot avail if not enough money
                 clientValid = false;          // Client is not valid
@@ -62,7 +62,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         // If the client is validated and already picked up then they will be charged
         if(clientValid && GetPickedUp() && !GetAvailability()) {
             account -= COST_FOR_TRIP;
-            std::cout << "Wallet (Robot), Payed for trip\n";
+            std::cout << "Wallet (Robot), Paid for trip\n";
         }
         else if (clientValid && GetPickedUp() && GetPosition().Distance(GetDestination()) < 4.0){
             clientValid = false;
@@ -111,7 +111,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         // Determine if the client is present
         else if (GetEntity() != nullptr){
             // Determines if drone should be payed
-            if (GetEntity()->GetPickedUp() && clientValid && !GetAvailability()){
+            if (GetEntity()->GetPickedUp() && clientValid && !GetAvailability()){ // FIX THIS, never works
                 account += COST_FOR_TRIP;
                 std::cout << "Wallet (Drone), Drones been payed\n";
             }
