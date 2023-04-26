@@ -196,6 +196,7 @@ class IEntity {
   virtual float GetTime(){}
   virtual float GetDistance(){}
   virtual void SetDistance(float dist_){}
+  virtual const IGraph* getGraph() const {return graph; }
 
  protected:
   int id;

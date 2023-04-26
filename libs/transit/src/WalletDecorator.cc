@@ -5,6 +5,7 @@
 WalletDecorator::WalletDecorator(IEntity* entity){
     std::string temp = entity->GetDetails()["type"].ToString();
     type = temp.substr(1, 5);
+    this->graph = entity->getGraph();
     component = entity;
     if (type.compare("drone") == 0){
         account = 0;
@@ -19,11 +20,11 @@ IStrategy* WalletDecorator::getStrategy(){
     IStrategy* strategy;
     Vector3 position = component->GetPosition();
     Vector3 destination = component->GetDestination();
-    if (strategyName == "astar") {
+    if (strategyName.compare("astar")) {
         strategy = new AstarStrategy(position, destination, graph);
-    } else if (strategyName == "dfs") {
+    } else if (strategyName.compare("dfs")) {
         strategy = new DfsStrategy(position, destination, graph);
-    } else if (strategyName == "dijkstra") {
+    } else if (strategyName.compare("dijkstra")) {
         strategy = new DijkstraStrategy(position, destination, graph);
     } else {
         strategy = new BeelineStrategy(position, destination);
@@ -42,9 +43,8 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     if (type.compare("robot") == 0){
         // Client must be validated
         if (!clientValid && !GetAvailability()){
-            // IStrategy* strategy = getStrategy();
-            // float dist = strategy->getTotalDistance();
-            float dist = 0;
+            IStrategy* strategy = getStrategy();
+            float dist = strategy->getTotalDistance();
             float speed = GetSpeed();
 
             float paymentForTrip = (dist/speed)*COST_FOR_TRIP; // total time for trip * Cost per unit of time
