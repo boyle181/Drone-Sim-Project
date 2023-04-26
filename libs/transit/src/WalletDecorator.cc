@@ -1,6 +1,11 @@
 #include "WalletDecorator.h"
 #include "DataCollectionSingleton.h"
 
+/**
+ * Robot gets pays correctly but drone doesn't get paid correctly
+ * Account for robot isn't be outputted properly to csv
+ * 
+ */
 
 WalletDecorator::WalletDecorator(IEntity* entity){
     std::string temp = entity->GetDetails()["type"].ToString();
@@ -56,7 +61,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 account -= paymentForTrip;
                 std::cout << "Wallet: (Robot), Robot has enough money\n";
             }
-            // delete strategy;
         }
         // If the client is validated and already picked up then they will be charged
         // if(clientValid && GetPickedUp()) {
@@ -105,6 +109,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
             GetEntity()->SetAvailability(true);
             clientValid = false;
+            return;
             std::cout << "Wallet (Drone), Trip not scheduled\n";
         }
         // Determine if the client is present
