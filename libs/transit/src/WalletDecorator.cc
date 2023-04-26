@@ -130,6 +130,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             }
         }
     }
-    dataCollection->writeAccountInfo(component, this->account); // this will only work for now but when battery is wrapped it may produce issues
+    std::cout << "Account of Entity " << GetId() << ": " << account << std::endl;
+    dataCollection->writeAccountInfo(component, account); // this will only work for now but when battery is wrapped it may produce issues
     component->Update(dt, scheduler);
 }

@@ -192,10 +192,10 @@ class IEntity {
    * 
    * @return IEntity* the entity the entity (this entity) is pursuing
    */
-  virtual IEntity* GetEntity() {}
-  virtual float GetTime(){}
-  virtual float GetDistance(){}
-  virtual void SetDistance(float dist_){}
+  virtual IEntity* GetEntity(){};
+  virtual float GetTime(){};
+  virtual float GetDistance(){};
+  virtual void SetDistance(float dist_){};
   virtual const IGraph* getGraph() const {return graph; }
 
  protected:
