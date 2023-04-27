@@ -145,7 +145,7 @@ class Robot : public IEntity {
   Vector3 direction;
   Vector3 destination;
   float speed;
-  bool available;
+  bool available = false;
   std::string strategyName;
   bool pickedUp = false;
   std::chrono::time_point<std::chrono::high_resolution_clock> t_start;

@@ -51,7 +51,7 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
       
 
   if (nearestEntity) {
-      std::cout << "nearest entity";
+      std::cout << "nearest entity\n";
 
     // Set required variables
     std::string strategyName = nearestEntity->GetStrategyName();
@@ -84,8 +84,10 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
     } else if (strategyName == "dijkstra") {
       toFinalDestination =
         new JumpDecorator(new SpinDecorator(new DijkstraStrategy(destination, finalDestination, graph)));
-    } else
-      toFinalDestination = new BeelineStrategy(destination, finalDestination);
+    } else {
+        toFinalDestination = new BeelineStrategy(destination, finalDestination);
+    }
+    pathTripDistance = strategy->getTotalDistance();
   }
 }
 
@@ -116,22 +118,27 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
     toFinalDestination->Move(this, dt);
 
     if (nearestEntity && pickedUp) {
+      nearestEntity->SetPickedUp(true);
       nearestEntity->SetPosition(position);
       nearestEntity->SetDirection(direction);
     }
 
     if (toFinalDestination->IsCompleted()) {
-      pathTripDistance = toFinalDestination->getTotalDistance();
       totalDistance = totalDistance + pathTripDistance + beelineTripDistance;
       totalTrips++;
-      nearestEntity->SetDistance(nearestEntity->GetDistance() + pathTripDistance);
 
+      // Drone data collection info
       dataCollection->writeBatteryUsage(this, 0);
       dataCollection->writeTimeInfo(this, this->GetTime());
       dataCollection->writeDistanceInfo(this, totalDistance);
-      dataCollection->writeTimeInfo(nearestEntity, nearestEntity->GetTime());
-      dataCollection->writeDistanceInfo(nearestEntity, nearestEntity->GetDistance());
       dataCollection->writeNumberOfTrips(this, totalTrips);
+
+      // Robots data collection info
+      dataCollection->writeTimeInfo(nearestEntity, nearestEntity->GetTime());
+      dataCollection->writeDistanceInfo(nearestEntity, pathTripDistance);
+      std::cout << "path distance:" << pathTripDistance << std::endl;
+      std::cout << "beeline distance:" << beelineTripDistance << std::endl;
+
       delete toFinalDestination;
       toFinalDestination = nullptr;
       nearestEntity = nullptr;

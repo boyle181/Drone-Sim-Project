@@ -175,6 +175,8 @@ class Drone : public IEntity {
     totalDistance = distance;
   }
 
+  IEntity *GetEntity() {return nearestEntity;}
+
  private:
   JsonObject details;
   Vector3 position;

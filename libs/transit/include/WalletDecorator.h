@@ -121,18 +121,19 @@ class WalletDecorator : public IEntity {
   void Update(double dt, std::vector<IEntity*> scheduler);
    
  private:
-   IStrategy* getStrategy();
-
+   IStrategy* getStrategy(IEntity* entity);
+   double getCostForTrip(IEntity* entity);
    IEntity* component;
    double account = 0;
    std::string type;
    bool clientValid = false;                      // Keeps track if a client has been cleared for ride
    const double START_MONEY = 1000.00;
    const int RANGE = 1000;
-   const double COST_FOR_TRIP = 20.00;     // Cost per unit of time (trip)
+   const double TRIP_MULTIPLIER = 10.0;     // Cost per unit of time (trip)
    const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
    Vector3 pickUpDestination;
    Vector3 finalDestination;
+   bool transactionComplete = false;
 };
 
 #endif  
