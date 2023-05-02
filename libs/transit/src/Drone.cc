@@ -100,7 +100,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
 
 
   DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
-
+  
   if (available) {
     GetNearestEntity(scheduler);
   }

@@ -86,7 +86,6 @@ class WalletDecorator : public IEntity {
 
   void SetStrategyName(std::string strategyName_) { component->SetStrategyName(strategyName_); }
 
-
   /**
    * @brief Sets the robot's position
    * @param pos_ The new position of the robot
@@ -103,21 +102,41 @@ class WalletDecorator : public IEntity {
    * @param des_ The new destination of the robot
    */
   void SetDestination(Vector3 des_) { component->SetDestination(des_); }
-
+   /**
+   * @brief Gets the avaliability of the component 
+   */
   bool GetAvailability() const { return component->GetAvailability(); }
-
+   /**
+   * @brief Sets the avaliability of the component 
+   * @param choice represents the new avaliability 
+   */
   void SetAvailability(bool choice) { component->SetAvailability(choice); }
-
+  /**
+   * @brief Gets the details of the component
+   */
   JsonObject GetDetails() const { return component->GetDetails(); }
-
+  /**
+   * @brief Gets the entity of the component
+   */
   IEntity* GetEntity() { return component->GetEntity(); }
-
+  /**
+   * @brief Returns the rotate of the component 
+   * @param angle represents the angle of the rotation
+   */
   void Rotate(double angle){ component->Rotate(angle); }
-
+  /**
+   * @brief Returns the time  of the component 
+  */
   float GetTime(){ return component->GetTime(); }
-
+  /**
+   * @brief Returns the distance  of the component 
+  */
   float GetDistance(){ return component->GetDistance(); }
-
+  /**
+   * @brief Update the wallet decorators 
+   * @param dt Type double contain the time since update was last called.
+   * @param scheduler Type vectory of IEntity* contains the entities.
+   **/
   void Update(double dt, std::vector<IEntity*> scheduler);
    
  private:

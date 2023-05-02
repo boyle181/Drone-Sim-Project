@@ -149,6 +149,11 @@ class IEntity {
    * @param height The height to make the entity jump.
    */
   virtual void Jump(double height) {}
+  
+  /**
+   * @brief Sets nearest entity in the scheduler
+   */
+  void SetEntity(IEntity* entity) { }
 
   virtual float Random(float Min, float Max) {
     return ((float(rand()) / float(RAND_MAX)) * (Max - Min)) + Min;

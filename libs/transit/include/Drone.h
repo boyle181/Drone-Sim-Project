@@ -73,12 +73,6 @@ class Drone : public IEntity {
   bool GetAvailability() const { return available; }
 
   /**
-   * @brief Gets the nearest entity in the scheduler
-   * @param scheduler Vector containing all the entities in the system
-   */
-
-
-  /**
    * @brief Updates the drone's position
    * @param dt Delta time
    * @param scheduler Vector containing all the entities in the system
@@ -163,6 +157,12 @@ class Drone : public IEntity {
    * @param scheduler Vector containing all the entities in the system
    */
   void GetNearestEntity(std::vector<IEntity*> scheduler);
+  
+  /**
+   * @brief Sets nearest entity in the scheduler
+   */
+  void SetEntity(IEntity* entity) { nearestEntity = entity; }
+
 
   float GetDistance(){return totalDistance;}
 

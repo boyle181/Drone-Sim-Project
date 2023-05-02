@@ -6,6 +6,7 @@
 #include "HelicopterFactory.h"
 #include "RechargeStationFactory.h"
 #include "WalletDecorator.h"
+#include "BatteryDecorator.h"
 #include "DataCollectionSingleton.h"
 
 
@@ -45,7 +46,9 @@ void SimulationModel::CreateEntity(JsonObject& entity) {
 
   // Call AddEntity to add it to the view
 
-  if (type.compare("drone") == 0 || type.compare("robot") == 0) {
+  if (type.compare("drone") == 0) {
+    myNewEntity = new BatteryDecorator (new WalletDecorator(myNewEntity));
+  } else if (type.compare("robot") == 0) {
     myNewEntity = new WalletDecorator(myNewEntity);
   }
 
