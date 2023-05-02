@@ -33,7 +33,7 @@ class DataCollectionSingleton {
      * @param time A float representing the time data that is 
      * assoicated with entity pointer
      */
-    void writeTimeInfo(IEntity* entity, float time);
+    void writeTimeInfo(int ID, float time);
 
     /**
      * @brief Takes an entity pointer that will be associated
@@ -45,7 +45,7 @@ class DataCollectionSingleton {
      * @param distance A float representing the distanced that is 
      * assoicated with entity pointer
      */
-    void writeDistanceInfo(IEntity* entity, float distance);
+    void writeDistanceInfo(int ID, float distance);
 
     /**
      * @brief Takes an entity pointer that will be associated
@@ -58,7 +58,7 @@ class DataCollectionSingleton {
      * @param account A double representing the account balance
      * that is assoicated with entity pointer
      */
-    void writeAccountInfo(IEntity* entity, double accountBalance);
+    void writeAccountInfo(int ID, double accountBalance);
 
     /**
      * @brief Takes an drone pointer that will be associated
@@ -71,7 +71,7 @@ class DataCollectionSingleton {
      * @param batteryUsage An int representing the battery usage
      * that is assoicated with drone pointer
      */
-    void writeBatteryUsage(IEntity* entity, int usage);
+    void writeBatteryUsage(int ID, int usage);
 
     /**
      * @brief Takes an drone pointer that will be associated
@@ -84,7 +84,7 @@ class DataCollectionSingleton {
      * @param trips An int representing the number of trips
      * that is assoicated with drone pointer
      */
-    void writeNumberOfTrips(IEntity* entity, int trips);
+    void writeNumberOfTrips(int ID, int trips);
 
     /**
      * @brief Outputs all data that has been collected to a csv file.
@@ -92,6 +92,7 @@ class DataCollectionSingleton {
      */
     void writeToCSV();
 
+   void printAccountInfo();
     /**
      * Singletons are not cloneable and assignable.
      */
@@ -100,11 +101,11 @@ class DataCollectionSingleton {
 
  private:
     DataCollectionSingleton() { }
-    std::map<IEntity*, float> timeInfo;
-    std::map<IEntity*, float> distanceInfo;
-    std::map<IEntity*, double> accountInfo;
-    std::map<IEntity*, int> batteryUsage;
-    std::map<IEntity*, int> numberOfTrips;
+    std::map<int, float> timeInfo;
+    std::map<int, float> distanceInfo;
+    std::map<int, double> accountInfo;
+    std::map<int, int> batteryUsage;
+    std::map<int, int> numberOfTrips;
 };
 
 // Our Static instance of a the DataCollectionSingleton

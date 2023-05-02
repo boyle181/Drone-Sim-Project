@@ -8,24 +8,36 @@ DataCollectionSingleton* DataCollectionSingleton::getInstance(){
     return dataCollection;
 }
 
-void DataCollectionSingleton::writeTimeInfo(IEntity* entity, float time){
-    timeInfo[entity] = time;
+void DataCollectionSingleton::writeTimeInfo(int ID, float time){
+    timeInfo[ID] = time;
 }
 
-void DataCollectionSingleton::writeDistanceInfo(IEntity* entity, float distance){
-    distanceInfo[entity] = distance;
+void DataCollectionSingleton::writeDistanceInfo(int ID, float distance){
+    distanceInfo[ID] = distance;
 }
 
-void DataCollectionSingleton::writeAccountInfo(IEntity* entity, double accountBalance){
-    accountInfo[entity] = accountBalance;
+void DataCollectionSingleton::writeAccountInfo(int ID, double accountBalance){
+    accountInfo[ID] = accountBalance;
+
+    // std::string temp = entity->GetDetails()["name"].ToString();
+    // if (entity->GetId() != 0) {
+    //     std::cout << "name in writeAccountInfo: " << temp << "; " << accountBalance << std::endl;
+    // }
 }
 
-void DataCollectionSingleton::writeBatteryUsage(IEntity* entity, int usage){
-    batteryUsage[entity] = usage;
+void DataCollectionSingleton::writeBatteryUsage(int ID, int usage){
+    batteryUsage[ID] = usage;
 }
 
-void DataCollectionSingleton::writeNumberOfTrips(IEntity* entity, int trips){
-    numberOfTrips[entity] = trips;
+void DataCollectionSingleton::writeNumberOfTrips(int ID, int trips){
+    numberOfTrips[ID] = trips;
+}
+
+void DataCollectionSingleton::printAccountInfo(){
+    for (std::map<int, double>::iterator entry = accountInfo.begin(); entry != accountInfo.end(); ++entry){
+        std::cout <<  entry->first << ": " << entry->second << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 void DataCollectionSingleton::writeToCSV(){
@@ -40,22 +52,21 @@ void DataCollectionSingleton::writeToCSV(){
 
     // *** Gets data for all Drones and enters it into a .csv file ***
     int count = 1;
-    for (std::map<IEntity*, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
-        IEntity* entity = entry->first;
-        std::string type = entity->GetDetails()["type"].ToString();
-        type = type.substr(1, 5);
-        row.append(std::to_string(entity->GetId()));
+    for (std::map<int, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
+        std::cout <<  entry->first << ": " << entry->second << std::endl;
+        int ID = entry->first;
+        row.append(std::to_string(entry->first));
         row.append(", ");
-        row.append(std::to_string(timeInfo[entity]));
+        row.append(std::to_string(timeInfo[ID]));
         row.append(", ");
-        row.append(std::to_string(distanceInfo[entity]));
+        row.append(std::to_string(distanceInfo[ID]));
         row.append(", ");
-        row.append(std::to_string(accountInfo[entity]));
+        row.append(std::to_string(accountInfo[ID]));
         row.append(", ");
-        if (type.compare("drone") == 0){
-            row.append(std::to_string(batteryUsage[entity]));
+        if (ID == 0){
+            row.append(std::to_string(batteryUsage[ID]));
             row.append(", ");
-            row.append(std::to_string(numberOfTrips[entity]));
+            row.append(std::to_string(numberOfTrips[ID]));
         }
         else{
             row.append("N/A, N/A");

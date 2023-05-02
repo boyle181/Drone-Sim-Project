@@ -70,7 +70,8 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 std::cout << "Wallet (Robot), Paid for trip\n";
                 std::cout << "Wallet (Robot), Balance: " << account << std::endl;
                 clientValid = true;
-                dataCollection->writeAccountInfo(this->component, account);
+                dataCollection->writeAccountInfo(component->GetId()+1, account);
+                // dataCollection->printAccountInfo();
 
             }
         }
@@ -111,10 +112,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 std::cout << "Wallet (Drone), Drone can't afford Recharge\n";
             }
         }
-        // drone is available and 
-        // if(GetEntity() && GetAvailability()) {
-
-        // }
 
         // If either are avaible then the trip should be canceled
         else if (GetEntity() != nullptr && (GetAvailability() || GetEntity()->GetAvailability())){
@@ -127,7 +124,7 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         else if (GetEntity() != nullptr){
             // Determines if drone should be payed
             if (GetEntity()->GetPickedUp() && clientValid && !GetEntity()->GetAvailability()){ // FIX THIS, never works
-                dataCollection->writeAccountInfo(component, account);
+                dataCollection->writeAccountInfo(component->GetId(), account);
                 // std::cout << "Wallet (Drone), Drones been payed\n";
             }
             // Determines if trip or pick up is complete

@@ -128,16 +128,19 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       totalTrips++;
 
       // Drone data collection info
-      dataCollection->writeBatteryUsage(this, 0);
-      dataCollection->writeTimeInfo(this, this->GetTime());
-      dataCollection->writeDistanceInfo(this, totalDistance);
-      dataCollection->writeNumberOfTrips(this, totalTrips);
+      dataCollection->writeBatteryUsage(this->GetId(), 0);
+      dataCollection->writeTimeInfo(this->GetId(), this->GetTime());
+      dataCollection->writeDistanceInfo(this->GetId(), totalDistance);
+      dataCollection->writeNumberOfTrips(this->GetId(), totalTrips);
 
       // Robots data collection info
-      dataCollection->writeTimeInfo(nearestEntity, nearestEntity->GetTime());
-      dataCollection->writeDistanceInfo(nearestEntity, pathTripDistance);
+      dataCollection->writeTimeInfo(nearestEntity->GetId(), nearestEntity->GetTime());
+      dataCollection->writeDistanceInfo(nearestEntity->GetId(), pathTripDistance);
+      
       std::cout << "path distance:" << pathTripDistance << std::endl;
       std::cout << "beeline distance:" << beelineTripDistance << std::endl;
+      // dataCollection->printAccountInfo();
+
 
       delete toFinalDestination;
       toFinalDestination = nullptr;

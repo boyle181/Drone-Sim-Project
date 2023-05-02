@@ -6,6 +6,7 @@
 #include "HelicopterFactory.h"
 #include "RechargeStationFactory.h"
 #include "WalletDecorator.h"
+#include "DataCollectionSingleton.h"
 
 
 
