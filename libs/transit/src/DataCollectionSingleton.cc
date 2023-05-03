@@ -1,8 +1,19 @@
-#include <cstdio>
-#include <iostream>
-#include <chrono>
-#include <ctime>  
+#include <iostream> 
+#include <ctime>
+#include <filesystem>
 #include "DataCollectionSingleton.h"
+
+DataCollectionSingleton::DataCollectionSingleton(){
+    // *** Creates CSV file if it is not present ***
+    auto csvDirectory = std::filesystem::create_directory("CSV");
+
+    // *** Get Current time and adjusts file name accordingly ***
+    time_t rawtime;
+    struct tm * timeinfo = localtime (&rawtime);
+    char name[100];
+    strftime (name,100,"CSV/simData %H:%M:%S.csv",timeinfo);
+    filename = name;
+}
 
 DataCollectionSingleton* DataCollectionSingleton::getInstance(){
     if (dataCollection == NULL){
@@ -40,17 +51,10 @@ void DataCollectionSingleton::ClearMaps() {
 }
 
 void DataCollectionSingleton::writeToCSV(){
-    
-    // *** Get Time for naming CSV ***
-    auto end = std::chrono::system_clock::now();
-    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-    std::string name = "CSV/simData-";
-    name.append(std::ctime(&end_time));
-    name.append(".csv");
 
     // *** Open csv file ***
     std::ofstream data;
-    data.open(name, std::ios::trunc);
+    data.open(filename, std::ios::trunc);
 
     // *** Top Axis ***
     data << "ID, Time, Distance, Account($), Battery Usage, Number of Trips\n";
@@ -70,7 +74,7 @@ void DataCollectionSingleton::writeToCSV(){
         data << ", ";
 
         // *** Information only for drone ***
-        if (ID == 0){ // Note: This will break when multiple drone enter sim
+        if (ID == 0){ // NoteToSelf: This will break when there's multiple drones
             data << std::to_string(batteryUsage[ID]);
             data << ", ";
             data << std::to_string(numberOfTrips[ID]);
@@ -78,9 +82,7 @@ void DataCollectionSingleton::writeToCSV(){
         else{
             data << "N/A, N/A";
         }
-
         data << "\n";
     }
-    ClearMaps();
     data.close();
 }
