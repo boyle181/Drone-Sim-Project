@@ -73,7 +73,7 @@ Battery Logic:
 void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
-    // check if drone has enough battery before accepting a trip
+    // *** Checks if drone is on a trip (if an entity has been assign for pick up) ***
     if(GetEntity() != nullptr) {
         if(!clientValid) {
             double totalTripBatteryUsage = getTripBatteryCost(component->GetEntity());
@@ -99,11 +99,6 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     
     // *** When trip is complete, clientValid and writeCSV reset ***
     if(!writeCSV && GetEntity() == nullptr && GetAvailability()) {
-        // std::cout << "Reached final destination\n";
-        std::cout << "currentCap in final Destination case: " << currentCapacity << std::endl;
-        std::cout << "getID in final Destination case: " << GetId() << std::endl;
-        std::cout << "is it written in final destination case?: " << dataCollection->getBattery(GetId()) << std::endl;
-
         clientValid = false;
         writeCSV = true;
     }
@@ -134,8 +129,5 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
         }
     }
-    // std::cout << "currentCap in final Destination case: " << currentCapacity << std::endl;
-    // std::cout << "getID in final Destination case: " << component->GetId() << std::endl;
-    // std::cout << "is it written?: " << dataCollection->getBattery(component->GetId()) << std::endl << std::endl;
     component->Update(dt, scheduler);
 } 
