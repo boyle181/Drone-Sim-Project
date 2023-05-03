@@ -67,22 +67,32 @@ void DataCollectionSingleton::writeToCSV(){
         row.append(std::to_string(accountInfo[ID]));
         row.append(", ");
 
-        // *** Information only for battery wrapped entities ***
-        if (batteryUsage.find(ID) != batteryUsage.end()){
-            row.append(std::to_string(batteryUsage[ID]));
-        }
-        else {
-            row.append("N/A");
-        }
-        row.append(", ");
+        // // *** Information only for battery wrapped entities ***
+        // if (batteryUsage.find(ID) != batteryUsage.end()){
+        //     row.append(std::to_string(batteryUsage[ID]));
+        // }
+        // else {
+        //     row.append("N/A");
+        // }
+        // row.append(", ");
 
-        // *** Information only for wallet wrapped entities ***
-        if (numberOfTrips.find(ID) != numberOfTrips.end()){
+        // // *** Information only for wallet wrapped entities ***
+        // if (numberOfTrips.find(ID) != numberOfTrips.end()){
+        //     row.append(std::to_string(numberOfTrips[ID]));
+        // }
+        // else {
+        //     row.append("N/A");
+        // }
+
+        if (ID == 0){
+            row.append(std::to_string(batteryUsage[ID]));
+            row.append(", ");
             row.append(std::to_string(numberOfTrips[ID]));
         }
-        else {
-            row.append("N/A");
+        else{
+            row.append("N/A, N/A");
         }
+        
         row.append("\n");
         data << row;
     }
