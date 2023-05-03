@@ -1,5 +1,21 @@
-
+#include <iostream> 
+#include <ctime>
+#include <filesystem>
 #include "DataCollectionSingleton.h"
+
+DataCollectionSingleton::DataCollectionSingleton(){
+    // *** Creates CSV file if it is not present ***
+    auto csvDirectory = std::filesystem::create_directory("CSV");
+
+    // *** Get Current time and adjusts file name accordingly ***
+    time_t timer;
+    struct tm * timeinfo;
+    time(&timer);
+    timeinfo = localtime (&timer);
+    char name[100];
+    strftime (name,100,"CSV/simData %H:%M:%S.csv",timeinfo);
+    filename = name;
+}
 
 DataCollectionSingleton* DataCollectionSingleton::getInstance(){
     if (dataCollection == NULL){
@@ -28,51 +44,47 @@ void DataCollectionSingleton::writeNumberOfTrips(int ID, int trips){
     numberOfTrips[ID] = trips;
 }
 
-void DataCollectionSingleton::printBatteryInfo(){
-    for (std::map<int, double>::iterator entry = batteryUsage.begin(); entry != batteryUsage.end(); ++entry){
-        std::cout <<  entry->first << ": " << entry->second << std::endl;
-    }
-    std::cout << std::endl;
-}
-
-double DataCollectionSingleton::getBattery(int ID){
-    return batteryUsage[ID];
+void DataCollectionSingleton::ClearMaps() {
+    timeInfo.clear();
+    distanceInfo.clear();
+    accountInfo.clear();
+    batteryUsage.clear();
+    numberOfTrips.clear();
 }
 
 void DataCollectionSingleton::writeToCSV(){
-    
+
     // *** Open csv file ***
     std::ofstream data;
-    data.open ("simData101.csv", std::ios::trunc);
-    std::string row = ""; // Acc for writing a row to .csv
+    data.open(filename, std::ios::trunc);
 
     // *** Top Axis ***
     data << "ID, Time, Distance, Account($), Battery Usage, Number of Trips\n";
 
     // *** Gets data for all Drones and enters it into a .csv file ***
-    int count = 1;
     for (std::map<int, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
-        std::cout <<  entry->first << ": " << entry->second << std::endl;
         int ID = entry->first;
-        row.append(std::to_string(entry->first));
-        row.append(", ");
-        row.append(std::to_string(timeInfo[ID]));
-        row.append(", ");
-        row.append(std::to_string(distanceInfo[ID]));
-        row.append(", ");
-        row.append(std::to_string(accountInfo[ID]));
-        row.append(", ");
-        if (ID == 0){
-            row.append(std::to_string(batteryUsage[ID]));
-            row.append(", ");
-            row.append(std::to_string(numberOfTrips[ID]));
+
+        // *** Information all entities have ***
+        data << std::to_string(entry->first);
+        data << ", ";
+        data << std::to_string(timeInfo[ID]);
+        data << ", ";
+        data << std::to_string(distanceInfo[ID]);
+        data << ", ";
+        data << std::to_string(accountInfo[ID]);
+        data << ", ";
+
+        // *** Information only for drone ***
+        if (ID == 0){ // NoteToSelf: This will break when there's multiple drones
+            data << std::to_string(batteryUsage[ID]);
+            data << ", ";
+            data << std::to_string(numberOfTrips[ID]);
         }
         else{
-            row.append("N/A, N/A");
+            data << "N/A, N/A";
         }
-        row.append("\n");
-        data << row;
-        count++;
+        data << "\n";
     }
     data.close();
 }

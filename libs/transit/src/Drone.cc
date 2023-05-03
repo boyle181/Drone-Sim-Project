@@ -139,9 +139,6 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       
       std::cout << "path distance:" << pathTripDistance << std::endl;
       std::cout << "beeline distance:" << beelineTripDistance << std::endl;
-      std::cout << "is it written in drone->update() case?: " << dataCollection->getBattery(GetId()) << std::endl;
-      // dataCollection->printAccountInfo();
-
 
       delete toFinalDestination;
       toFinalDestination = nullptr;

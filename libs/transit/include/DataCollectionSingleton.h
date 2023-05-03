@@ -92,8 +92,6 @@ class DataCollectionSingleton {
      */
     void writeToCSV();
 
-   void printBatteryInfo();
-   double getBattery(int ID);
     /**
      * Singletons are not cloneable and assignable.
      */
@@ -101,7 +99,9 @@ class DataCollectionSingleton {
     void operator=(const DataCollectionSingleton &) = delete;
 
  private:
-    DataCollectionSingleton() { }
+    DataCollectionSingleton();
+    void ClearMaps();
+    std::string filename;
     std::map<int, float> timeInfo;
     std::map<int, float> distanceInfo;
     std::map<int, double> accountInfo;
@@ -109,7 +109,7 @@ class DataCollectionSingleton {
     std::map<int, int> numberOfTrips;
 };
 
-// Our Static instance of a the DataCollectionSingleton
+// Our Static instance of the DataCollectionSingleton
 static DataCollectionSingleton* dataCollection = NULL;
 
 #endif  // DATACOLLECTIONSINGLETON_H_

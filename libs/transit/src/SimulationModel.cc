@@ -85,7 +85,6 @@ void SimulationModel::Update(double dt) {
   for (int i = 0; i < entities.size(); i++) {
     entities[i]->Update(dt, scheduler);
     controller.UpdateEntity(*entities[i]);
-    dataCollection->printBatteryInfo();
   }
 }
 
