@@ -44,12 +44,13 @@ void DataCollectionSingleton::writeToCSV(){
     // *** Get Time for naming CSV ***
     auto end = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-    char name[100];
-    sprintf(name, "simData-%s.csv", std::ctime(&end_time));
+    std::string name = "CSV/simData-";
+    name.append(std::ctime(&end_time));
+    name.append(".csv");
+
     // *** Open csv file ***
     std::ofstream data;
-    data.open (name, std::ios::trunc);
-    std::string row = ""; // Acc for writing a row to .csv
+    data.open(name, std::ios::trunc);
 
     // *** Top Axis ***
     data << "ID, Time, Distance, Account($), Battery Usage, Number of Trips\n";
@@ -57,44 +58,28 @@ void DataCollectionSingleton::writeToCSV(){
     // *** Gets data for all Drones and enters it into a .csv file ***
     for (std::map<int, float>::iterator entry = timeInfo.begin(); entry != timeInfo.end(); ++entry){
         int ID = entry->first;
+
         // *** Information all entities have ***
-        row.append(std::to_string(entry->first));
-        row.append(", ");
-        row.append(std::to_string(timeInfo[ID]));
-        row.append(", ");
-        row.append(std::to_string(distanceInfo[ID]));
-        row.append(", ");
-        row.append(std::to_string(accountInfo[ID]));
-        row.append(", ");
+        data << std::to_string(entry->first);
+        data << ", ";
+        data << std::to_string(timeInfo[ID]);
+        data << ", ";
+        data << std::to_string(distanceInfo[ID]);
+        data << ", ";
+        data << std::to_string(accountInfo[ID]);
+        data << ", ";
 
-        // // *** Information only for battery wrapped entities ***
-        // if (batteryUsage.find(ID) != batteryUsage.end()){
-        //     row.append(std::to_string(batteryUsage[ID]));
-        // }
-        // else {
-        //     row.append("N/A");
-        // }
-        // row.append(", ");
-
-        // // *** Information only for wallet wrapped entities ***
-        // if (numberOfTrips.find(ID) != numberOfTrips.end()){
-        //     row.append(std::to_string(numberOfTrips[ID]));
-        // }
-        // else {
-        //     row.append("N/A");
-        // }
-
-        if (ID == 0){
-            row.append(std::to_string(batteryUsage[ID]));
-            row.append(", ");
-            row.append(std::to_string(numberOfTrips[ID]));
+        // *** Information only for drone ***
+        if (ID == 0){ // Note: This will break when multiple drone enter sim
+            data << std::to_string(batteryUsage[ID]);
+            data << ", ";
+            data << std::to_string(numberOfTrips[ID]);
         }
         else{
-            row.append("N/A, N/A");
+            data << "N/A, N/A";
         }
-        
-        row.append("\n");
-        data << row;
+
+        data << "\n";
     }
     ClearMaps();
     data.close();
