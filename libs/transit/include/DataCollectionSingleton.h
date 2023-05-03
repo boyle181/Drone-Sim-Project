@@ -71,7 +71,7 @@ class DataCollectionSingleton {
      * @param batteryUsage An int representing the battery usage
      * that is assoicated with drone pointer
      */
-    void writeBatteryUsage(int ID, int usage);
+    void writeBatteryUsage(int ID, double usage);
 
     /**
      * @brief Takes an drone pointer that will be associated
@@ -92,7 +92,8 @@ class DataCollectionSingleton {
      */
     void writeToCSV();
 
-   void printAccountInfo();
+   void printBatteryInfo();
+   double getBattery(int ID);
     /**
      * Singletons are not cloneable and assignable.
      */
@@ -104,7 +105,7 @@ class DataCollectionSingleton {
     std::map<int, float> timeInfo;
     std::map<int, float> distanceInfo;
     std::map<int, double> accountInfo;
-    std::map<int, int> batteryUsage;
+    std::map<int, double> batteryUsage;
     std::map<int, int> numberOfTrips;
 };
 

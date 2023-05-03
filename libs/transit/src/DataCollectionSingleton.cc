@@ -18,14 +18,9 @@ void DataCollectionSingleton::writeDistanceInfo(int ID, float distance){
 
 void DataCollectionSingleton::writeAccountInfo(int ID, double accountBalance){
     accountInfo[ID] = accountBalance;
-
-    // std::string temp = entity->GetDetails()["name"].ToString();
-    // if (entity->GetId() != 0) {
-    //     std::cout << "name in writeAccountInfo: " << temp << "; " << accountBalance << std::endl;
-    // }
 }
 
-void DataCollectionSingleton::writeBatteryUsage(int ID, int usage){
+void DataCollectionSingleton::writeBatteryUsage(int ID, double usage){
     batteryUsage[ID] = usage;
 }
 
@@ -33,11 +28,15 @@ void DataCollectionSingleton::writeNumberOfTrips(int ID, int trips){
     numberOfTrips[ID] = trips;
 }
 
-void DataCollectionSingleton::printAccountInfo(){
-    for (std::map<int, double>::iterator entry = accountInfo.begin(); entry != accountInfo.end(); ++entry){
+void DataCollectionSingleton::printBatteryInfo(){
+    for (std::map<int, double>::iterator entry = batteryUsage.begin(); entry != batteryUsage.end(); ++entry){
         std::cout <<  entry->first << ": " << entry->second << std::endl;
     }
     std::cout << std::endl;
+}
+
+double DataCollectionSingleton::getBattery(int ID){
+    return batteryUsage[ID];
 }
 
 void DataCollectionSingleton::writeToCSV(){

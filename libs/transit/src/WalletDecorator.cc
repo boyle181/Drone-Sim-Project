@@ -1,7 +1,6 @@
 #include "WalletDecorator.h"
 #include "DataCollectionSingleton.h"
 
-
 /**
 TODO:
  ISSUES:
@@ -57,27 +56,22 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         // Client must be validated
         if (!clientValid && !GetAvailability()){
             double costForTrip = getCostForTrip(this);
-            std::cout << "Wallet: (Robot), cost of trip: " << costForTrip << std::endl;
             // transfer money when robot is picked up
             if (account - costForTrip < 0){
                 SetAvailability(true);        // Make robot avail if not enough money
                 clientValid = false;          // Client is not valid
-                std::cout << "Wallet: (Robot), Robot doesn't have enough money\n";
             }
             else {
-                std::cout << "Wallet (Robot), Balance: " << account << std::endl;
                 account -= costForTrip;
-                std::cout << "Wallet (Robot), Paid for trip\n";
-                std::cout << "Wallet (Robot), Balance: " << account << std::endl;
                 clientValid = true;
-                dataCollection->writeAccountInfo(component->GetId()+1, account);
-                // dataCollection->printAccountInfo();
+                dataCollection->writeAccountInfo(component->GetId(), account);
+                std::cout << "write account for robot\n";
 
+                // std::cout << "getID in walletDecorator: " << component->GetId()+1 << "; Account: " << account << std::endl;
             }
         }
         else if (clientValid && GetPickedUp() && GetPosition().Distance(GetDestination()) < 4.0){
             clientValid = false;
-            std::cout << "Wallet (Robot), Trip Complete\n";
         }
     }
 
@@ -118,37 +112,27 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             SetAvailability(true);
             GetEntity()->SetAvailability(true);
             clientValid = false;
-            std::cout << "Wallet (Drone), Trip not scheduled\n";
         }
         // Determine if the client is present
         else if (GetEntity() != nullptr){
             // Determines if drone should be payed
-            if (GetEntity()->GetPickedUp() && clientValid && !GetEntity()->GetAvailability()){ // FIX THIS, never works
+            if (GetEntity()->GetPickedUp() && clientValid && !GetAvailability()){
                 dataCollection->writeAccountInfo(component->GetId(), account);
-                // std::cout << "Wallet (Drone), Drones been payed\n";
             }
-            // Determines if trip or pick up is complete
+
+            // Determines if trip or pick up is completef
             if (GetPosition().Distance(GetDestination()) < 4.0){
                 // Determines when client is picked up
-                if (!GetEntity()->GetPickedUp()){
-                    std::cout << "Wallet (Drone), Picked up client!\n";
-                    std::cout << "Wallet (Drone), Balance: " << account << std::endl;
+                if (!GetEntity()->GetPickedUp() && !clientValid){
                     clientValid = true;
                     account += getCostForTrip(GetEntity());
-                    
-                    std::cout << "Wallet (Drone), Balance: " << account << std::endl;
-                    std::cout << "Wallet (Drone), Money recieved\n";
                 }
             }
         }
         // Determines when client is dropped off (nearest entity null in drone:update when dropped off)
-        else if(GetEntity() == nullptr && GetAvailability()) {
-            
+        else if(GetEntity() == nullptr && GetAvailability()) { 
             clientValid = false;
-            // std::cout << "Wallet (Drone), Trip Completed\n";
         }
     }
-    // std::cout << "Entity #" << type << ": has a balance of -> " << account << std::endl;
-     // this will only work for now but when battery is wrapped it may produce issues
     component->Update(dt, scheduler);
 }

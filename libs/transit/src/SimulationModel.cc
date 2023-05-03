@@ -81,9 +81,11 @@ void SimulationModel::ScheduleTrip(JsonObject& details) {
 
 /// Updates the simulation
 void SimulationModel::Update(double dt) {
+  DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
   for (int i = 0; i < entities.size(); i++) {
     entities[i]->Update(dt, scheduler);
     controller.UpdateEntity(*entities[i]);
+    dataCollection->printBatteryInfo();
   }
 }
 

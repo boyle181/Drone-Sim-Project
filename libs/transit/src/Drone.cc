@@ -92,7 +92,7 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
 }
 
 void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
-  // gdb -tui  ./build/bin/transit_service
+  // gdb ./build/bin/transit_service
   // set args 8081 apps/transit_service/web
   // run
   // http://127.0.0.1:8081/
@@ -112,6 +112,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       delete toRobot;
       toRobot = nullptr;
       pickedUp = true;
+      // SetDestination(nearestEntity->GetDestination());
     }
   } 
   else if (toFinalDestination) {
@@ -139,6 +140,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       
       std::cout << "path distance:" << pathTripDistance << std::endl;
       std::cout << "beeline distance:" << beelineTripDistance << std::endl;
+      std::cout << "is it written in drone->update() case?: " << dataCollection->getBattery(GetId()) << std::endl;
       // dataCollection->printAccountInfo();
 
 

@@ -165,16 +165,20 @@ class BatteryDecorator : public IEntity {
   */
   float GetDistance(){ return component->GetDistance(); }
    
+  int GetId() const { return component->GetId(); }
+  
  private:
    IStrategy* getStrategy(IEntity* entity);
    IEntity* component = NULL;
    IEntity* nearestRechargeStation = NULL;
    IStrategy* toRechargeStation = NULL;
-   int currentCapacity;
-   const double maxCapacity = 100;
-  //  const double batteryThreshhold = 50;
+   double currentCapacity;
+   const double maxCapacity = 3000;
    const double BATTERY_MULTIPLIER = .35;
    const double RECHARGE_RATE = 1;
+   bool clientValid = false;
+   bool canUpdateBattery = false;
+   bool writeCSV = false;
 };
 
 #endif  

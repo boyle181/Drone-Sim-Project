@@ -139,6 +139,8 @@ class WalletDecorator : public IEntity {
    **/
   void Update(double dt, std::vector<IEntity*> scheduler);
    
+  int GetId() const { return component->GetId(); }
+
  private:
    IStrategy* getStrategy(IEntity* entity);
    double getCostForTrip(IEntity* entity);
