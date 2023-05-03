@@ -19,7 +19,7 @@ void BatteryDecorator::getNearestRechargeStation(std::vector<IEntity*> scheduler
     for (auto entity : scheduler) {
         std::string type = entity->GetDetails()["type"];
         if (entity->GetAvailability() && type.compare("rechargeStation") == 0) {
-            float disToEntity = entity->GetPosition().Distance(entity->GetPosition());
+            float disToEntity = GetPosition().Distance(entity->GetPosition());
             if (disToEntity <= minDis) {
                 minDis = disToEntity;
                 nearestRechargeStation = entity;
@@ -27,11 +27,11 @@ void BatteryDecorator::getNearestRechargeStation(std::vector<IEntity*> scheduler
         }
     }
     if (nearestRechargeStation != NULL){
-        component->SetEntity(nearestRechargeStation);
-        component->SetAvailability(false);
+        SetEntity(nearestRechargeStation);
+        SetAvailability(false);
         nearestRechargeStation->SetAvailability(false);
-        component->SetDestination(nearestRechargeStation->GetPosition());
-        toRechargeStation = new BeelineStrategy(component->GetPosition(), nearestRechargeStation->GetPosition());
+        SetDestination(nearestRechargeStation->GetPosition());
+        toRechargeStation = new BeelineStrategy(GetPosition(), nearestRechargeStation->GetPosition());
         std::cout << "Drone is going towards a recharge station" << std::endl;
     }
 }
@@ -76,13 +76,13 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     // *** Checks if drone is on a trip (if an entity has been assign for pick up) ***
     if(GetEntity() != nullptr) {
         if(!clientValid) {
-            double totalTripBatteryUsage = getTripBatteryCost(component->GetEntity());
+            double totalTripBatteryUsage = getTripBatteryCost(GetEntity());
             canUpdateBattery = hasEnoughBattery(totalTripBatteryUsage);
             std::cout << "Total trip battery cost: " << totalTripBatteryUsage << std::endl;
             writeCSV = false;
             clientValid = true;
         }
-        if (!component->GetAvailability() && canUpdateBattery){
+        if (!GetAvailability() && canUpdateBattery){
             // std::cout << "Using Battery\n";
             currentCapacity -= BATTERY_MULTIPLIER*dt;
             // std::cout << "Battery Level: " << currentCapacity << std::endl;
@@ -90,7 +90,7 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         }
 
         // Case when drone is available, but does not have enough battery to complete trip for robot
-        if (component->GetAvailability() && !canUpdateBattery){
+        if (GetAvailability() && !canUpdateBattery){
             getNearestRechargeStation(scheduler); // get the recharge station that the drone will go
             std::cout << "Not enough battery to complete trip, going to recharge station!" << std::endl;
             std::cout << "Current Battery level: " << currentCapacity << std::endl;
@@ -112,6 +112,9 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             std::cout << "inside toRechargeStation->IsCompleted()" << std::endl;
             delete toRechargeStation;
             toRechargeStation = NULL;
+            SetEntity(nullptr);
+            SetAvailability(true);
+            nearestRechargeStation->SetAvailability(false);
             SetChargingStatus(true);
         }
     }

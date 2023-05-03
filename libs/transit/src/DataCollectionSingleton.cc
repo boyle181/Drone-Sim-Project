@@ -5,7 +5,7 @@
 
 DataCollectionSingleton::DataCollectionSingleton(){
     // *** Creates CSV file if it is not present ***
-    // auto csvDirectory = std::filesystem::create_directory("CSV");
+    auto csvDirectory = std::filesystem::create_directory("CSV");
 
     // *** Get Current time and adjusts file name accordingly ***
     time_t rawtime;
