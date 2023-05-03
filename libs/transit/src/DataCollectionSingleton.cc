@@ -8,10 +8,12 @@ DataCollectionSingleton::DataCollectionSingleton(){
     auto csvDirectory = std::filesystem::create_directory("CSV");
 
     // *** Get Current time and adjusts file name accordingly ***
-    time_t rawtime;
-    struct tm * timeinfo = localtime (&rawtime);
+    time_t timer;
+    struct tm * timeinfo;
+    time(&timer);
+    timeinfo = localtime (&timer);
     char name[100];
-    strftime (name,100,"simData %H:%M:%S.csv",timeinfo);
+    strftime (name,100,"CSV/simData %H:%M:%S.csv",timeinfo);
     filename = name;
 }
 
