@@ -129,7 +129,6 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       totalTrips++;
 
       // Drone data collection info
-      dataCollection->writeBatteryUsage(this->GetId(), 0);
       dataCollection->writeTimeInfo(this->GetId(), this->GetTime());
       dataCollection->writeDistanceInfo(this->GetId(), totalDistance);
       dataCollection->writeNumberOfTrips(this->GetId(), totalTrips);

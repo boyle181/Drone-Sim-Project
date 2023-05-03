@@ -73,7 +73,7 @@ Battery Logic:
 void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
     
     DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
-    // check if drone has enough battery before accepting a trip
+    // *** Checks if drone is on a trip (if an entity has been assign for pick up) ***
     if(GetEntity() != nullptr) {
         if(!clientValid) {
             double totalTripBatteryUsage = getTripBatteryCost(component->GetEntity());
@@ -86,6 +86,7 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             // std::cout << "Using Battery\n";
             currentCapacity -= BATTERY_MULTIPLIER*dt;
             // std::cout << "Battery Level: " << currentCapacity << std::endl;
+            dataCollection->writeBatteryUsage(GetId(), currentCapacity);
         }
 
         // Case when drone is available, but does not have enough battery to complete trip for robot
@@ -94,31 +95,15 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             std::cout << "Not enough battery to complete trip, going to recharge station!" << std::endl;
             std::cout << "Current Battery level: " << currentCapacity << std::endl;
         }        
-        
-        // checks if drone picked up robot
-        // if(GetEntity()->GetPosition().Distance(GetPosition()) < 4.0) {
-        //     std::cout << "Reached robot\n";
-        //     std::cout << "robot destination: ";clear
-        //     component->GetEntity()->GetDestination().Print();
-        //     std::cout << "\n";
-        //     std::cout << "drone destination: ";
-        //     component->GetDestination().Print();
-        // }
     }
     
-    // Case for when drone and robot reach final destination
+    // *** When trip is complete, clientValid and writeCSV reset ***
     if(!writeCSV && GetEntity() == nullptr && GetAvailability()) {
-        // std::cout << "Reached final destination\n";
-        std::cout << "currentCap in final Destination case: " << currentCapacity << std::endl;
-        std::cout << "getID in final Destination case: " << component->GetId() << std::endl;
-        std::cout << "is it written in final destination case?: " << dataCollection->getBattery(component->GetId()) << std::endl;
-
         clientValid = false;
         writeCSV = true;
     }
 
-    // check if drone is going to recharge station next, move drone to station
-
+    // *** Drone is going towards recharge station ***
     if (toRechargeStation != NULL){
         std::cout << "check if drone is going to recharge station next" << std::endl;
         toRechargeStation->Move(this, dt);
@@ -127,27 +112,22 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             std::cout << "inside toRechargeStation->IsCompleted()" << std::endl;
             delete toRechargeStation;
             toRechargeStation = NULL;
-            this->SetChargingStatus(true);
+            SetChargingStatus(true);
         }
     }
 
-    // Entity is recharging and has to gain battery and determine if it should become aval
-    if (this->GetChargingStatus()){
+    // *** Drone is recharging stops once maxCapacity is reached ***
+    if (GetChargingStatus()){
         std::cout << "at charging station\n";
-        if (currentCapacity <= maxCapacity) {
+        if (currentCapacity < maxCapacity) {
             std::cout << "Charging Battery\n";
             currentCapacity += RECHARGE_RATE*dt;
             std::cout << "Battery Level: " << currentCapacity << std::endl;
         } else {
             std::cout << "max battery reached\n";
-            this->SetChargingStatus(false);
-            component->SetAvailability(true);
+            SetChargingStatus(false);
+            SetAvailability(true);
         }
     }
-    // std::cout << "currentCap in final Destination case: " << currentCapacity << std::endl;
-    // std::cout << "getID in final Destination case: " << component->GetId() << std::endl;
-    // std::cout << "is it written?: " << dataCollection->getBattery(component->GetId()) << std::endl << std::endl;
-
-    dataCollection->writeBatteryUsage(component->GetId(),this->currentCapacity);
     component->Update(dt, scheduler);
 } 
