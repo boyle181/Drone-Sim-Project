@@ -5,13 +5,13 @@
 
 DataCollectionSingleton::DataCollectionSingleton(){
     // *** Creates CSV file if it is not present ***
-    auto csvDirectory = std::filesystem::create_directory("CSV");
+    // auto csvDirectory = std::filesystem::create_directory("CSV");
 
     // *** Get Current time and adjusts file name accordingly ***
     time_t rawtime;
     struct tm * timeinfo = localtime (&rawtime);
     char name[100];
-    strftime (name,100,"CSV/simData %H:%M:%S.csv",timeinfo);
+    strftime (name,100,"simData %H:%M:%S.csv",timeinfo);
     filename = name;
 }
 
