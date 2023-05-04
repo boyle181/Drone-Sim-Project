@@ -137,6 +137,24 @@ class Drone : public IEntity {
   IStrategy* GetToFinalDestination() { return toFinalDestination; }
   
   /**
+   * @brief Get the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @return true, entity is going a recharge station
+   * @return false, entity is not going to a recharge station
+   */
+  bool GetGoingToRecharge() { return goingToRecharge; }
+  
+  /**
+   * @brief Set the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @param status a bool that indicates if the entity is
+   *               going to a recharge station
+   */
+  void SetGoingToRecharge(bool status) { goingToRecharge = status; }
+
+  /**
    * @brief Get the Charging Status object
    * 
    * @return true, Drone is at a recharge station charging
@@ -200,6 +218,7 @@ class Drone : public IEntity {
   float beelineTripDistance = 0;
   float tripMoneyCost = 0; // only going to charge robot for when it gets picked up and dropped to final dest
   bool rechargeStatus = false;
+  bool goingToRecharge = false;
 };
 
 #endif

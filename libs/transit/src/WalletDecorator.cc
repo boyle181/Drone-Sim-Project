@@ -96,8 +96,8 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         // Drone is at a recharge station charging
         if (GetChargingStatus()){
             // Drone pays for recharge per dt if they are at a recharge station
-            if (account - COST_FOR_RECHARGE >= 0){
-                account -= COST_FOR_RECHARGE;
+            if (account - COST_FOR_RECHARGE*dt >= 0){
+                account -= COST_FOR_RECHARGE*dt;
                 std::cout << "Wallet (Drone), Drone Recharging (Payed)\n";
             }
              // Drone can't charge if it doesnt have enough money, so charging status changed

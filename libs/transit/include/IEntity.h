@@ -9,7 +9,7 @@
 using namespace routing;
 
 /**
- * @class IEntity
+ * @class IEntity 
  * @brief Represents an entity in a physical system.
  *
  * An IEntity object has a unique ID, a position, a direction, a destination,
@@ -193,11 +193,30 @@ class IEntity {
   virtual void SetChargingStatus(bool status) {}
   
   /**
+   * @brief Get the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @return true, entity is going a recharge station
+   * @return false, entity is not going to a recharge station
+   */
+  virtual bool GetGoingToRecharge() {}
+  
+  /**
+   * @brief Set the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @param status a bool that indicates if the entity is
+   *               going to a recharge station
+   */
+  virtual void SetGoingToRecharge(bool status) {}
+
+  /**
    * @brief Get the nearest entity that the entity is pursuing
    * 
    * @return IEntity* the entity the entity (this entity) is pursuing
    */
   virtual IEntity* GetEntity(){};
+
   virtual float GetTime(){};
   virtual float GetDistance(){};
   virtual void SetDistance(float dist_){};

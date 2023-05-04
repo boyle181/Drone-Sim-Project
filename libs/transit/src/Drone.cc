@@ -40,7 +40,8 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
   // maybe have to fix if drones try to pik up recharge stations
   float minDis = std::numeric_limits<float>::max();
   for (auto entity : scheduler) {
-    if (entity->GetAvailability()) {
+    std::string type = entity->GetDetails()["type"];
+    if (entity->GetAvailability() && type.compare("rechargeStation") != 0) {
       float disToEntity = this->position.Distance(entity->GetPosition());
       if (disToEntity <= minDis) {
         minDis = disToEntity;
@@ -105,7 +106,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
     GetNearestEntity(scheduler);
   }
 
-  if (toRobot) {
+  if (toRobot && !goingToRecharge) {
     toRobot->Move(this, dt);
 
     if (toRobot->IsCompleted()) {
@@ -115,7 +116,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       // SetDestination(nearestEntity->GetDestination());
     }
   } 
-  else if (toFinalDestination) {
+  else if (toFinalDestination && !goingToRecharge) {
     toFinalDestination->Move(this, dt);
 
     if (nearestEntity && pickedUp) {

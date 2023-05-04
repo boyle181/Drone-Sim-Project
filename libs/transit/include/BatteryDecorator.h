@@ -107,7 +107,25 @@ class BatteryDecorator : public IEntity {
    */
   bool GetChargingStatus() { return component->GetChargingStatus(); }
 
-  void SetChargingStatus(bool status) { component->SetChargingStatus(status); }
+  void SetChargingStatus(bool status) { component->SetChargingStatus(status); } 
+
+  /**
+   * @brief Get the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @return true, entity is going a recharge station
+   * @return false, entity is not going to a recharge station
+   */
+  bool GetGoingToRecharge() { return component->GetGoingToRecharge(); }
+  
+  /**
+   * @brief Set the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @param status a bool that indicates if the entity is
+   *               going to a recharge station
+   */
+  void SetGoingToRecharge(bool status) { component->SetGoingToRecharge(status); }
 
   /**
    * @brief Get the Strategy Name

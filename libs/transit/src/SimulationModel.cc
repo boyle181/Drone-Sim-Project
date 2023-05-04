@@ -54,6 +54,11 @@ void SimulationModel::CreateEntity(JsonObject& entity) {
 
   controller.AddEntity(*myNewEntity);
   entities.push_back(myNewEntity);
+
+  // *** Adds recharge stations to scheduler ***
+  if (type.compare("rechargeStation") == 0) {
+    scheduler.push_back(myNewEntity);
+  }
 }
 
 /// Schedules a trip for an object in the scene

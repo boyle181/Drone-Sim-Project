@@ -141,6 +141,25 @@ class WalletDecorator : public IEntity {
    
   int GetId() const { return component->GetId(); }
 
+  /**
+   * @brief Get the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @return true, entity is going a recharge station
+   * @return false, entity is not going to a recharge station
+   */
+  bool GetGoingToRecharge() { return component->GetGoingToRecharge(); }
+  
+  /**
+   * @brief Set the status on wether Entity is going to a 
+   * recharge station.
+   * 
+   * @param status a bool that indicates if the entity is
+   *               going to a recharge station
+   */
+  void SetGoingToRecharge(bool status) { component->SetGoingToRecharge(status); }
+
+
  private:
    IStrategy* getStrategy(IEntity* entity);
    double getCostForTrip(IEntity* entity);
@@ -151,7 +170,7 @@ class WalletDecorator : public IEntity {
    const double START_MONEY = 1000.00;
    const int RANGE = 1000;
    const double TRIP_MULTIPLIER = 10.0;     // Cost per unit of time (trip)
-   const double COST_FOR_RECHARGE = 10.00; // Cost per unit of time (recharge)
+   const double COST_FOR_RECHARGE = 1.00; // Cost per unit of time (recharge)
    Vector3 pickUpDestination;
    Vector3 finalDestination;
    bool transactionComplete = false;
