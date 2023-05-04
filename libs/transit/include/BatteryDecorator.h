@@ -191,9 +191,9 @@ class BatteryDecorator : public IEntity {
    IEntity* nearestRechargeStation = NULL;
    IStrategy* toRechargeStation = NULL;
    double currentCapacity;
-   const double maxCapacity = 3000;
+   const double maxCapacity = 2000;
    const double BATTERY_MULTIPLIER = .35;
-   const double RECHARGE_RATE = 1;
+   const double RECHARGE_RATE = 100;
    bool clientValid = false;
    bool canUpdateBattery = false;
    bool writeCSV = false;

@@ -31,8 +31,10 @@ void BatteryDecorator::getNearestRechargeStation(std::vector<IEntity*> scheduler
         SetAvailability(false);
         nearestRechargeStation->SetAvailability(false);
         SetGoingToRecharge(true);
-        SetDestination(nearestRechargeStation->GetPosition());
-        toRechargeStation = new BeelineStrategy(GetPosition(), nearestRechargeStation->GetPosition());
+        Vector3 tempRechargeStation = nearestRechargeStation->GetPosition();
+        Vector3 rechargeStation(tempRechargeStation[0], component->GetPosition()[1], tempRechargeStation[2]);
+        SetDestination(rechargeStation);
+        toRechargeStation = new BeelineStrategy(GetPosition(), rechargeStation);
     }
 }
 
@@ -92,6 +94,9 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
         }
 
         // Case when drone is available, but does not have enough battery to complete trip for robot
+       //GetAvailability() = false
+       //canUpdateBattery = false 
+       //GetGoingToRecharge() = false
         if (!GetAvailability() && !canUpdateBattery && !GetGoingToRecharge()){
             getNearestRechargeStation(scheduler); // get the recharge station that the drone will go
             std::cout << "Not enough battery to complete trip, going to recharge station!" << std::endl;
@@ -124,10 +129,11 @@ void BatteryDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             std::cout << "Charging Battery\n";
             currentCapacity += RECHARGE_RATE*dt;
             std::cout << "Battery Level: " << currentCapacity << std::endl;
-        } else if (currentCapacity >= maxCapacity || !GetChargingStatus()){
+        } else {
             std::cout << "max battery reached\n";
             SetChargingStatus(false);
             SetAvailability(true);
+            canUpdateBattery = true;
             SetGoingToRecharge(false);
         }
     }

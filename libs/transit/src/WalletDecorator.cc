@@ -15,7 +15,7 @@ WalletDecorator::WalletDecorator(IEntity* entity){
     this->graph = entity->getGraph();
     component = entity;
     if (type.compare("drone") == 0){
-        account = 0;
+        account = 300;
     }
     else{
         account = rand()%RANGE + START_MONEY;
