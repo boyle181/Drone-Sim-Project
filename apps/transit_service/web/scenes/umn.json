@@ -51,15 +51,71 @@
         "command": "CreateEntity",
       	"params": {
             "type": "rechargeStation",
-            "name": "Recharge Station",
+            "name": "Recharge Station 1",
             "mesh": "assets/model/recharge_station.glb",
-            "position": [498.292, 270, -228.623],
+            "position": [600, 270, 600],
             "scale": [0.008, 0.008, 0.008],
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
             "offset": [-37, 13, -4]
     	  }
+    },
+    {
+        "command": "CreateEntity",
+        "params": {
+            "type": "rechargeStation",
+            "name": "Recharge Station 2",
+            "mesh": "assets/model/recharge_station.glb",
+            "position": [-800, 270, -600],
+            "scale": [0.008, 0.008, 0.008],
+            "rotation": [0, 0, 0, 0],
+            "direction": [1,0,0],
+            "speed": 0,
+            "offset": [-37, 13, -4]
+          }
+    },
+    {
+        "command": "CreateEntity",
+        "params": {
+            "type": "rechargeStation",
+            "name": "Recharge Station 3",
+            "mesh": "assets/model/recharge_station.glb",
+            "position": [-900, 270, -700],
+            "scale": [0.008, 0.008, 0.008],
+            "rotation": [0, 0, 0, 0],
+            "direction": [1,0,0],
+            "speed": 0,
+            "offset": [-37, 13, -4]
+          }
+    },
+    {
+        "command": "CreateEntity",
+        "params": {
+            "type": "rechargeStation",
+            "name": "Recharge Station 4",
+            "mesh": "assets/model/recharge_station.glb",
+            "position": [200, 270, 200],
+            "scale": [0.008, 0.008, 0.008],
+            "rotation": [0, 0, 0, 0],
+            "direction": [1,0,0],
+            "speed": 0,
+            "offset": [-37, 13, -4]
+          }
+    },
+    {
+        "command": "CreateEntity",
+        "params": {
+            "type": "rechargeStation",
+            "name": "Recharge Station 5",
+            "mesh": "assets/model/recharge_station.glb",
+            "position": [-700, 270, 700],
+            "scale": [0.008, 0.008, 0.008],
+            "rotation": [0, 0, 0, 0],
+            "direction": [1,0,0],
+            "speed": 0,
+            "offset": [-37, 13, -4]
+          }
     },
     {
         "command": "SetScene",
