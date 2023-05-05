@@ -16,21 +16,29 @@ Here is a quick overview of how to run the visualization
         
     ./build/bin/transit_service 8081 apps/transit_service/web/
 
-    Navigate to http://127.0.0.1:8081 and you should see a visualization.
-
 Navigate to http://127.0.0.1:8081/schedule.html and you should see a page to schedule the trips.
 
 *Note: 8081 will depends on what port you used. If you use port 8082, then it will be http://127.0.0.1:8082 instead.*
 
 # How to run the simulation (through Docker)
-    
-Go to the following docker repo: https://hub.docker.com/r/jasonpaciorek/drone_sim_battery_wallet_datacollection
-
-Do a docker pull with the following command: docker pull jasonpaciorek/drone_sim_battery_wallet_datacollection
-To Run image: 
+Follow the docker hub link below or see the instructions below
+    Go to the following docker repo: https://hub.docker.com/r/jasonpaciorek/drone_sim_battery_wallet_datacollection
+<br>
+<br>
+Docker Pull Command for repo: 
+```
+    docker pull jasonpaciorek/drone_sim_battery_wallet_datacollection
+```
+How to Run Docker image: 
+<br>
+```
     docker run --rm -it -p 8091:8091 jasonpaciorek/drone_sim_battery_wallet_datacollection
-To view the simulation go to: http://127.0.0.1:8091
-To schedule trips in the simulation go to: http://127.0.0.1:8091/schedule.html
+```
+How to interact with the Docker image:
+
+   To **view** the simulation go to: http://127.0.0.1:8091
+
+   To **schedule trips** in the simulation go to: http://127.0.0.1:8091/schedule.html
     
     
     
