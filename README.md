@@ -36,9 +36,15 @@ You will be able to watch the simulation of the drone and the passenger here htt
 On top right corner, you can change your camera view into locking the entities.
 
 SINGLETON ANALYSIS 
+
 TIME VS DISTANCE There is not an apparent relationship between time and the distance. As the time increases, it is not always the case that the distance increases or decreases
+
 TIME VS ACCOUNT($) For the time and account($) for the robots, there is a positive relationship between the time of the trip and the account of the robots 
+
 DISTANCE VS ACCOUNT($): There does not seem to be any relationship between these two variables
+
 DRONE DISTANCE AND ACCOUNT BALANCEAs expected for the drone, as the distance increased, the account balances increased as well
+
 DRONE NUMBER OF TRIPS AND ACCOUNT have a positive relationship
+
 DRONE NUMBER OF TRIPS AND Distance have a positive relationship
