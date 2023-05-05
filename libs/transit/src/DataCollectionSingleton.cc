@@ -14,7 +14,7 @@ DataCollectionSingleton::DataCollectionSingleton() {
   time_t timer;
   struct tm* timeinfo;
   time(&timer);
-  timeinfo = localtime_r(&timer, timeinfo);
+  timeinfo = localtime(&timer);
   char name[100];
   strftime(name, 100, "CSV/simData %H:%M:%S.csv", timeinfo);
   filename = name;
