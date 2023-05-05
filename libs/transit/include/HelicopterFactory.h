@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "IEntityFactory.h"
 #include "Helicopter.h"
+#include "IEntityFactory.h"
 
 /**
  *@brief Helicopter Factory to produce Helicopter class.

@@ -1,4 +1,5 @@
 #include "RobotFactory.h"
+
 #include "WalletDecorator.h"
 
 IEntity* RobotFactory::CreateEntity(JsonObject& entity) {

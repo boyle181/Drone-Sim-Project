@@ -1,3 +1,5 @@
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
+
 #define _USE_MATH_DEFINES
 #include "Drone.h"
 
@@ -6,12 +8,12 @@
 
 #include "AstarStrategy.h"
 #include "BeelineStrategy.h"
+#include "DataCollectionSingleton.h"
 #include "DfsStrategy.h"
 #include "DijkstraStrategy.h"
 #include "JumpDecorator.h"
 #include "SpinDecorator.h"
 #include "WalletDecorator.h"
-#include "DataCollectionSingleton.h"
 
 Drone::Drone(JsonObject& obj) : details(obj) {
   JsonArray pos(obj["position"]);
@@ -33,10 +35,7 @@ Drone::~Drone() {
   delete toFinalDestination;
 }
 
-
-
 void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
-
   // maybe have to fix if drones try to pik up recharge stations
   float minDis = std::numeric_limits<float>::max();
   for (auto entity : scheduler) {
@@ -49,15 +48,13 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
       }
     }
   }
-      
 
   if (nearestEntity) {
-
     // Set required variables
     std::string strategyName = nearestEntity->GetStrategyName();
     IStrategy* strategy;
     std::vector<float> path;
-    
+
     // set availability to the nearest entity
     nearestEntity->SetAvailability(false);
     available = false;
@@ -71,21 +68,18 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
     toRobot = new BeelineStrategy(position, destination);
     beelineTripDistance = toRobot->getTotalDistance();
 
-
     // Wrap Celebration decorators and path strategies
     if (strategyName == "astar") {
       strategy = new AstarStrategy(destination, finalDestination, graph);
-      toFinalDestination =
-        new JumpDecorator(strategy);
+      toFinalDestination = new JumpDecorator(strategy);
     } else if (strategyName == "dfs") {
       strategy = new DfsStrategy(destination, finalDestination, graph);
-      toFinalDestination =
-        new SpinDecorator(new JumpDecorator(strategy));
+      toFinalDestination = new SpinDecorator(new JumpDecorator(strategy));
     } else if (strategyName == "dijkstra") {
-      toFinalDestination =
-        new JumpDecorator(new SpinDecorator(new DijkstraStrategy(destination, finalDestination, graph)));
+      toFinalDestination = new JumpDecorator(new SpinDecorator(
+          new DijkstraStrategy(destination, finalDestination, graph)));
     } else {
-        toFinalDestination = new BeelineStrategy(destination, finalDestination);
+      toFinalDestination = new BeelineStrategy(destination, finalDestination);
     }
     pathTripDistance = strategy->getTotalDistance();
   }
@@ -98,9 +92,9 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
   // http://127.0.0.1:8081/
   // ./build/bin/transit_service 8081 apps/transit_service/web/
 
+  DataCollectionSingleton* dataCollection =
+      DataCollectionSingleton::getInstance();
 
-  DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
-  
   if (available) {
     GetNearestEntity(scheduler);
   }
@@ -114,8 +108,7 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       pickedUp = true;
       // SetDestination(nearestEntity->GetDestination());
     }
-  } 
-  else if (toFinalDestination && !goingToRecharge) {
+  } else if (toFinalDestination && !goingToRecharge) {
     toFinalDestination->Move(this, dt);
 
     if (nearestEntity && pickedUp) {
@@ -134,8 +127,10 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       dataCollection->writeNumberOfTrips(this->GetId(), totalTrips);
 
       // Robots data collection info
-      dataCollection->writeTimeInfo(nearestEntity->GetId(), nearestEntity->GetTime());
-      dataCollection->writeDistanceInfo(nearestEntity->GetId(), pathTripDistance);
+      dataCollection->writeTimeInfo(nearestEntity->GetId(),
+                                    nearestEntity->GetTime());
+      dataCollection->writeDistanceInfo(nearestEntity->GetId(),
+                                        pathTripDistance);
 
       delete toFinalDestination;
       toFinalDestination = nullptr;
@@ -146,7 +141,6 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
     }
   }
 }
-
 
 void Drone::SetAvailability(bool choice) { available = choice; }
 

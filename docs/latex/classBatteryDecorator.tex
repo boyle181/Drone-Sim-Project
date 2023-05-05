@@ -1,0 +1,495 @@
+\hypertarget{classBatteryDecorator}{}\doxysection{Battery\+Decorator Class Reference}
+\label{classBatteryDecorator}\index{BatteryDecorator@{BatteryDecorator}}
+
+
+this class inherits from the \mbox{\hyperlink{classIStrategy}{I\+Strategy}} class. It is used to create changeable and trackable batteries inside drones.  
+
+
+
+
+{\ttfamily \#include $<$Battery\+Decorator.\+h$>$}
+
+
+
+Inheritance diagram for Battery\+Decorator\+:
+% FIG 0
+
+
+Collaboration diagram for Battery\+Decorator\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBatteryDecorator_a413f097a59e280c888fdc2d053c09a4a}{Battery\+Decorator}} (\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em battery is created with a random preset battery percentage \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBatteryDecorator_a399d184e689301ad78444974bcfcc8a1}{has\+Enough\+Battery}} (double amount)
+\begin{DoxyCompactList}\small\item\em Takes in an amount, tests whether it can be removed from battery percentage total, then either returns false if it is too much, or returns true. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_acd42e391aabe1f573d1c26edaaba3d6c}{get\+Nearest\+Recharge\+Station}} (std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$ scheduler)
+\begin{DoxyCompactList}\small\item\em Gets the nearest recharge station in the scheduler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_a9169f6180a73457ef5a593be987c09b4}{Update}} (double dt, std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$ scheduler)
+\begin{DoxyCompactList}\small\item\em Update the wallet decorators. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classBatteryDecorator_a6dbcb9e5a67e400af0cf1a95d8bd7c00}{get\+Trip\+Battery\+Cost}} (\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Gets the amount of battery used by entity over the course of a trip. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classBatteryDecorator_aaf2487adf2d58e855268877427cf5ba9}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Gets the position of the component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classBatteryDecorator_a30d49a5e5efb93fad2ab4e5d77d26870}{Get\+Destination}} () const
+\begin{DoxyCompactList}\small\item\em Gets the destination of the component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classBatteryDecorator_a8487174df54456fe29406927f0542720}{Get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Gets the direction of the component. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classBatteryDecorator_a4ba88b753b061fcafe7b4891e375b199}{Get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Gets the speed of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_add7245fc3429474eb7cf18d0162ec815}\label{classBatteryDecorator_add7245fc3429474eb7cf18d0162ec815}} 
+bool \mbox{\hyperlink{classBatteryDecorator_add7245fc3429474eb7cf18d0162ec815}{Get\+Picked\+Up}} ()
+\begin{DoxyCompactList}\small\item\em Get the Picked Up status of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_ae3f5c7b9934e7858279c6b2b2661e427}{Set\+Picked\+Up}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the Picked Up status of the component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBatteryDecorator_ad4158dbf3299e9956eea7c9559354fcd}{Get\+Charging\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Get the Charging Status of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_aeddbfd5b2768f44849aa890f9abf38ea}{Set\+Charging\+Status}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the Recharging Status of the component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBatteryDecorator_a31ef26e0e9f456600dc6d9346c92f432}{Get\+Going\+To\+Recharge}} ()
+\begin{DoxyCompactList}\small\item\em Get the status on wether the component is going to a recharge station. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_a862cdbc816839b4500a3f5bdcd1bd773}{Set\+Going\+To\+Recharge}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the status on wether the component is going to a recharge station. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classBatteryDecorator_ac1b731a0f78e917fc26cdb16823c2362}{Get\+Strategy\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the Strategy Name of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_a6e7d67be9b433b0761c8f130542904ba}{Set\+Strategy\+Name}} (std\+::string strategy\+Name\+\_\+)
+\begin{DoxyCompactList}\small\item\em Set the Strategy Name of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_aa9983f260bc3f8759cb82246faf63554}{Set\+Position}} (\mbox{\hyperlink{classVector3}{Vector3}} pos\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_a154b16708fa5be477b315097da426a4d}{Set\+Direction}} (\mbox{\hyperlink{classVector3}{Vector3}} dir\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_a42dffed50affd0b77a099a5a3c893e44}{Set\+Destination}} (\mbox{\hyperlink{classVector3}{Vector3}} des\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component\textquotesingle{}s destination. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_a7975d254f8762b49a9ac7bc826eb21f3}\label{classBatteryDecorator_a7975d254f8762b49a9ac7bc826eb21f3}} 
+bool \mbox{\hyperlink{classBatteryDecorator_a7975d254f8762b49a9ac7bc826eb21f3}{Get\+Availability}} () const
+\begin{DoxyCompactList}\small\item\em Gets the avaliability of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_af036c6ad491998c850737992c37ee006}{Set\+Availability}} (bool choice)
+\begin{DoxyCompactList}\small\item\em Sets the avaliability of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_a1334400df4041ca471b35ede6e978721}\label{classBatteryDecorator_a1334400df4041ca471b35ede6e978721}} 
+Json\+Object \mbox{\hyperlink{classBatteryDecorator_a1334400df4041ca471b35ede6e978721}{Get\+Details}} () const
+\begin{DoxyCompactList}\small\item\em Gets the details of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_a6ad87a048d5841cf8b761966bec525b5}\label{classBatteryDecorator_a6ad87a048d5841cf8b761966bec525b5}} 
+\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ \mbox{\hyperlink{classBatteryDecorator_a6ad87a048d5841cf8b761966bec525b5}{Get\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Gets the entity of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBatteryDecorator_aaef0fa7060b5a5850f7abc7c2372b8c3}{Rotate}} (double angle)
+\begin{DoxyCompactList}\small\item\em Returns the rotate of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_afe749d74e4479ac978f664019be16628}\label{classBatteryDecorator_afe749d74e4479ac978f664019be16628}} 
+float \mbox{\hyperlink{classBatteryDecorator_afe749d74e4479ac978f664019be16628}{Get\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Returns the time of the component since it\textquotesingle{}s creation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBatteryDecorator_a827d6d1707d64a3838732adaa29255e7}\label{classBatteryDecorator_a827d6d1707d64a3838732adaa29255e7}} 
+float \mbox{\hyperlink{classBatteryDecorator_a827d6d1707d64a3838732adaa29255e7}{Get\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the distance of the component. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBatteryDecorator_a33cd07c0ce8cdd326596a3f0609fb07f}{Get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+this class inherits from the \mbox{\hyperlink{classIStrategy}{I\+Strategy}} class. It is used to create changeable and trackable batteries inside drones. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBatteryDecorator_a413f097a59e280c888fdc2d053c09a4a}\label{classBatteryDecorator_a413f097a59e280c888fdc2d053c09a4a}} 
+\index{BatteryDecorator@{BatteryDecorator}!BatteryDecorator@{BatteryDecorator}}
+\index{BatteryDecorator@{BatteryDecorator}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{BatteryDecorator()}{BatteryDecorator()}}
+{\footnotesize\ttfamily Battery\+Decorator\+::\+Battery\+Decorator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+battery is created with a random preset battery percentage 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & a pointer \mbox{\hyperlink{classIEntity}{I\+Entity}} object in which the battery is created \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBatteryDecorator_ad4158dbf3299e9956eea7c9559354fcd}\label{classBatteryDecorator_ad4158dbf3299e9956eea7c9559354fcd}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetChargingStatus@{GetChargingStatus}}
+\index{GetChargingStatus@{GetChargingStatus}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetChargingStatus()}{GetChargingStatus()}}
+{\footnotesize\ttfamily bool Battery\+Decorator\+::\+Get\+Charging\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the Charging Status of the component. 
+
+\begin{DoxyReturn}{Returns}
+true, the entity component is at a recharge station charging 
+
+false, the entity component is not at a recharge station charging 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a2a1737fb8a30f0cb58fafdd3adaab652}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a30d49a5e5efb93fad2ab4e5d77d26870}\label{classBatteryDecorator_a30d49a5e5efb93fad2ab4e5d77d26870}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetDestination@{GetDestination}}
+\index{GetDestination@{GetDestination}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetDestination()}{GetDestination()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Battery\+Decorator\+::\+Get\+Destination (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the destination of the component. 
+
+\begin{DoxyReturn}{Returns}
+The destination of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a0dcaf865938ab1fb49c8389b5e580d90}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a8487174df54456fe29406927f0542720}\label{classBatteryDecorator_a8487174df54456fe29406927f0542720}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetDirection()}{GetDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Battery\+Decorator\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the direction of the component. 
+
+\begin{DoxyReturn}{Returns}
+The direction of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_aa99a8fef8b22195a5113c38ef51f086d}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a31ef26e0e9f456600dc6d9346c92f432}\label{classBatteryDecorator_a31ef26e0e9f456600dc6d9346c92f432}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetGoingToRecharge@{GetGoingToRecharge}}
+\index{GetGoingToRecharge@{GetGoingToRecharge}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetGoingToRecharge()}{GetGoingToRecharge()}}
+{\footnotesize\ttfamily bool Battery\+Decorator\+::\+Get\+Going\+To\+Recharge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the status on wether the component is going to a recharge station. 
+
+\begin{DoxyReturn}{Returns}
+true, the component is going a recharge station 
+
+false, the component is not going to a recharge station 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a85e2fd138de07845ddceee222b55d7bc}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a33cd07c0ce8cdd326596a3f0609fb07f}\label{classBatteryDecorator_a33cd07c0ce8cdd326596a3f0609fb07f}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetId@{GetId}}
+\index{GetId@{GetId}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily int Battery\+Decorator\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the ID of the component. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the the component. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a2bfa9ab304ff33b252fbd5a707e42995}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_acd42e391aabe1f573d1c26edaaba3d6c}\label{classBatteryDecorator_acd42e391aabe1f573d1c26edaaba3d6c}} 
+\index{BatteryDecorator@{BatteryDecorator}!getNearestRechargeStation@{getNearestRechargeStation}}
+\index{getNearestRechargeStation@{getNearestRechargeStation}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{getNearestRechargeStation()}{getNearestRechargeStation()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::get\+Nearest\+Recharge\+Station (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$}]{scheduler }\end{DoxyParamCaption})}
+
+
+
+Gets the nearest recharge station in the scheduler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & Vector containing all the entities in the system \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBatteryDecorator_aaf2487adf2d58e855268877427cf5ba9}\label{classBatteryDecorator_aaf2487adf2d58e855268877427cf5ba9}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Battery\+Decorator\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the position of the component. 
+
+\begin{DoxyReturn}{Returns}
+The position of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a9bc32587aab91761fc0e718612498199}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a4ba88b753b061fcafe7b4891e375b199}\label{classBatteryDecorator_a4ba88b753b061fcafe7b4891e375b199}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetSpeed@{GetSpeed}}
+\index{GetSpeed@{GetSpeed}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetSpeed()}{GetSpeed()}}
+{\footnotesize\ttfamily float Battery\+Decorator\+::\+Get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the speed of the component. 
+
+\begin{DoxyReturn}{Returns}
+The speed of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a6520d2b1dc71d092bab38ef9f5cc9ff4}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_ac1b731a0f78e917fc26cdb16823c2362}\label{classBatteryDecorator_ac1b731a0f78e917fc26cdb16823c2362}} 
+\index{BatteryDecorator@{BatteryDecorator}!GetStrategyName@{GetStrategyName}}
+\index{GetStrategyName@{GetStrategyName}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{GetStrategyName()}{GetStrategyName()}}
+{\footnotesize\ttfamily std\+::string Battery\+Decorator\+::\+Get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the Strategy Name of the component. 
+
+\begin{DoxyReturn}{Returns}
+The Strategy name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a14badced4c9d744bcc210cb3c1260ee1}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a6dbcb9e5a67e400af0cf1a95d8bd7c00}\label{classBatteryDecorator_a6dbcb9e5a67e400af0cf1a95d8bd7c00}} 
+\index{BatteryDecorator@{BatteryDecorator}!getTripBatteryCost@{getTripBatteryCost}}
+\index{getTripBatteryCost@{getTripBatteryCost}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{getTripBatteryCost()}{getTripBatteryCost()}}
+{\footnotesize\ttfamily double Battery\+Decorator\+::get\+Trip\+Battery\+Cost (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+
+
+Gets the amount of battery used by entity over the course of a trip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & the entity that will be calculated for battery usage over the course of a trip \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBatteryDecorator_a399d184e689301ad78444974bcfcc8a1}\label{classBatteryDecorator_a399d184e689301ad78444974bcfcc8a1}} 
+\index{BatteryDecorator@{BatteryDecorator}!hasEnoughBattery@{hasEnoughBattery}}
+\index{hasEnoughBattery@{hasEnoughBattery}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{hasEnoughBattery()}{hasEnoughBattery()}}
+{\footnotesize\ttfamily bool Battery\+Decorator\+::has\+Enough\+Battery (\begin{DoxyParamCaption}\item[{double}]{amount }\end{DoxyParamCaption})}
+
+
+
+Takes in an amount, tests whether it can be removed from battery percentage total, then either returns false if it is too much, or returns true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & An int which is removed to the total battery percentage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if usage removed amount from battery percentage or false if it failed to do so 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBatteryDecorator_aaef0fa7060b5a5850f7abc7c2372b8c3}\label{classBatteryDecorator_aaef0fa7060b5a5850f7abc7c2372b8c3}} 
+\index{BatteryDecorator@{BatteryDecorator}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{Rotate()}{Rotate()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Rotate (\begin{DoxyParamCaption}\item[{double}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the rotate of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & represents the angle of the rotation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a4c109baa4179c28422623a7d3b2e9f82}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_af036c6ad491998c850737992c37ee006}\label{classBatteryDecorator_af036c6ad491998c850737992c37ee006}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetAvailability@{SetAvailability}}
+\index{SetAvailability@{SetAvailability}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetAvailability()}{SetAvailability()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Availability (\begin{DoxyParamCaption}\item[{bool}]{choice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the avaliability of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em choice} & represents the new avaliability \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_adf3acdf4764f5ff25f89d7814e39551c}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_aeddbfd5b2768f44849aa890f9abf38ea}\label{classBatteryDecorator_aeddbfd5b2768f44849aa890f9abf38ea}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetChargingStatus@{SetChargingStatus}}
+\index{SetChargingStatus@{SetChargingStatus}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetChargingStatus()}{SetChargingStatus()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Charging\+Status (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Recharging Status of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & a bool that indicates if the component is recharging at a recharge station \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a1c228abeecfb4b6256a06d9614930a3d}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a42dffed50affd0b77a099a5a3c893e44}\label{classBatteryDecorator_a42dffed50affd0b77a099a5a3c893e44}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetDestination@{SetDestination}}
+\index{SetDestination@{SetDestination}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetDestination()}{SetDestination()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Destination (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{des\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component\textquotesingle{}s destination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em des\+\_\+} & The new destination of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_aa473000823f673e9d7b89aed3cd3fc5c}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a154b16708fa5be477b315097da426a4d}\label{classBatteryDecorator_a154b16708fa5be477b315097da426a4d}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetDirection()}{SetDirection()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{dir\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+\_\+} & The new direction of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a64bfaa448a929ca71693ff3e2edb9d97}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a862cdbc816839b4500a3f5bdcd1bd773}\label{classBatteryDecorator_a862cdbc816839b4500a3f5bdcd1bd773}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetGoingToRecharge@{SetGoingToRecharge}}
+\index{SetGoingToRecharge@{SetGoingToRecharge}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetGoingToRecharge()}{SetGoingToRecharge()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Going\+To\+Recharge (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the status on wether the component is going to a recharge station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & a bool that indicates if the component is going to a recharge station \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_ae2d7ded0debe92b9a267c06423633dea}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_ae3f5c7b9934e7858279c6b2b2661e427}\label{classBatteryDecorator_ae3f5c7b9934e7858279c6b2b2661e427}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetPickedUp@{SetPickedUp}}
+\index{SetPickedUp@{SetPickedUp}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetPickedUp()}{SetPickedUp()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Picked\+Up (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Picked Up status of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & the status that picked up is set to \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a55eeae70903c4443507aabf1cbb45da4}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_aa9983f260bc3f8759cb82246faf63554}\label{classBatteryDecorator_aa9983f260bc3f8759cb82246faf63554}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{pos\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+\_\+} & The new position of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_af0475048b09dc13ed6cf8e7c7be2ae6b}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a6e7d67be9b433b0761c8f130542904ba}\label{classBatteryDecorator_a6e7d67be9b433b0761c8f130542904ba}} 
+\index{BatteryDecorator@{BatteryDecorator}!SetStrategyName@{SetStrategyName}}
+\index{SetStrategyName@{SetStrategyName}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{SetStrategyName()}{SetStrategyName()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Set\+Strategy\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{strategy\+Name\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Strategy Name of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strategy\+Name\+\_\+} & Strategy name \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a933def05f85783fddbf05e8257cc8880}{I\+Entity}}.
+
+\mbox{\Hypertarget{classBatteryDecorator_a9169f6180a73457ef5a593be987c09b4}\label{classBatteryDecorator_a9169f6180a73457ef5a593be987c09b4}} 
+\index{BatteryDecorator@{BatteryDecorator}!Update@{Update}}
+\index{Update@{Update}!BatteryDecorator@{BatteryDecorator}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Battery\+Decorator\+::\+Update (\begin{DoxyParamCaption}\item[{double}]{dt,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$}]{scheduler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the wallet decorators. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Type double contain the time since update was last called. \\
+\hline
+{\em scheduler} & Type vectory of I\+Entity$\ast$ contains the entities. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a9a8e8588fd85c7b0d813d60686d4dc2c}{I\+Entity}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/include/Battery\+Decorator.\+h\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/src/Battery\+Decorator.\+cc\end{DoxyCompactItemize}

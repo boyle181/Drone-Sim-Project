@@ -1,17 +1,16 @@
-#ifndef DRONE_H_
-#define DRONE_H_
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
 
-#include <vector>
+#ifndef LIBS_TRANSIT_INCLUDE_DRONE_H_
+#define LIBS_TRANSIT_INCLUDE_DRONE_H_
+
 #include <chrono>
+#include <string>
+#include <vector>
+
 #include "IEntity.h"
-#include "math/vector3.h"
 #include "IStrategy.h"
+#include "math/vector3.h"
 
-
-
-// Represents a drone in a physical system.
-// Drones move using euler integration based on a specified
-// velocity and direction.
 /**
  * @class Drone
  * @brief Represents a drone in a physical system. Drones move using euler
@@ -23,7 +22,7 @@ class Drone : public IEntity {
    * @brief Drones are created with a name
    * @param obj JSON object containing the drone's information
    */
-  Drone(JsonObject& obj);
+  explicit Drone(JsonObject& obj);
 
   /**
    * @brief Destructor
@@ -122,33 +121,26 @@ class Drone : public IEntity {
   void Jump(double height);
 
   /**
-   * @brief Removing the copy constructor and assignment operator
-   * so that drones cannot be copied.
-   */
-  Drone(const Drone& drone) = delete;
-  Drone& operator=(const Drone& drone) = delete;
-
-  /**
    * @brief Get the To Final Destination strategy
-   * 
+   *
    * @return IStrategy* the final destination strategy.
    *         this is the strategy used after pick up
    */
   IStrategy* GetToFinalDestination() { return toFinalDestination; }
-  
+
   /**
-   * @brief Get the status on wether Entity is going to a 
+   * @brief Get the status on wether Entity is going to a
    * recharge station.
-   * 
+   *
    * @return true, entity is going a recharge station
    * @return false, entity is not going to a recharge station
    */
   bool GetGoingToRecharge() { return goingToRecharge; }
-  
+
   /**
-   * @brief Set the status on wether Entity is going to a 
+   * @brief Set the status on wether Entity is going to a
    * recharge station.
-   * 
+   *
    * @param status a bool that indicates if the entity is
    *               going to a recharge station
    */
@@ -156,44 +148,71 @@ class Drone : public IEntity {
 
   /**
    * @brief Get the Charging Status object
-   * 
+   *
    * @return true, Drone is at a recharge station charging
    * @return false, Drone is not at a recharge station charging
    */
   bool GetChargingStatus() { return rechargeStatus; }
-  
+
   /**
    * @brief Set the Recharging Status of the drone
-   * 
+   *
    * @param status a bool that indicates if the drone is
    *               recharging at a recharge station
    */
   void SetChargingStatus(bool status) { rechargeStatus = status; }
-  
+
   /**
    * @brief Gets the nearest entity in the scheduler
    * @param scheduler Vector containing all the entities in the system
    */
   void GetNearestEntity(std::vector<IEntity*> scheduler);
-  
+
   /**
    * @brief Sets nearest entity in the scheduler
    */
   void SetEntity(IEntity* entity) { nearestEntity = entity; }
 
+  /**
+   * @brief Gets the total distance traveled
+   *
+   * @return float, the total distance traveled
+   */
+  float GetDistance() { return totalDistance; }
 
-  float GetDistance(){return totalDistance;}
-
-  float GetTime(){
+  /**
+   * @brief Get the Time duration of time in seconds since
+   * the drones intial creation.
+   *
+   * @return float Seconds that have passed since drones creation
+   */
+  float GetTime() {
     t_end = std::chrono::high_resolution_clock::now();
-    return (std::chrono::duration<float, std::milli>(t_end-t_start).count()/1000);
+    return (std::chrono::duration<float, std::milli>(t_end - t_start).count() /
+            1000);
   }
 
-  void SetDistance(float distance){
-    totalDistance = distance;
-  }
+  /**
+   * @brief Set the Sets the total distance
+   *
+   * @param distance new total distance
+   */
+  void SetDistance(float distance) { totalDistance = distance; }
 
-  IEntity *GetEntity() {return nearestEntity;}
+  /**
+   * @brief Get the nearestEntity
+   *
+   * @return IEntity*, the current nearest entity to the drone
+   * it will be null if the drone has no nearest entity assigned
+   */
+  IEntity* GetEntity() { return nearestEntity; }
+
+  /**
+   * @brief Removing the copy constructor and assignment operator
+   * so that drones cannot be copied.
+   */
+  Drone(const Drone& drone) = delete;
+  Drone& operator=(const Drone& drone) = delete;
 
  private:
   JsonObject details;
@@ -209,16 +228,17 @@ class Drone : public IEntity {
   IEntity* nearestEntity = nullptr;
   IStrategy* toRobot = nullptr;
   IStrategy* toFinalDestination = nullptr;
-  
+
   std::chrono::time_point<std::chrono::high_resolution_clock> t_start;
   std::chrono::time_point<std::chrono::high_resolution_clock> t_end;
-  float totalTrips = 0;    // for data collection
-  float totalDistance = 0;    // for data collection
+  float totalTrips = 0;     // for data collection
+  float totalDistance = 0;  // for data collection
   float pathTripDistance = 0;
   float beelineTripDistance = 0;
-  float tripMoneyCost = 0; // only going to charge robot for when it gets picked up and dropped to final dest
+  float tripMoneyCost = 0;  // only going to charge robot for when it gets
+                            // picked up and dropped to final dest
   bool rechargeStatus = false;
   bool goingToRecharge = false;
 };
 
-#endif
+#endif  // LIBS_TRANSIT_INCLUDE_DRONE_H_

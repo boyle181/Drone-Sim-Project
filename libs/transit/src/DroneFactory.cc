@@ -1,6 +1,6 @@
 #include "DroneFactory.h"
-#include "WalletDecorator.h"
 
+#include "WalletDecorator.h"
 
 IEntity* DroneFactory::CreateEntity(JsonObject& entity) {
   std::string type = entity["type"];

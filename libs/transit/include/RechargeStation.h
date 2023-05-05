@@ -1,5 +1,7 @@
-#ifndef RECHARGESTATION_H_
-#define RECHARGESTATION_H_
+#ifndef LIBS_TRANSIT_INCLUDE_RECHARGESTATION_H_
+#define LIBS_TRANSIT_INCLUDE_RECHARGESTATION_H_
+
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
 
 #include <vector>
 
@@ -10,8 +12,8 @@
 // Represents a recharge station in a physical system.
 
 /**
- * @brief Represents a recharge station in a physical system. recharge stations move using euler
- * integration based on a specified velocity and direction.
+ * @brief Represents a recharge station in a physical system. recharge stations
+ * move using euler integration based on a specified velocity and direction.
  */
 class RechargeStation : public IEntity {
  public:
@@ -19,7 +21,7 @@ class RechargeStation : public IEntity {
    * @brief RechargeStations are created with a name
    * @param obj JSON object containing the RechargeStation's information
    */
-  RechargeStation(JsonObject& obj);
+  explicit RechargeStation(JsonObject& obj);
 
   /**
    * @brief Destructor
@@ -38,7 +40,7 @@ class RechargeStation : public IEntity {
    */
   JsonObject GetDetails() const { return details; }
 
-    /**
+  /**
    * @brief Gets the robot's direction
    * @return The robot's direction
    */
@@ -49,7 +51,6 @@ class RechargeStation : public IEntity {
    * @return The recharge stations destination
    */
   Vector3 GetDestination() const { return position; }
-
 
   /**
    * @brief Gets the recharge station's speed
@@ -91,4 +92,4 @@ class RechargeStation : public IEntity {
   bool available;
 };
 
-#endif
+#endif  // LIBS_TRANSIT_INCLUDE_RECHARGESTATION_H_

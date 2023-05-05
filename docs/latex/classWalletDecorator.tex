@@ -1,0 +1,466 @@
+\hypertarget{classWalletDecorator}{}\doxysection{Wallet\+Decorator Class Reference}
+\label{classWalletDecorator}\index{WalletDecorator@{WalletDecorator}}
+
+
+this class inherits from the \mbox{\hyperlink{classIStrategy}{I\+Strategy}} class. It is used to create changeable and trackable wallets inside drones and robots.  
+
+
+
+
+{\ttfamily \#include $<$Wallet\+Decorator.\+h$>$}
+
+
+
+Inheritance diagram for Wallet\+Decorator\+:
+% FIG 0
+
+
+Collaboration diagram for Wallet\+Decorator\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWalletDecorator_aa4c5444869e8defa53943582e3a5a447}{Wallet\+Decorator}} (\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Wallet is created with a random preset total money value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_a4e52cd169570bff2cba4e4d237ecab82}\label{classWalletDecorator_a4e52cd169570bff2cba4e4d237ecab82}} 
+\mbox{\hyperlink{classWalletDecorator_a4e52cd169570bff2cba4e4d237ecab82}{$\sim$\+Wallet\+Decorator}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWalletDecorator}{Wallet\+Decorator}} Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classWalletDecorator_a50e74078a7b141da267bfaf3b217be59}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Gets the position of the component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classWalletDecorator_af1d166f1da4bab2eef274510e1e0e6df}{Get\+Destination}} () const
+\begin{DoxyCompactList}\small\item\em Gets the destination of the component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classWalletDecorator_ab294c1052466ac5b42a9e107dfe01fa6}{Get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Gets the direction of the component. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classWalletDecorator_a8ebd3f9fa8ed93b28a7db5dbd8cb748b}{Get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Gets the speed of the component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWalletDecorator_a22c9be047cdd7db5f122e37253c2af43}{Get\+Picked\+Up}} ()
+\begin{DoxyCompactList}\small\item\em Set the Picked Up status of a component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_adb29ad90439cb1e92616c2ce7b4c2000}{Set\+Picked\+Up}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the Picked Up status of the component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWalletDecorator_aae491c24a8a2a16040003dc9a1689dc4}{Get\+Charging\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Get the Charging Status of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_ac87980da8ff6d9cb3d5bca8e6275a091}{Set\+Charging\+Status}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the Recharging Status of the component. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classWalletDecorator_aee27fd0b6f7a3333154d05472bc93f25}{Get\+Strategy\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the name of the strategy as a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_a50b9f68e13094b7eceabe3581d46353a}{Set\+Strategy\+Name}} (std\+::string strategy\+Name\+\_\+)
+\begin{DoxyCompactList}\small\item\em Set the Strategy Name as a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_a00a7e6d6ca0d10c833e93e7963966edb}{Set\+Position}} (\mbox{\hyperlink{classVector3}{Vector3}} pos\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component\textquotesingle{}s position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_acfd43c2e5d242355ee1a67b46b33c31d}{Set\+Direction}} (\mbox{\hyperlink{classVector3}{Vector3}} dir\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component\textquotesingle{}s direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_af3eca245805e542ba038e30a830a38fe}{Set\+Destination}} (\mbox{\hyperlink{classVector3}{Vector3}} des\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the component\textquotesingle{}s destination. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_a628653d88f8b718e789b17438c1bb2c9}\label{classWalletDecorator_a628653d88f8b718e789b17438c1bb2c9}} 
+bool \mbox{\hyperlink{classWalletDecorator_a628653d88f8b718e789b17438c1bb2c9}{Get\+Availability}} () const
+\begin{DoxyCompactList}\small\item\em Gets the avaliability of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_aaaf94cca4b9a725e253ed3ae8389e3c7}{Set\+Availability}} (bool choice)
+\begin{DoxyCompactList}\small\item\em Sets the avaliability of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_a938c7da7732609ab067c293e63c47779}\label{classWalletDecorator_a938c7da7732609ab067c293e63c47779}} 
+Json\+Object \mbox{\hyperlink{classWalletDecorator_a938c7da7732609ab067c293e63c47779}{Get\+Details}} () const
+\begin{DoxyCompactList}\small\item\em Gets the details of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_ac8dcd27be5370ee4b2159682ce88dcc1}\label{classWalletDecorator_ac8dcd27be5370ee4b2159682ce88dcc1}} 
+\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ \mbox{\hyperlink{classWalletDecorator_ac8dcd27be5370ee4b2159682ce88dcc1}{Get\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Gets the entity connected to the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_abed08553f3a42ceb5c41bbff2843ebf0}{Rotate}} (double angle)
+\begin{DoxyCompactList}\small\item\em rotate\textquotesingle{}s component \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_aab1369de25e3a653e47570e29a6240e7}\label{classWalletDecorator_aab1369de25e3a653e47570e29a6240e7}} 
+float \mbox{\hyperlink{classWalletDecorator_aab1369de25e3a653e47570e29a6240e7}{Get\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Returns the time of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWalletDecorator_ab2d4774bb540a33ec45228d354590285}\label{classWalletDecorator_ab2d4774bb540a33ec45228d354590285}} 
+float \mbox{\hyperlink{classWalletDecorator_ab2d4774bb540a33ec45228d354590285}{Get\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the distance of the component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_a2adbd60a885508ee0f7cd15f922d2b01}{Update}} (double dt, std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$ scheduler)
+\begin{DoxyCompactList}\small\item\em Updates the wallet decorators. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWalletDecorator_afc48146addb39dc3ce291e46a2cc09ae}{Get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the component entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWalletDecorator_abf0502a9e40a97b6a38f87739dfe8e1a}{Get\+Going\+To\+Recharge}} ()
+\begin{DoxyCompactList}\small\item\em Get the status on whether component is going to a recharge station. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWalletDecorator_af4fa982e343c9c38d9cef28ff7075485}{Set\+Going\+To\+Recharge}} (bool status)
+\begin{DoxyCompactList}\small\item\em Set the status on whether component is going to a recharge station. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+this class inherits from the \mbox{\hyperlink{classIStrategy}{I\+Strategy}} class. It is used to create changeable and trackable wallets inside drones and robots. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWalletDecorator_aa4c5444869e8defa53943582e3a5a447}\label{classWalletDecorator_aa4c5444869e8defa53943582e3a5a447}} 
+\index{WalletDecorator@{WalletDecorator}!WalletDecorator@{WalletDecorator}}
+\index{WalletDecorator@{WalletDecorator}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{WalletDecorator()}{WalletDecorator()}}
+{\footnotesize\ttfamily Wallet\+Decorator\+::\+Wallet\+Decorator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Wallet is created with a random preset total money value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & a pointer \mbox{\hyperlink{classIEntity}{I\+Entity}} object in which the wallet is created \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWalletDecorator_aae491c24a8a2a16040003dc9a1689dc4}\label{classWalletDecorator_aae491c24a8a2a16040003dc9a1689dc4}} 
+\index{WalletDecorator@{WalletDecorator}!GetChargingStatus@{GetChargingStatus}}
+\index{GetChargingStatus@{GetChargingStatus}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetChargingStatus()}{GetChargingStatus()}}
+{\footnotesize\ttfamily bool Wallet\+Decorator\+::\+Get\+Charging\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the Charging Status of the component. 
+
+\begin{DoxyReturn}{Returns}
+true, component is at a recharge station charging 
+
+false, component is not at a recharge station charging 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a2a1737fb8a30f0cb58fafdd3adaab652}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_af1d166f1da4bab2eef274510e1e0e6df}\label{classWalletDecorator_af1d166f1da4bab2eef274510e1e0e6df}} 
+\index{WalletDecorator@{WalletDecorator}!GetDestination@{GetDestination}}
+\index{GetDestination@{GetDestination}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetDestination()}{GetDestination()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Wallet\+Decorator\+::\+Get\+Destination (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the destination of the component. 
+
+\begin{DoxyReturn}{Returns}
+The destination of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a0dcaf865938ab1fb49c8389b5e580d90}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_ab294c1052466ac5b42a9e107dfe01fa6}\label{classWalletDecorator_ab294c1052466ac5b42a9e107dfe01fa6}} 
+\index{WalletDecorator@{WalletDecorator}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetDirection()}{GetDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Wallet\+Decorator\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the direction of the component. 
+
+\begin{DoxyReturn}{Returns}
+The direction of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_aa99a8fef8b22195a5113c38ef51f086d}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_abf0502a9e40a97b6a38f87739dfe8e1a}\label{classWalletDecorator_abf0502a9e40a97b6a38f87739dfe8e1a}} 
+\index{WalletDecorator@{WalletDecorator}!GetGoingToRecharge@{GetGoingToRecharge}}
+\index{GetGoingToRecharge@{GetGoingToRecharge}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetGoingToRecharge()}{GetGoingToRecharge()}}
+{\footnotesize\ttfamily bool Wallet\+Decorator\+::\+Get\+Going\+To\+Recharge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the status on whether component is going to a recharge station. 
+
+\begin{DoxyReturn}{Returns}
+true, component is going a recharge station 
+
+false, component is not going to a recharge station 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a85e2fd138de07845ddceee222b55d7bc}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_afc48146addb39dc3ce291e46a2cc09ae}\label{classWalletDecorator_afc48146addb39dc3ce291e46a2cc09ae}} 
+\index{WalletDecorator@{WalletDecorator}!GetId@{GetId}}
+\index{GetId@{GetId}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily int Wallet\+Decorator\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the ID of the component entity. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the component entity. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a2bfa9ab304ff33b252fbd5a707e42995}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a22c9be047cdd7db5f122e37253c2af43}\label{classWalletDecorator_a22c9be047cdd7db5f122e37253c2af43}} 
+\index{WalletDecorator@{WalletDecorator}!GetPickedUp@{GetPickedUp}}
+\index{GetPickedUp@{GetPickedUp}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetPickedUp()}{GetPickedUp()}}
+{\footnotesize\ttfamily bool Wallet\+Decorator\+::\+Get\+Picked\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Picked Up status of a component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & the status that picked up is set to \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a13ea93fa876b8672ffc04ea02ff4b4d7}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a50e74078a7b141da267bfaf3b217be59}\label{classWalletDecorator_a50e74078a7b141da267bfaf3b217be59}} 
+\index{WalletDecorator@{WalletDecorator}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Wallet\+Decorator\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the position of the component. 
+
+\begin{DoxyReturn}{Returns}
+The position of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a9bc32587aab91761fc0e718612498199}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a8ebd3f9fa8ed93b28a7db5dbd8cb748b}\label{classWalletDecorator_a8ebd3f9fa8ed93b28a7db5dbd8cb748b}} 
+\index{WalletDecorator@{WalletDecorator}!GetSpeed@{GetSpeed}}
+\index{GetSpeed@{GetSpeed}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetSpeed()}{GetSpeed()}}
+{\footnotesize\ttfamily float Wallet\+Decorator\+::\+Get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the speed of the component. 
+
+\begin{DoxyReturn}{Returns}
+The speed of the component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a6520d2b1dc71d092bab38ef9f5cc9ff4}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_aee27fd0b6f7a3333154d05472bc93f25}\label{classWalletDecorator_aee27fd0b6f7a3333154d05472bc93f25}} 
+\index{WalletDecorator@{WalletDecorator}!GetStrategyName@{GetStrategyName}}
+\index{GetStrategyName@{GetStrategyName}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{GetStrategyName()}{GetStrategyName()}}
+{\footnotesize\ttfamily std\+::string Wallet\+Decorator\+::\+Get\+Strategy\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the name of the strategy as a string. 
+
+\begin{DoxyReturn}{Returns}
+Streategy name 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a14badced4c9d744bcc210cb3c1260ee1}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_abed08553f3a42ceb5c41bbff2843ebf0}\label{classWalletDecorator_abed08553f3a42ceb5c41bbff2843ebf0}} 
+\index{WalletDecorator@{WalletDecorator}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{Rotate()}{Rotate()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Rotate (\begin{DoxyParamCaption}\item[{double}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+rotate\textquotesingle{}s component 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & represents the angle of the rotation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a4c109baa4179c28422623a7d3b2e9f82}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_aaaf94cca4b9a725e253ed3ae8389e3c7}\label{classWalletDecorator_aaaf94cca4b9a725e253ed3ae8389e3c7}} 
+\index{WalletDecorator@{WalletDecorator}!SetAvailability@{SetAvailability}}
+\index{SetAvailability@{SetAvailability}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetAvailability()}{SetAvailability()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Availability (\begin{DoxyParamCaption}\item[{bool}]{choice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the avaliability of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em choice} & represents the new avaliability \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_adf3acdf4764f5ff25f89d7814e39551c}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_ac87980da8ff6d9cb3d5bca8e6275a091}\label{classWalletDecorator_ac87980da8ff6d9cb3d5bca8e6275a091}} 
+\index{WalletDecorator@{WalletDecorator}!SetChargingStatus@{SetChargingStatus}}
+\index{SetChargingStatus@{SetChargingStatus}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetChargingStatus()}{SetChargingStatus()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Charging\+Status (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Recharging Status of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & a bool that indicates if the component is recharging at a recharge station \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a1c228abeecfb4b6256a06d9614930a3d}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_af3eca245805e542ba038e30a830a38fe}\label{classWalletDecorator_af3eca245805e542ba038e30a830a38fe}} 
+\index{WalletDecorator@{WalletDecorator}!SetDestination@{SetDestination}}
+\index{SetDestination@{SetDestination}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetDestination()}{SetDestination()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Destination (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{des\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component\textquotesingle{}s destination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em des\+\_\+} & The new destination of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_aa473000823f673e9d7b89aed3cd3fc5c}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_acfd43c2e5d242355ee1a67b46b33c31d}\label{classWalletDecorator_acfd43c2e5d242355ee1a67b46b33c31d}} 
+\index{WalletDecorator@{WalletDecorator}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetDirection()}{SetDirection()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{dir\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component\textquotesingle{}s direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+\_\+} & The new direction of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a64bfaa448a929ca71693ff3e2edb9d97}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_af4fa982e343c9c38d9cef28ff7075485}\label{classWalletDecorator_af4fa982e343c9c38d9cef28ff7075485}} 
+\index{WalletDecorator@{WalletDecorator}!SetGoingToRecharge@{SetGoingToRecharge}}
+\index{SetGoingToRecharge@{SetGoingToRecharge}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetGoingToRecharge()}{SetGoingToRecharge()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Going\+To\+Recharge (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the status on whether component is going to a recharge station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & a bool that indicates if the component is going to a recharge station \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_ae2d7ded0debe92b9a267c06423633dea}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_adb29ad90439cb1e92616c2ce7b4c2000}\label{classWalletDecorator_adb29ad90439cb1e92616c2ce7b4c2000}} 
+\index{WalletDecorator@{WalletDecorator}!SetPickedUp@{SetPickedUp}}
+\index{SetPickedUp@{SetPickedUp}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetPickedUp()}{SetPickedUp()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Picked\+Up (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Picked Up status of the component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & the status that picked up is set to \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a55eeae70903c4443507aabf1cbb45da4}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a00a7e6d6ca0d10c833e93e7963966edb}\label{classWalletDecorator_a00a7e6d6ca0d10c833e93e7963966edb}} 
+\index{WalletDecorator@{WalletDecorator}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{pos\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the component\textquotesingle{}s position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+\_\+} & The new position of the component \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_af0475048b09dc13ed6cf8e7c7be2ae6b}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a50b9f68e13094b7eceabe3581d46353a}\label{classWalletDecorator_a50b9f68e13094b7eceabe3581d46353a}} 
+\index{WalletDecorator@{WalletDecorator}!SetStrategyName@{SetStrategyName}}
+\index{SetStrategyName@{SetStrategyName}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{SetStrategyName()}{SetStrategyName()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Set\+Strategy\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{strategy\+Name\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the Strategy Name as a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strategy\+Name\+\_\+} & Strategy name \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a933def05f85783fddbf05e8257cc8880}{I\+Entity}}.
+
+\mbox{\Hypertarget{classWalletDecorator_a2adbd60a885508ee0f7cd15f922d2b01}\label{classWalletDecorator_a2adbd60a885508ee0f7cd15f922d2b01}} 
+\index{WalletDecorator@{WalletDecorator}!Update@{Update}}
+\index{Update@{Update}!WalletDecorator@{WalletDecorator}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Wallet\+Decorator\+::\+Update (\begin{DoxyParamCaption}\item[{double}]{dt,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classIEntity}{I\+Entity}} $\ast$ $>$}]{scheduler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the wallet decorators. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Type double contain the time since update was last called. \\
+\hline
+{\em scheduler} & Type vectory of I\+Entity$\ast$ contains the entities. \\
+\hline
+\end{DoxyParams}
+Robots should only be charged moeny when its picked up. They pay incrementally but the robot makes sure it has enough money for the whole trip
+
+\mbox{\hyperlink{classDrone}{Drone}}\+: ($\ast$) \mbox{\hyperlink{classDrone}{Drone}} needs to be aware of when its recharging so then it can pay when it is ($\ast$) \mbox{\hyperlink{classDrone}{Drone}} needs to pay when it is recharging ($\ast$) \mbox{\hyperlink{classDrone}{Drone}} needs to be able to calcuate the cost of path ($\ast$) \mbox{\hyperlink{classDrone}{Drone}} needs to access the account of the robot to determine if the robot can get a ride
+
+Functions needed\+: \mbox{\hyperlink{classWalletDecorator_aae491c24a8a2a16040003dc9a1689dc4}{Get\+Charging\+Status()}} -\/$>$ so drone knows when its recharging Get\+To\+Final\+Destination() -\/$>$ returns the strategy pattern Is\+Picked\+Up() -\/$>$ robot should be aware of when the robot has been picked up \mbox{\hyperlink{classWalletDecorator_ac8dcd27be5370ee4b2159682ce88dcc1}{Get\+Entity()}} -\/$>$ returns the entity being considered for a trip
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a9a8e8588fd85c7b0d813d60686d4dc2c}{I\+Entity}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/include/Wallet\+Decorator.\+h\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/src/Wallet\+Decorator.\+cc\end{DoxyCompactItemize}

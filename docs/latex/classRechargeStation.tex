@@ -1,0 +1,220 @@
+\hypertarget{classRechargeStation}{}\doxysection{Recharge\+Station Class Reference}
+\label{classRechargeStation}\index{RechargeStation@{RechargeStation}}
+
+
+Represents a recharge station in a physical system. recharge stations move using euler integration based on a specified velocity and direction.  
+
+
+
+
+{\ttfamily \#include $<$Recharge\+Station.\+h$>$}
+
+
+
+Inheritance diagram for Recharge\+Station\+:
+% FIG 0
+
+
+Collaboration diagram for Recharge\+Station\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRechargeStation_a0e13bf45d124c7c75672fbd187cac743}{Recharge\+Station}} (const Json\+Object \&obj)
+\begin{DoxyCompactList}\small\item\em Recharge\+Stations are created with a name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRechargeStation_a95a244adc4eb932bbc021f0cfab7f00a}\label{classRechargeStation_a95a244adc4eb932bbc021f0cfab7f00a}} 
+\mbox{\hyperlink{classRechargeStation_a95a244adc4eb932bbc021f0cfab7f00a}{$\sim$\+Recharge\+Station}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classRechargeStation_afbd5a155a5284672c4c211758712feb9}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Gets the position of the recharge station. \end{DoxyCompactList}\item 
+Json\+Object \mbox{\hyperlink{classRechargeStation_a98885a18485258d192fd4228227eb355}{Get\+Details}} () const
+\begin{DoxyCompactList}\small\item\em Gets the details information of the recharge station. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classRechargeStation_a201bdc3dca7dd08f4076eef999cee13f}{Get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Gets the robot\textquotesingle{}s direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3}{Vector3}} \mbox{\hyperlink{classRechargeStation_ab744525e8427d31959da678bbbd7d84a}{Get\+Destination}} () const
+\begin{DoxyCompactList}\small\item\em Gets the recharge stations destination. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRechargeStation_a09d33832aca70b16e75162ce6d646470}{Get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Gets the recharge station\textquotesingle{}s speed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRechargeStation_a817e0b4b96c52f0aebef2f9ad9c5e2f1}{Get\+Availability}} () const
+\begin{DoxyCompactList}\small\item\em Gets the availability of the recharge station. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRechargeStation_ad1f81bd953d2a4832e15a31a020f9df4}{Set\+Position}} (\mbox{\hyperlink{classVector3}{Vector3}} pos\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the position of the recharge station. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRechargeStation_a6cb12ec5aeecc543461cd033f3581ecc}{Set\+Availability}} (bool choice)
+\begin{DoxyCompactList}\small\item\em Sets the Availability of the recharge station. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRechargeStation_ae89da10f68c7032c1a573ff70d1b6b6a}\label{classRechargeStation_ae89da10f68c7032c1a573ff70d1b6b6a}} 
+\mbox{\hyperlink{classRechargeStation_ae89da10f68c7032c1a573ff70d1b6b6a}{Recharge\+Station}} (const \mbox{\hyperlink{classRechargeStation}{Recharge\+Station}} \&recharge\+Station)=delete
+\begin{DoxyCompactList}\small\item\em Removing the copy constructor and assignment operator so that recharge station cannot be copied. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRechargeStation_a18ab547b2101a06f3eef72d9af38e856}\label{classRechargeStation_a18ab547b2101a06f3eef72d9af38e856}} 
+\mbox{\hyperlink{classRechargeStation}{Recharge\+Station}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRechargeStation}{Recharge\+Station}} \&recharge\+Station)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Represents a recharge station in a physical system. recharge stations move using euler integration based on a specified velocity and direction. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRechargeStation_a0e13bf45d124c7c75672fbd187cac743}\label{classRechargeStation_a0e13bf45d124c7c75672fbd187cac743}} 
+\index{RechargeStation@{RechargeStation}!RechargeStation@{RechargeStation}}
+\index{RechargeStation@{RechargeStation}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{RechargeStation()}{RechargeStation()}}
+{\footnotesize\ttfamily Recharge\+Station\+::\+Recharge\+Station (\begin{DoxyParamCaption}\item[{const Json\+Object \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Recharge\+Stations are created with a name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & J\+S\+ON object containing the \mbox{\hyperlink{classRechargeStation}{Recharge\+Station}}\textquotesingle{}s information \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRechargeStation_a817e0b4b96c52f0aebef2f9ad9c5e2f1}\label{classRechargeStation_a817e0b4b96c52f0aebef2f9ad9c5e2f1}} 
+\index{RechargeStation@{RechargeStation}!GetAvailability@{GetAvailability}}
+\index{GetAvailability@{GetAvailability}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetAvailability()}{GetAvailability()}}
+{\footnotesize\ttfamily bool Recharge\+Station\+::\+Get\+Availability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the availability of the recharge station. 
+
+\begin{DoxyReturn}{Returns}
+The availability of the recharge station 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_a90348881691a37d5c3d63265ed3463b1}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_ab744525e8427d31959da678bbbd7d84a}\label{classRechargeStation_ab744525e8427d31959da678bbbd7d84a}} 
+\index{RechargeStation@{RechargeStation}!GetDestination@{GetDestination}}
+\index{GetDestination@{GetDestination}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetDestination()}{GetDestination()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Recharge\+Station\+::\+Get\+Destination (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the recharge stations destination. 
+
+\begin{DoxyReturn}{Returns}
+The recharge stations destination 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a0dcaf865938ab1fb49c8389b5e580d90}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_a98885a18485258d192fd4228227eb355}\label{classRechargeStation_a98885a18485258d192fd4228227eb355}} 
+\index{RechargeStation@{RechargeStation}!GetDetails@{GetDetails}}
+\index{GetDetails@{GetDetails}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetDetails()}{GetDetails()}}
+{\footnotesize\ttfamily Json\+Object Recharge\+Station\+::\+Get\+Details (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the details information of the recharge station. 
+
+\begin{DoxyReturn}{Returns}
+The details information of the recharge station 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a97c799400ce05e2ff2566adc4d7b9634}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_a201bdc3dca7dd08f4076eef999cee13f}\label{classRechargeStation_a201bdc3dca7dd08f4076eef999cee13f}} 
+\index{RechargeStation@{RechargeStation}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetDirection()}{GetDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Recharge\+Station\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the robot\textquotesingle{}s direction. 
+
+\begin{DoxyReturn}{Returns}
+The robot\textquotesingle{}s direction 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_aa99a8fef8b22195a5113c38ef51f086d}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_afbd5a155a5284672c4c211758712feb9}\label{classRechargeStation_afbd5a155a5284672c4c211758712feb9}} 
+\index{RechargeStation@{RechargeStation}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3}{Vector3}} Recharge\+Station\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the position of the recharge station. 
+
+\begin{DoxyReturn}{Returns}
+The position of the recharge station 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a9bc32587aab91761fc0e718612498199}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_a09d33832aca70b16e75162ce6d646470}\label{classRechargeStation_a09d33832aca70b16e75162ce6d646470}} 
+\index{RechargeStation@{RechargeStation}!GetSpeed@{GetSpeed}}
+\index{GetSpeed@{GetSpeed}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{GetSpeed()}{GetSpeed()}}
+{\footnotesize\ttfamily float Recharge\+Station\+::\+Get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the recharge station\textquotesingle{}s speed. 
+
+\begin{DoxyReturn}{Returns}
+The recharge station\textquotesingle{}s speed 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEntity_a6520d2b1dc71d092bab38ef9f5cc9ff4}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_a6cb12ec5aeecc543461cd033f3581ecc}\label{classRechargeStation_a6cb12ec5aeecc543461cd033f3581ecc}} 
+\index{RechargeStation@{RechargeStation}!SetAvailability@{SetAvailability}}
+\index{SetAvailability@{SetAvailability}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{SetAvailability()}{SetAvailability()}}
+{\footnotesize\ttfamily void Recharge\+Station\+::\+Set\+Availability (\begin{DoxyParamCaption}\item[{bool}]{choice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the Availability of the recharge station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em choice} & A bool of whether or not recharge station is available \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_adf3acdf4764f5ff25f89d7814e39551c}{I\+Entity}}.
+
+\mbox{\Hypertarget{classRechargeStation_ad1f81bd953d2a4832e15a31a020f9df4}\label{classRechargeStation_ad1f81bd953d2a4832e15a31a020f9df4}} 
+\index{RechargeStation@{RechargeStation}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!RechargeStation@{RechargeStation}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily void Recharge\+Station\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVector3}{Vector3}}}]{pos\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the position of the recharge station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+\_\+} & The new position of the recharge station \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classIEntity_af0475048b09dc13ed6cf8e7c7be2ae6b}{I\+Entity}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/include/Recharge\+Station.\+h\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/src/Recharge\+Station.\+cc\end{DoxyCompactItemize}

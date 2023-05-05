@@ -1,3 +1,5 @@
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
+
 #include "RechargeStationFactory.h"
 
 IEntity* RechargeStationFactory::CreateEntity(JsonObject& entity) {

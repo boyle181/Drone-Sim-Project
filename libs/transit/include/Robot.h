@@ -1,8 +1,12 @@
-#ifndef ROBOT_H
-#define ROBOT_H
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
 
-#include <vector>
+#ifndef LIBS_TRANSIT_INCLUDE_ROBOT_H_
+#define LIBS_TRANSIT_INCLUDE_ROBOT_H_
+
 #include <chrono>
+#include <string>
+#include <vector>
+
 #include "IEntity.h"
 #include "math/vector3.h"
 #include "util/json.h"
@@ -20,7 +24,7 @@ class Robot : public IEntity {
    * @brief Constructor
    * @param obj JSON object containing the robot's information
    */
-  Robot(JsonObject& obj);
+  explicit Robot(JsonObject& obj);
 
   /**
    * @brief Destructor
@@ -117,27 +121,37 @@ class Robot : public IEntity {
 
   /**
    * @brief Get the Picked Up status of a robot
-   * 
+   *
    * @return true, the robot is picked up
    * @return false, the robot is not picked up
    */
-  bool GetPickedUp() {return pickedUp; }
+  bool GetPickedUp() { return pickedUp; }
 
   /**
    * @brief Set the Picked Up status of a robot
-   * 
+   *
    * @param status the status that picked up is set to
    */
-  void SetPickedUp(bool status) {pickedUp = status; }
-  
-  float GetTime(){
+  void SetPickedUp(bool status) { pickedUp = status; }
+
+  /**
+   * @brief Get the Time duration of time in seconds since
+   * the robot's intial creation.
+   *
+   * @return float Seconds that have passed since robot's creation
+   */
+  float GetTime() {
     t_end = std::chrono::high_resolution_clock::now();
-    return (std::chrono::duration<float, std::milli>(t_end-t_start).count()/1000);
+    return (std::chrono::duration<float, std::milli>(t_end - t_start).count() /
+            1000);
   }
 
-  float GetDistance(){
-    return totalDistance;
-  }
+  /**
+   * @brief Gets the total distance traveled
+   *
+   * @return float, the total distance traveled
+   */
+  float GetDistance() { return totalDistance; }
 
  private:
   JsonObject details;
@@ -153,4 +167,4 @@ class Robot : public IEntity {
   float totalDistance = 0;  // For data collection
 };
 
-#endif  // ROBOT_H
+#endif  // LIBS_TRANSIT_INCLUDE_ROBOT_H_

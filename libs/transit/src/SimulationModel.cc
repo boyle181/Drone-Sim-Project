@@ -1,15 +1,15 @@
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
+
 #include "SimulationModel.h"
 
-#include "DroneFactory.h"
-#include "RobotFactory.h"
-#include "HumanFactory.h"
-#include "HelicopterFactory.h"
-#include "RechargeStationFactory.h"
-#include "WalletDecorator.h"
 #include "BatteryDecorator.h"
 #include "DataCollectionSingleton.h"
-
-
+#include "DroneFactory.h"
+#include "HelicopterFactory.h"
+#include "HumanFactory.h"
+#include "RechargeStationFactory.h"
+#include "RobotFactory.h"
+#include "WalletDecorator.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
@@ -19,7 +19,6 @@ SimulationModel::SimulationModel(IController& controller)
   AddFactory(new HumanFactory());
   AddFactory(new HelicopterFactory());
   AddFactory(new RechargeStationFactory());
-
 }
 
 SimulationModel::~SimulationModel() {
@@ -47,7 +46,7 @@ void SimulationModel::CreateEntity(JsonObject& entity) {
   // Call AddEntity to add it to the view
 
   if (type.compare("drone") == 0) {
-    myNewEntity = new BatteryDecorator (new WalletDecorator(myNewEntity));
+    myNewEntity = new BatteryDecorator(new WalletDecorator(myNewEntity));
   } else if (type.compare("robot") == 0) {
     myNewEntity = new WalletDecorator(myNewEntity);
   }
@@ -86,7 +85,8 @@ void SimulationModel::ScheduleTrip(JsonObject& details) {
 
 /// Updates the simulation
 void SimulationModel::Update(double dt) {
-  DataCollectionSingleton* dataCollection = DataCollectionSingleton::getInstance();
+  DataCollectionSingleton* dataCollection =
+      DataCollectionSingleton::getInstance();
   for (int i = 0; i < entities.size(); i++) {
     entities[i]->Update(dt, scheduler);
     controller.UpdateEntity(*entities[i]);

@@ -1,0 +1,156 @@
+\hypertarget{classDataCollectionSingleton}{}\doxysection{Data\+Collection\+Singleton Class Reference}
+\label{classDataCollectionSingleton}\index{DataCollectionSingleton@{DataCollectionSingleton}}
+
+
+This is the data collection class. It is able to accumlate data related to drones and robots in the simulation such as time, distance traveled, account information, battery usage (Only Drones), and number of trips (Only Drones). It outputs the C\+SV file on command.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Collection\+Singleton.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDataCollectionSingleton_ad3d9d1b89f25c80973837abf7386c248}{write\+Time\+Info}} (int ID, float time)
+\begin{DoxyCompactList}\small\item\em Takes an entity pointer that will be associated with the provided time. Only a single value can be assoicated with a pointer. Previous values will be overwritten. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataCollectionSingleton_a296ab57d046eb731aba85c6d626313d7}{write\+Distance\+Info}} (int ID, float distance)
+\begin{DoxyCompactList}\small\item\em Takes an entity pointer that will be associated with the provided distance. Only a single value can be assoicated with a pointer. Previous values will be overwritten. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataCollectionSingleton_a955d5acfa3476e33ee79640815f21713}{write\+Account\+Info}} (int ID, double account\+Balance)
+\begin{DoxyCompactList}\small\item\em Takes an entity pointer that will be associated with the provided account balance. Only a single value can be assoicated with a pointer. Previous values will be overwritten. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataCollectionSingleton_afb2f579aea9c8d8fec7f543804593376}{write\+Battery\+Usage}} (int ID, double usage)
+\begin{DoxyCompactList}\small\item\em Takes an drone pointer that will be associated with the provided battery usage. Only a single value can be assoicated with a pointer. Previous values will be overwritten. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataCollectionSingleton_ae39cdecf6d78b00cb4e40203616139fa}{write\+Number\+Of\+Trips}} (int ID, int trips)
+\begin{DoxyCompactList}\small\item\em Takes an drone pointer that will be associated with the provided number of trips. Only a single value can be assoicated with a pointer. Previous values will be overwritten. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataCollectionSingleton_aca20bf72ca5c8eb3d5ef653ce59924ab}\label{classDataCollectionSingleton_aca20bf72ca5c8eb3d5ef653ce59924ab}} 
+void \mbox{\hyperlink{classDataCollectionSingleton_aca20bf72ca5c8eb3d5ef653ce59924ab}{write\+To\+C\+SV}} ()
+\begin{DoxyCompactList}\small\item\em Outputs all data that has been collected to a csv file. The file\textquotesingle{}s name will be\+: \char`\"{}sim\+Data.\+csv\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDataCollectionSingleton_ae82deaabf319f555aee332457e0b7118}{Data\+Collection\+Singleton}} (const \mbox{\hyperlink{classDataCollectionSingleton}{Data\+Collection\+Singleton}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classDataCollectionSingleton_adaaff8366dabe1cf4370f0619324b5de}\label{classDataCollectionSingleton_adaaff8366dabe1cf4370f0619324b5de}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classDataCollectionSingleton}{Data\+Collection\+Singleton}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classDataCollectionSingleton}{Data\+Collection\+Singleton}} $\ast$ \mbox{\hyperlink{classDataCollectionSingleton_acb6876d440c5103e335516cd915b1047}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the Instance object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the data collection class. It is able to accumlate data related to drones and robots in the simulation such as time, distance traveled, account information, battery usage (Only Drones), and number of trips (Only Drones). It outputs the C\+SV file on command. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataCollectionSingleton_ae82deaabf319f555aee332457e0b7118}\label{classDataCollectionSingleton_ae82deaabf319f555aee332457e0b7118}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!DataCollectionSingleton@{DataCollectionSingleton}}
+\index{DataCollectionSingleton@{DataCollectionSingleton}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{DataCollectionSingleton()}{DataCollectionSingleton()}}
+{\footnotesize\ttfamily Data\+Collection\+Singleton\+::\+Data\+Collection\+Singleton (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataCollectionSingleton}{Data\+Collection\+Singleton}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+Singletons are not cloneable and assignable. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataCollectionSingleton_acb6876d440c5103e335516cd915b1047}\label{classDataCollectionSingleton_acb6876d440c5103e335516cd915b1047}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDataCollectionSingleton}{Data\+Collection\+Singleton}} $\ast$ Data\+Collection\+Singleton\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the Instance object. 
+
+\begin{DoxyReturn}{Returns}
+Data\+Collection\+Singleton$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataCollectionSingleton_a955d5acfa3476e33ee79640815f21713}\label{classDataCollectionSingleton_a955d5acfa3476e33ee79640815f21713}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!writeAccountInfo@{writeAccountInfo}}
+\index{writeAccountInfo@{writeAccountInfo}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{writeAccountInfo()}{writeAccountInfo()}}
+{\footnotesize\ttfamily void Data\+Collection\+Singleton\+::write\+Account\+Info (\begin{DoxyParamCaption}\item[{int}]{ID,  }\item[{double}]{account\+Balance }\end{DoxyParamCaption})}
+
+
+
+Takes an entity pointer that will be associated with the provided account balance. Only a single value can be assoicated with a pointer. Previous values will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & A pointer to the entity that is assoicated with the account balance provided. \\
+\hline
+{\em account} & A double representing the account balance that is assoicated with entity pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataCollectionSingleton_afb2f579aea9c8d8fec7f543804593376}\label{classDataCollectionSingleton_afb2f579aea9c8d8fec7f543804593376}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!writeBatteryUsage@{writeBatteryUsage}}
+\index{writeBatteryUsage@{writeBatteryUsage}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{writeBatteryUsage()}{writeBatteryUsage()}}
+{\footnotesize\ttfamily void Data\+Collection\+Singleton\+::write\+Battery\+Usage (\begin{DoxyParamCaption}\item[{int}]{ID,  }\item[{double}]{usage }\end{DoxyParamCaption})}
+
+
+
+Takes an drone pointer that will be associated with the provided battery usage. Only a single value can be assoicated with a pointer. Previous values will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drone} & A pointer to the drone that is assoicated with the battery usage provided. \\
+\hline
+{\em battery\+Usage} & An int representing the battery usage that is assoicated with drone pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataCollectionSingleton_a296ab57d046eb731aba85c6d626313d7}\label{classDataCollectionSingleton_a296ab57d046eb731aba85c6d626313d7}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!writeDistanceInfo@{writeDistanceInfo}}
+\index{writeDistanceInfo@{writeDistanceInfo}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{writeDistanceInfo()}{writeDistanceInfo()}}
+{\footnotesize\ttfamily void Data\+Collection\+Singleton\+::write\+Distance\+Info (\begin{DoxyParamCaption}\item[{int}]{ID,  }\item[{float}]{distance }\end{DoxyParamCaption})}
+
+
+
+Takes an entity pointer that will be associated with the provided distance. Only a single value can be assoicated with a pointer. Previous values will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & A pointer to the entity that is assoicated with the distance provided. \\
+\hline
+{\em distance} & A float representing the distanced that is assoicated with entity pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataCollectionSingleton_ae39cdecf6d78b00cb4e40203616139fa}\label{classDataCollectionSingleton_ae39cdecf6d78b00cb4e40203616139fa}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!writeNumberOfTrips@{writeNumberOfTrips}}
+\index{writeNumberOfTrips@{writeNumberOfTrips}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{writeNumberOfTrips()}{writeNumberOfTrips()}}
+{\footnotesize\ttfamily void Data\+Collection\+Singleton\+::write\+Number\+Of\+Trips (\begin{DoxyParamCaption}\item[{int}]{ID,  }\item[{int}]{trips }\end{DoxyParamCaption})}
+
+
+
+Takes an drone pointer that will be associated with the provided number of trips. Only a single value can be assoicated with a pointer. Previous values will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drone} & A pointer to the drone that is assoicated with the number of trips provided. \\
+\hline
+{\em trips} & An int representing the number of trips that is assoicated with drone pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataCollectionSingleton_ad3d9d1b89f25c80973837abf7386c248}\label{classDataCollectionSingleton_ad3d9d1b89f25c80973837abf7386c248}} 
+\index{DataCollectionSingleton@{DataCollectionSingleton}!writeTimeInfo@{writeTimeInfo}}
+\index{writeTimeInfo@{writeTimeInfo}!DataCollectionSingleton@{DataCollectionSingleton}}
+\doxysubsubsection{\texorpdfstring{writeTimeInfo()}{writeTimeInfo()}}
+{\footnotesize\ttfamily void Data\+Collection\+Singleton\+::write\+Time\+Info (\begin{DoxyParamCaption}\item[{int}]{ID,  }\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Takes an entity pointer that will be associated with the provided time. Only a single value can be assoicated with a pointer. Previous values will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & A pointer to the entity that is assoicated with the time provided. \\
+\hline
+{\em time} & A float representing the time data that is assoicated with entity pointer \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/include/Data\+Collection\+Singleton.\+h\item 
+/mnt/c/\+Users/\+Jason/csci-\/3081w/\+Team-\/001-\/13-\/homework4/\+Team-\/001-\/13-\/homework4/libs/transit/src/Data\+Collection\+Singleton.\+cc\end{DoxyCompactItemize}

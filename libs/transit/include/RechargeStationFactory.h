@@ -1,5 +1,7 @@
-#ifndef RECHARGESTATION_FACTORY_H_
-#define RECHARGESTATION_FACTORY_H_
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
+
+#ifndef LIBS_TRANSIT_INCLUDE_RECHARGESTATIONFACTORY_H_
+#define LIBS_TRANSIT_INCLUDE_RECHARGESTATIONFACTORY_H_
 
 #include <vector>
 
@@ -19,10 +21,10 @@ class RechargeStationFactory : public IEntityFactory {
   /**
    * @brief Creates entity using the given JSON object, if possible.
    * @param entity - JsonObject to be used to create the new entity.
-   * @return Entity that was created if it was created successfully, 
+   * @return Entity that was created if it was created successfully,
    * or a nullpointer if creation failed.
    **/
   IEntity* CreateEntity(JsonObject& entity);
 };
 
-#endif
+#endif  // LIBS_TRANSIT_INCLUDE_RECHARGESTATIONFACTORY_H_

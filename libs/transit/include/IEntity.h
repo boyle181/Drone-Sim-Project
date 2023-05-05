@@ -1,15 +1,18 @@
-#ifndef ENTITY_H_
-#define ENTITY_H_
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
 
+#ifndef LIBS_TRANSIT_INCLUDE_IENTITY_H_
+#define LIBS_TRANSIT_INCLUDE_IENTITY_H_
+
+#include <string>
 #include <vector>
 
-#include "graph.h"
+#include "../../routing/include/graph.h"
 #include "math/vector3.h"
 #include "util/json.h"
 using namespace routing;
 
 /**
- * @class IEntity 
+ * @class IEntity
  * @brief Represents an entity in a physical system.
  *
  * An IEntity object has a unique ID, a position, a direction, a destination,
@@ -82,15 +85,13 @@ class IEntity {
   virtual bool GetAvailability() const {}
 
   /**
-   * @brief Get the Strategy Name
-   *
+   * @brief Gets the Strategy Name
    * @return Streategy name
    */
   virtual std::string GetStrategyName() const {}
 
   /**
-   * @brief Set the Strategy Name
-   *
+   * @brief Sets the Strategy Name
    * @param strategyName_ Strategy name
    */
   virtual void SetStrategyName(std::string strategyName_) {}
@@ -149,21 +150,25 @@ class IEntity {
    * @param height The height to make the entity jump.
    */
   virtual void Jump(double height) {}
-  
+
   /**
    * @brief Sets nearest entity in the scheduler
    */
-  void SetEntity(IEntity* entity) { }
-
+  void SetEntity(IEntity* entity) {}
+  /**
+   * @brief Random float generator
+   *@param Min is the minimum number
+   * @param Max is the maximum number
+   */
   virtual float Random(float Min, float Max) {
-    return ((float(rand()) / float(RAND_MAX)) * (Max - Min)) + Min;
+    return ((static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) *
+            (Max - Min)) +
+           Min;
   }
 
-  // ************* I added everything from here below **********
-
-    /**
+  /**
    * @brief Get the Picked Up status of a entity
-   * 
+   *
    * @return true, the entity is picked up
    * @return false, the entity is not picked up
    */
@@ -171,40 +176,40 @@ class IEntity {
 
   /**
    * @brief Set the Picked Up status of a entity
-   * 
+   *
    * @param status the status that picked up is set to
    */
   virtual void SetPickedUp(bool status) {}
-  
+
   /**
    * @brief Get the Charging Status entity
-   * 
+   *
    * @return true, entity is at a recharge station charging
    * @return false, entity is not at a recharge station charging
    */
   virtual bool GetChargingStatus() {}
-  
+
   /**
    * @brief Set the Recharging Status of the entity
-   * 
+   *
    * @param status a bool that indicates if the entity is
    *               recharging at a recharge station
    */
   virtual void SetChargingStatus(bool status) {}
-  
+
   /**
-   * @brief Get the status on wether Entity is going to a 
+   * @brief Get the status on wether Entity is going to a
    * recharge station.
-   * 
+   *
    * @return true, entity is going a recharge station
    * @return false, entity is not going to a recharge station
    */
   virtual bool GetGoingToRecharge() {}
-  
+
   /**
-   * @brief Set the status on wether Entity is going to a 
+   * @brief Set the status on wether Entity is going to a
    * recharge station.
-   * 
+   *
    * @param status a bool that indicates if the entity is
    *               going to a recharge station
    */
@@ -212,19 +217,41 @@ class IEntity {
 
   /**
    * @brief Get the nearest entity that the entity is pursuing
-   * 
+   *
    * @return IEntity* the entity the entity (this entity) is pursuing
    */
-  virtual IEntity* GetEntity(){};
+  virtual IEntity* GetEntity() {}
 
-  virtual float GetTime(){};
-  virtual float GetDistance(){};
-  virtual void SetDistance(float dist_){};
-  virtual const IGraph* getGraph() const {return graph; }
+  /**
+   * @brief Get the Time duration of time in seconds since
+   * the drones intial creation.
+   *
+   * @return float Seconds that have passed since drones creation
+   */
+  virtual float GetTime() {}
+
+  /**
+   * @brief Gets the total distance traveled
+   *
+   * @return float, the total distance traveled
+   */
+  virtual float GetDistance() {}
+
+  /**
+   * @brief Sets the total distance
+   *
+   * @param distance new total distance
+   */
+  virtual void SetDistance(float dist_) {}
+
+  /**
+   * @brief gets the graph for the entity
+   */
+  virtual const IGraph* getGraph() const { return graph; }
 
  protected:
   int id;
   const IGraph* graph;
 };
 
-#endif
+#endif  // LIBS_TRANSIT_INCLUDE_IENTITY_H_

@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "IEntityFactory.h"
 #include "Human.h"
+#include "IEntityFactory.h"
 
 /**
  *@brief Human Factory to produce Human class.

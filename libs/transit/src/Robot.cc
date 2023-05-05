@@ -1,3 +1,5 @@
+// Copyright 2023 Jason Paciorek, Aidan Boyle, Rebecca Hoff, Nuh Misirli
+
 #include "Robot.h"
 
 Robot::Robot(JsonObject &obj) : details(obj) {
@@ -19,4 +21,3 @@ void Robot::Rotate(double angle) {
   direction.x = dirTmp.x * std::cos(angle) - dirTmp.z * std::sin(angle);
   direction.z = dirTmp.x * std::sin(angle) + dirTmp.z * std::cos(angle);
 }
-
