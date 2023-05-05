@@ -2,7 +2,7 @@
 
 RechargeStation::RechargeStation(JsonObject &obj) : details(obj) {
   JsonArray pos(obj["position"]);
-  position =  {Random(-1400, 1500), position.y, Random(-800, 800)};
+  position =  {pos[0], position.y, pos[2]};
   direction = {0, 0, 0};
   speed = 0;
   available = true;

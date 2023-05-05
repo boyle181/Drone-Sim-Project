@@ -99,7 +99,7 @@ class BatteryDecorator : public IEntity {
 
   void SetPickedUp(bool status) { return component->SetPickedUp(status); }
 
-/**
+  /**
    * @brief Get the Charging Status entity
    * 
    * @return true, entity is at a recharge station charging
@@ -147,37 +147,45 @@ class BatteryDecorator : public IEntity {
    * @param dir_ The new direction of the robot
    */
   void SetDirection(Vector3 dir_) { component->SetDirection(dir_); }
+
     /**
    * @brief Sets the robot's destination
    * @param des_ The new destination of the robot
    */
   void SetDestination(Vector3 des_) { component->SetDestination(des_); }
+
    /**
    * @brief Gets the avaliability of the component 
    */
   bool GetAvailability() const { return component->GetAvailability(); }
+
    /**
    * @brief Sets the avaliability of the component 
    * @param choice represents the new avaliability 
    */
   void SetAvailability(bool choice) { component->SetAvailability(choice); }
+
   /**
    * @brief Gets the details of the component
    */
   JsonObject GetDetails() const { return component->GetDetails(); }
+
   /**
    * @brief Gets the entity of the component
    */
   IEntity* GetEntity() { return component->GetEntity(); }
+
   /**
    * @brief Returns the rotate of the component 
    * @param angle represents the angle of the rotation
    */
   void Rotate(double angle){ component->Rotate(angle); }
+
   /**
    * @brief Returns the time  of the component 
   */
   float GetTime(){ return component->GetTime(); }
+
   /**
    * @brief Returns the distance  of the component 
   */
@@ -197,6 +205,7 @@ class BatteryDecorator : public IEntity {
    bool clientValid = false;
    bool canUpdateBattery = false;
    bool writeCSV = false;
+   double totalTripBatteryUsage = 0;
 };
 
 #endif  

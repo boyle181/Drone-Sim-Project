@@ -1,21 +1,13 @@
 #include "WalletDecorator.h"
 #include "DataCollectionSingleton.h"
 
-/**
-TODO:
- ISSUES:
-    * Account won't write for robot to CSV but will for drone
-    * 
-
-*/
-
 WalletDecorator::WalletDecorator(IEntity* entity){
     std::string temp = entity->GetDetails()["type"].ToString();
     type = temp.substr(1, 5);
     this->graph = entity->getGraph();
     component = entity;
     if (type.compare("drone") == 0){
-        account = 300;
+        account = 0;
     }
     else{
         account = rand()%RANGE + START_MONEY;
@@ -65,9 +57,6 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
                 account -= costForTrip;
                 clientValid = true;
                 dataCollection->writeAccountInfo(component->GetId(), account);
-                std::cout << "write account for robot\n";
-
-                // std::cout << "getID in walletDecorator: " << component->GetId()+1 << "; Account: " << account << std::endl;
             }
         }
         else if (clientValid && GetPickedUp() && GetPosition().Distance(GetDestination()) < 4.0){
@@ -98,12 +87,10 @@ void WalletDecorator::Update(double dt, std::vector<IEntity*> scheduler){
             // Drone pays for recharge per dt if they are at a recharge station
             if (account - COST_FOR_RECHARGE*dt >= 0){
                 account -= COST_FOR_RECHARGE*dt;
-                std::cout << "Wallet (Drone), Drone Recharging (Payed)\n";
             }
              // Drone can't charge if it doesnt have enough money, so charging status changed
             else {
                 SetChargingStatus(false);
-                std::cout << "Wallet (Drone), Drone can't afford Recharge\n";
             }
         }
 

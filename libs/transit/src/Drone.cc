@@ -52,7 +52,6 @@ void Drone::GetNearestEntity(std::vector<IEntity*> scheduler) {
       
 
   if (nearestEntity) {
-      std::cout << "nearest entity\n";
 
     // Set required variables
     std::string strategyName = nearestEntity->GetStrategyName();
@@ -137,16 +136,12 @@ void Drone::Update(double dt, std::vector<IEntity*> scheduler) {
       // Robots data collection info
       dataCollection->writeTimeInfo(nearestEntity->GetId(), nearestEntity->GetTime());
       dataCollection->writeDistanceInfo(nearestEntity->GetId(), pathTripDistance);
-      
-      std::cout << "path distance:" << pathTripDistance << std::endl;
-      std::cout << "beeline distance:" << beelineTripDistance << std::endl;
 
       delete toFinalDestination;
       toFinalDestination = nullptr;
       nearestEntity = nullptr;
       available = true;
       pickedUp = false;
-      std::cout << "\ndataCollected" << std::endl;
       dataCollection->writeToCSV();
     }
   }

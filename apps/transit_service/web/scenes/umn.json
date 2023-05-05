@@ -58,7 +58,7 @@
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [-37, 13, -4]
+            "offset": [0, 12, 0]
     	  }
     },
     {
@@ -72,7 +72,7 @@
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [-37, 13, -4]
+            "offset": [0, 12, 0]
           }
     },
     {
@@ -86,7 +86,7 @@
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [-37, 13, -4]
+            "offset": [0, 12, 0]
           }
     },
     {
@@ -100,7 +100,7 @@
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [-37, 13, -4]
+            "offset": [0, 12, 0]
           }
     },
     {
@@ -114,7 +114,7 @@
             "rotation": [0, 0, 0, 0],
             "direction": [1,0,0],
             "speed": 0,
-            "offset": [-37, 13, -4]
+            "offset": [0, 12, 0]
           }
     },
     {
