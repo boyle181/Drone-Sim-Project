@@ -61,6 +61,18 @@ On top right corner, you can change your camera view into locking the entities.
 ## DATA COLLECTION
 Data collection allows us to collect valuable data throughout the duration of the simulation. Data such as the time since a entity has been initially created, the total distance traveled by a particular entity, the account information of the entity (See wallet feature), The battery usage by a drone (See wallet feature), and the total number of trips that the drone has done. Multiple simulations can be run, and a folder called “CSV” will populate with data regarding each run of the simulation. The files contained in “CSV” will be named according to the time the simulation was ran. The user can interact with the CSVs by browsing the CSV/ directory. This adds to the existing work by allowing data to be outputted that can be analyzed. Data collection was implemented in the  using the singleton design pattern.
 
+## WALLET
+### What does it do?
+The wallet sytem is a feature which allows our simulation to track the robot and the drones money held in there own accounts.
+### Why is it significantly interesting?
+This is significantly interesting because it allows us to create more diverse interactions between entities. This also creates a more realistic travel application similar to our modern apps like uber. There is now dynamics between robots, the drone, and recharge statrions, adding income to the trip process as well as adding payments as the robots pay for rides.
+### How does it add to the existing work?  
+It adds to existing work because it allows the drone to collect tolls from the robots, as it is performing a service. And the Recharge stations toll the robots as well, being payed to recharge the battery of the drone.
+### Which design pattern did you choose to implement it and why? 
+We used the decorator pattern as we wanted to wrap this with the battery as well as the entity it was with. Then we could update all these objects simultaneously.
+### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
+NOT USER INTERACTABLE
+
 ## BATTERY
 ### What does it do?
 Our second feature is the Battery which allows our simulation to keep track of the drones battery.
@@ -70,14 +82,6 @@ The reason that this feature is important is because it sets a limitation on the
 It adds to existing work because it allows for the already created Drone to have a limit to the number of trips it can complete before having to go to a recharge station
 ### Which design pattern did you choose to implement it and why? 
 Decorator Pattern because the battery is modified during runtime. Similalry, other instances of the same class will not be affected by this(if there were more drone), so the individual object has the modified behavior. Through the decorator pattern we were able to add attrbiutes to the decorator dynamically. 
-### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
-NOT USER INTERACTABLE
-
-## WALLET
-### What does it do?
-### Why is it significantly interesting?
-### How does it add to the existing work? 
-### Which design pattern did you choose to implement it and why? 
 ### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
 NOT USER INTERACTABLE
 
