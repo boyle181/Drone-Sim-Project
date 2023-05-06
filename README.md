@@ -4,7 +4,7 @@ Jason Paciorek (pacio017) , Aidan Boyle, Rebecca Hoff (hoff15420) , Nuh Misirli 
 #What is the project about (overview of the whole project, not just the hw4)?
 This project is about created a simulation of the University of Minnesota Campus with multiple entities (drone, robots, etc) and having all those entities all being able to travel through the simulation. To make the simulation a battery and wallet system were incorporated to create a transcation system and place for the drone to recharge after completing ths trip
 # How to run the simulation (overview of the whole project, not just the hw4)?
-Here is a quick overview of how to run the visualization
+Here is a overview of how to run the simulation
 
     Go to the project's directory
     
@@ -18,7 +18,9 @@ Here is a quick overview of how to run the visualization
         
     ./build/bin/transit_service 8081 apps/transit_service/web/
 
-Navigate to http://127.0.0.1:8081/schedule.html and you should see a page to schedule the trips.
+   To **view** the simulation go to: http://127.0.0.1:8081
+
+   To **schedule trips** in the simulation go to: http://127.0.0.1:8081/schedule.html
 
 *Note: 8081 will depends on what port you used. If you use port 8082, then it will be http://127.0.0.1:8082 instead.*
 
