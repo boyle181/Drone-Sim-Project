@@ -56,14 +56,30 @@ You will be able to watch the simulation of the drone and the passenger here htt
 
 On top right corner, you can change your camera view into locking the entities.
 
-# SINGLETON
-# What does it do?
-# Why is it significantly interesting?
+# NEW FEATURES
 
-# How does it add to the existing work? 
+## DATA COLLECTION
+Data collection allows us to collect valuable data throughout the duration of the simulation. Data such as the time since a entity has been initially created, the total distance traveled by a particular entity, the account information of the entity (See wallet feature), The battery usage by a drone (See wallet feature), and the total number of trips that the drone has done. Multiple simulations can be run, and a folder called “CSV” will populate with data regarding each run of the simulation. The files contained in “CSV” will be named according to the time the simulation was ran. The user can interact with the CSVs by browsing the CSV/ directory. This adds to the existing work by allowing data to be outputted that can be analyzed. Data collection was implemented in the  using the singleton design pattern.
 
-# Which design pattern did you choose to implement it and why? 
-Instruction to use this new feature (if the new feature is not user interactable, please mention this as well)
+## BATTERY
+### What does it do?
+Our second feature is the Battery which allows our simulation to keep track of the drones battery.
+### Why is it significantly interesting?
+The reason that this feature is important is because it sets a limitation on the drone’s traveling capabilities. The drone only completes the trip if it has enough battery. The model is more realistic when the drone can only complete certain trips with its battery limitations. Anytime during the trip, if the drone does not have enough battery, it can always stop at a recharge station, recharge, and continue its trip.
+### How does it add to the existing work? 
+It adds to existing work because it allows for the already created Drone to have a limit to the number of trips it can complete before having to go to a recharge station
+### Which design pattern did you choose to implement it and why? 
+Decorator Pattern because the battery is modified during runtime. Similalry, other instances of the same class will not be affected by this(if there were more drone), so the individual object has the modified behavior. Through the decorator pattern we were able to add attrbiutes to the decorator dynamically. 
+### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
+NOT USER INTERACTABLE
+
+## WALLET
+### What does it do?
+### Why is it significantly interesting?
+### How does it add to the existing work? 
+### Which design pattern did you choose to implement it and why? 
+### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
+NOT USER INTERACTABLE
 
 # SINGLETON ANALYSIS 
 
@@ -78,26 +94,5 @@ DRONE DISTANCE AND ACCOUNT BALANCEAs expected for the drone, as the distance inc
 DRONE NUMBER OF TRIPS AND ACCOUNT have a positive relationship
 
 DRONE NUMBER OF TRIPS AND Distance have a positive relationship
-
-# BATTERY
-# What does it do?
-Our second feature is the Battery which allows our simulation to keep track of the drones battery.
-# Why is it significantly interesting?
-The reason that this feature is important is because it sets a limitation on the drone’s traveling capabilities. The drone only completes the trip if it has enough battery. The model is more realistic when the drone can only complete certain trips with its battery limitations. Anytime during the trip, if the drone does not have enough battery, it can always stop at a recharge station, recharge, and continue its trip.
-# How does it add to the existing work? 
-It adds to existing work because it allows for the already created Drone to have a limit to the number of trips it can complete before having to go to a recharge station
-# Which design pattern did you choose to implement it and why? 
-Decorator Pattern because the battery is modified during runtime. Similalry, other instances of the same class will not be affected by this(if there were more drone), so the individual object has the modified behavior. Through the decorator pattern we were able to add attrbiutes to the decorator dynamically. 
-# Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
-NOT USER INTERACTABLE
-
-
-# WALLET
-# What does it do?
-# Why is it significantly interesting?
-# How does it add to the existing work? 
-# Which design pattern did you choose to implement it and why? 
-# Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
-NOT USER INTERACTABLE
 
 
