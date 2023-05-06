@@ -81,7 +81,7 @@ NOT USER INTERACTABLE
 ### Instruction to use this new feature (if the new feature is not user interactable, please mention this as well) 
 NOT USER INTERACTABLE
 
-# SINGLETON ANALYSIS 
+# DATA ANALYSIS 
 
 TIME VS DISTANCE There is not an apparent relationship between time and the distance. As the time increases, it is not always the case that the distance increases or decreases
 
